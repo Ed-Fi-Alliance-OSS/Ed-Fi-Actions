@@ -1,6 +1,6 @@
 # Ed-Fi-Actions Contributors List
 
-This is the list of LMS-Toolkit's significant contributors.
+This is the list of Ed-Fi-Action's significant contributors.
 
 This does not necessarily list everyone who has contributed code, especially
 since many employees of one corporation may be contributing. To see the full

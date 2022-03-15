@@ -1,4 +1,4 @@
-# LMS-Toolkit
+# Ed-Fi-Action Notices
 
 This product includes software developed at the [Ed-Fi
 Alliance](https://www.ed-fi.org).
