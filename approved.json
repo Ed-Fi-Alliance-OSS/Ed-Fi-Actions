@@ -1,0 +1,7 @@
+{
+    "github/super-linter": "286abe2b0349da9c074c0fed8e8ec0a86cd13279",
+    "github/codeql-action/init": "v1",
+    "github/codeql-action/analyze": "5f532563584d71fdef14ee64d17bafb34f751ce5",
+    "Gr1N/setup-poetry": "462ac83c852d49e282a1233c4c24c5411696e7c7",
+    "dawidd6/action-download-artifact": "v2"
+}
