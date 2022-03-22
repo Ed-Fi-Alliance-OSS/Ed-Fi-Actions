@@ -1,4 +1,4 @@
-Import-Module /src/action-whitelist.psm1
+Import-Module /src/action-whitelist.psm1 -DisableNameChecking
 
 $actionsFound = LoadAllUsedActions -RepoPath $pwd
 $unapproved = CheckIfActionsApproved -outputs $actionsFound
