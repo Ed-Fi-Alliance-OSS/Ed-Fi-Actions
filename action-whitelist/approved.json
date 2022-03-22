@@ -46,6 +46,10 @@
     {
       "actionLink": "actions/setup-dotnet",
       "actionVersion": "v1.8.0"
+    },
+    {
+      "actionLink": "./action-whitelist",
+      "actionVersion": null
     }
   ]
   
