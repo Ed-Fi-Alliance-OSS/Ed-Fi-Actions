@@ -16,4 +16,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with: 
           name: actions
-          path: ./summarized-actions.json
+          path: ./actions.json

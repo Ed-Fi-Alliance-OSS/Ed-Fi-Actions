@@ -186,8 +186,8 @@ function CheckIfActionsApproved {
     }
 
     if ($unapprovedOutputs.Count -gt 0) {
-        Write-Host "The following $numDenied actions/versions were denied!" -ForegroundColor Red
-        Write-Host $unapprovedOutputs
+        Write-Error "The following $numDenied actions/versions were denied!"
+        return $unapprovedOutputs
 
     }else{
         Write-Host "All $numApproved actions/versions were approved!"
@@ -216,10 +216,11 @@ function main() {
         #Write-Host "Stored the summarized usage info into this file: [$fileName]"
 
         # JAR TODO: 
-        CheckIfActionsApproved -approvedPath $approvedPath -outputPath $fileName
+        $scannedActions = CheckIfActionsApproved -approvedPath $approvedPath -outputPath $fileName
     }
 
-    return $summarizeActions
+    #return $summarizeActions
+    return $scannedActions
 }
 
 $actions = main
