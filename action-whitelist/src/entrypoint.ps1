@@ -26,16 +26,16 @@ function main {
     }
 
     $jsonObjectPretty | Out-File -FilePath $jsonPath
-    #Write-Output "::set-output name=actions::'$jsonObject'"
+    Write-Output "::set-output name=actions::'$jsonObject'"
     #Write-Host "Stored actions in outputs list. Use $${{ steps.<step id>.outputs.actions }} in next action to load the json"
 }
 
 try {
     # always run in the correct location, where our scripts are located:
-    Set-Location $PSScriptRoot
-
+    #Set-Location $PSScriptRoot
+    Get-LocationInfo
     # call main script:
-    main
+    #main
 
     # return the container with the exit code = Ok:    
     exit 0
