@@ -1,14 +1,14 @@
-param( 
-    [string] $RepoPath = "/github/workspace",
-    [string] $whitelist = "/src/approved.json"
-)
+#param( 
+#   [string] $RepoPath = "/github/workspace",
+#    [string] $whitelist = "/src/approved.json"
+#)
 # pull in central calls script
 . $PSScriptRoot\generic.ps1
-if( $ENV:whitelist ) {
-    $approvedPath = $ENV:whitelist
-}else{
-    $approvedPath = $whitelist
-}
+#if( $ENV:whitelist ) {
+#    $approvedPath = $ENV:whitelist
+#}else{
+#    $approvedPath = $whitelist
+#}
 
 # Parse yaml file and return a hashtable with actionLink, actionVersion, and workFlowFileName
 function GetActionsFromFile {
@@ -51,14 +51,14 @@ function GetActionsFromFile {
 
 
 function GetAllUsedActions {
-    #param (
-    #    [string] $RepoPath = "/github/workspace"
-    #)
+    param (
+        [string] $RepoPath = "/github/workspace"
+    )
 
     # get all the actions from the repo
-    $workflowFiles = gci "$PSScriptRoot/.github/workflows" | Where {$_.Name.EndsWith(".yml")}
+    $workflowFiles = gci "$($RepoPath)/.github/workflows" | Where {$_.Name.EndsWith(".yml")}
     if ($workflowFiles.Count -lt 1) {
-        Write-Host "Could not find workflow files in $PSScriptRoot"
+        Write-Host "Could not find workflow files in the current directory"
         return;
     }
     
@@ -140,17 +140,18 @@ function LoadAllUsedActions {
 function CheckIfActionsApproved {
     [CmdletBinding()]
     param (
-        [Parameter(Mandatory=$true)]
+        [Parameter()]
         [string]
-        $approvedPath,
-        [Parameter(Mandatory=$true)]
-        [string]
-        $outputPath
+        $approvedPath = "/src/approved.json",
+        #[Parameter(Mandatory=$true)]
+        #[string]
+        #$outputPath,
+        $outputs
     )
 
     $approved = (gc $approvedPath | convertfrom-Json -depth 10 | select  actionLink, actionVersion)
 
-    $outputs = (gc $outputPath | convertfrom-Json -depth 10 | select  actionLink, actionVersion)
+    $outputs = $outputs | select  actionLink, actionVersion
 
     $numApproved = 0
     $numDenied = 0
@@ -164,14 +165,14 @@ function CheckIfActionsApproved {
         $approvedOutputActionVersions = ($approved | where actionLink -eq $output.actionLink)
         if ($approvedOutputActionVersions) {
             Write-Verbose "Approved Versions for $($output.actionLink) : "
-            $approvedOutputActionVersions.actionVersion
+            Write-Verbose "$($approvedOutputActionVersions.actionVersion)"
         }else{
             Write-Verbose "No Approved versions for $($output.actionLink) were found. "
             
         }
         
 
-        $approvedOutput = $approvedOutputActionVersions| where actionVersion -eq $output.actionVersion
+        $approvedOutput = $approvedOutputActionVersions | where actionVersion -eq $output.actionVersion | Where {$_.actionVersion -eq $output.actionVersion}
         
         if ($approvedOutput) {
             Write-Verbose "Output versions approved: $approvedOutput"
@@ -188,6 +189,7 @@ function CheckIfActionsApproved {
     if ($unapprovedOutputs.Count -gt 0) {
         Write-Host "The following $numDenied actions/versions were denied!"
         Write-Host $unapprovedOutputs
+        return $unapprovedOutputs
 
     }else{
         Write-Host "All $numApproved actions/versions were approved!"
@@ -201,7 +203,7 @@ function main() {
     #$RepoPath = "/github/workspace"
 
     # get actions from the workflows in the repos
-    $actionsFound = LoadAllUsedActions RepoPath $RepoPath
+    $actionsFound = LoadAllUsedActions -RepoPath $RepoPath
 
     if ($actionsFound.Count -gt 0) {
                 
@@ -223,5 +225,5 @@ function main() {
     return $scannedActions
 }
 
-$actions = main
-return $actions
+#$actions = main
+#return $actions
