@@ -1,0 +1,19 @@
+# action.yml
+name: 'Action Whitelist'
+author: 'Ed-Fi Alliance'
+description: 'Scan for action files and only allow actions from approved Authors and commit hash version'
+branding:
+  icon : alert-octagon
+  color: blue
+inputs:
+  whitelist:
+    description: 'The path to the whitelist .json file. Must be in the form: {"actionLink": "action name","actionVersion": "action version commit hash" '
+    default: './approved.json'
+outputs:
+  actions:
+    description: 'List of detected unapproved actions used.'  
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args: 
+    - '${{ inputs.whitelist }}'

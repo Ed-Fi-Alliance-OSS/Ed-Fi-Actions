@@ -4,21 +4,16 @@ on:
     branches:
       - DEVOPS-79
 jobs:
-  load-all-used-actions:
+  action-whitelist:
     runs-on: ubuntu-latest
     steps: 
-      - uses: devops-actions/load-used-actions@main
-        name: Load used actions
-        with: 
-          PAT: ${{ secrets.GITHUB_TOKEN }}
-        id: load-actions
-
-      - shell: pwsh        
-        name: Store json file
-        run: echo ${{ steps.load-actions.outputs.actions }} > 'actions.json'
-            
-      - name: Upload result file as artefact
+      - name: Checkout
+        uses: actions/checkout@v2
+      - uses: ./action-whitelist@main
+        name: Scan used actions
+        id: scan-action  
+      - name: Upload result file as artifact
         uses: actions/upload-artifact@v2
         with: 
           name: actions
-          path: actions.json
+          path: ./summarized-actions.json
