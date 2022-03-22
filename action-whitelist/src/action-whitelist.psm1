@@ -47,7 +47,7 @@ function GetAllUsedActions {
     )
 
     # get all the actions from the repo
-    $workflowFiles = gci "$($RepoPath)/.github/workflows" | Where {$_.Name.EndsWith(".yml")}
+    $workflowFiles = Get-ChildItem "$($RepoPath)/.github/workflows" | Where {$_.Name.EndsWith(".yml")}
     if ($workflowFiles.Count -lt 1) {
         Write-Host "Could not find workflow files in the current directory"
         return;
@@ -60,7 +60,7 @@ function GetAllUsedActions {
     foreach ($workflowFile in $workflowFiles) {
         try {
             if ($workflowFile.FullName.EndsWith(".yml")) { 
-                $workflow = gc $workflowFile.FullName -Raw
+                $workflow = Get-Content $workflowFile.FullName -Raw
                 $actions = GetActionsFromFile -workflow $workflow -workflowFileName $workflowFile.FullName
 
                 $actionsInRepo += $actions
@@ -68,10 +68,7 @@ function GetAllUsedActions {
         }
         catch {
             Write-Warning "Error handling this workflow file:"
-            Write-Host (gc $workflowFiles[0].FullName -raw) | ConvertFrom-Json -Depth 10
-            Write-Warning "----------------------------------"
-            Write-Host "Error: [$_]"
-            Write-Warning "----------------------------------"
+            Write-Host (Get-Content $workflowFiles[0].FullName -raw) | ConvertFrom-Json -Depth 10
         }
     }
 
@@ -101,7 +98,7 @@ function CheckIfActionsApproved {
         $outputs
     )
 
-    $approved = (gc $approvedPath | convertfrom-Json -depth 10 | select  actionLink, actionVersion)
+    $approved = (Get-Content $approvedPath | convertfrom-Json -depth 10 | select  actionLink, actionVersion)
 
     $outputs = $outputs | select  actionLink, actionVersion
 
