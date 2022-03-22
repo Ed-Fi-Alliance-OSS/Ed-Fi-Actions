@@ -1,14 +1,5 @@
-#param( 
-#   [string] $RepoPath = "/github/workspace",
-#    [string] $whitelist = "/src/approved.json"
-#)
 # pull in central calls script
-. $PSScriptRoot\generic.ps1
-#if( $ENV:whitelist ) {
-#    $approvedPath = $ENV:whitelist
-#}else{
-#    $approvedPath = $whitelist
-#}
+. $PSScriptRoot\dependencies.ps1
 
 # Parse yaml file and return a hashtable with actionLink, actionVersion, and workFlowFileName
 function GetActionsFromFile {
@@ -87,42 +78,6 @@ function GetAllUsedActions {
     return $actionsInRepo
 }
 
-function SummarizeActionsUsed {
-    param (
-        [object] $actions
-    )
-
-    $summarized =  @()
-    foreach ($action in $actions) {
-        $found = $summarized | Where-Object { $_.actionVersion -eq $action.actionVersion }
-        if ($null -ne $found) {
-            # action already found, add this info to it
-            $newInfo =  [PSCustomObject]@{
-                workflowFileName = $action.workflowFileName
-            }
-
-            $found.workflows += $newInfo
-            $found.count++
-        }
-        else {
-            # new action, create a new object
-            $newItem =  [PSCustomObject]@{
-                actionLink = $action.actionLink
-                actionVersion = $action.actionVersion
-                count = 1
-                workflows =  @(
-                    [PSCustomObject]@{
-                        workflowFileName = $action.workflowFileName
-                    }
-                )           
-            }
-            $summarized += $newItem
-        }
-    }
-
-    return $summarized
-}
-
 function LoadAllUsedActions {
     param (
         [string] $RepoPath = "/github/workspace"
@@ -143,9 +98,6 @@ function CheckIfActionsApproved {
         [Parameter()]
         [string]
         $approvedPath = "/src/approved.json",
-        #[Parameter(Mandatory=$true)]
-        #[string]
-        #$outputPath,
         $outputs
     )
 
@@ -196,34 +148,3 @@ function CheckIfActionsApproved {
     }
 
 }
-
-function main() {
-
-    # Find the current root of the repo
-    #$RepoPath = "/github/workspace"
-
-    # get actions from the workflows in the repos
-    $actionsFound = LoadAllUsedActions -RepoPath $RepoPath
-
-    if ($actionsFound.Count -gt 0) {
-                
-        $summarizeActions = SummarizeActionsUsed -actions $actionsFound
-
-        Write-Host "Found [$($actionsFound.Count)] actions used in workflows with [$($summarizeActions.Count) unique actions]"
-
-        # write the actions to disk
-        $fileName = "summarized-actions.json"
-        $jsonObject = ($summarizeActions | ConvertTo-Json -Depth 10)
-        New-Item -Path $fileName -Value $jsonObject -Force | Out-Null
-        #Write-Host "Stored the summarized usage info into this file: [$fileName]"
-
-        # JAR TODO: 
-        $scannedActions = CheckIfActionsApproved -approvedPath $approvedPath -outputPath $fileName
-    }
-
-    #return $summarizeActions
-    return $scannedActions
-}
-
-#$actions = main
-#return $actions
