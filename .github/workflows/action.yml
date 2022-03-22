@@ -9,7 +9,7 @@ jobs:
     steps: 
       - name: Checkout
         uses: actions/checkout@v2
-      - uses: ./action-whitelist@DEVOPS-79
+      - uses: ./action-whitelist
         name: Scan used actions
         id: scan-action  
       - name: Upload result file as artifact
