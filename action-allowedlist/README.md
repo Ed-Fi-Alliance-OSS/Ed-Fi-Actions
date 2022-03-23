@@ -39,18 +39,14 @@ jobs:
 
 ## Outputs
 
-actions: a compressed json string with all the actions used in the workflows in the organization. The json is in the format:
+actions: a json string with all the unapproved actions used in the workflows in the repo. The json is in the format:
 
 ``` json
 [
+  {
     "actionLink": "actions/checkout",
-    "actionVersion": "v2",
-    "workflows": [
-        {
-            "repo": "Ed-Fi-Alliance-OSS/Ed-Fi-Actions/actions-allowedlist",
-            "workflowFileName": "action.yml"
-        }
-    ]
+    "actionVersion": "v2"
+  }
 ]
 ```
 
@@ -59,10 +55,3 @@ Properties:
 |----|-----------|
 |actionLink|The link to the action used in the workflow|
 |actionVersion|The version of the action used in the workflow|
-|workflows|An array of workflows that used the action|
-
-The workflow object has the following properties:
-|Name|Description|
-|----|-----------|
-|repo|The name of the repository that uses the action|
-|workflowFileName|The name of the workflow file that was found in the directory `.github/workflows/`|
