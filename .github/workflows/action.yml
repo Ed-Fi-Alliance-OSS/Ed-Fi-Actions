@@ -4,16 +4,11 @@ on:
     branches:
       - DEVOPS-79
 jobs:
-  action-whitelist:
+  action-allowedlist:
     runs-on: ubuntu-latest
     steps: 
       - name: Checkout
-        uses: actions/checkout@v2
-      - uses: ./action-whitelist
+        uses: actions/checkout@2d1c1198e79c30cca5c3957b1e3b65ce95b5356e
+      - uses: ./action-allowedlist
         name: Scan used actions
         id: scan-action  
-      - name: Upload result file as artifact
-        uses: actions/upload-artifact@e448a9b857ee2131e752b06002bf0e093c65e571
-        with: 
-          name: actions
-          path: ./actions.json

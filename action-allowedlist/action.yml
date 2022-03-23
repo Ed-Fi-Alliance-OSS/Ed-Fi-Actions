@@ -5,9 +5,6 @@ description: 'Scan for action files and only allow actions from approved Authors
 branding:
   icon : alert-octagon
   color: blue
-outputs:
-  actions:
-    description: 'List of detected unapproved actions used.'  
 runs:
   using: 'docker'
   image: 'Dockerfile'

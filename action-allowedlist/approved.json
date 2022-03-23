@@ -4,6 +4,10 @@
       "actionVersion": "ec3a7ce113134d7a93b817d10a8272cb61118579"
     },
     {
+      "actionLink": "actions/checkout",
+      "actionVersion": "2d1c1198e79c30cca5c3957b1e3b65ce95b5356e"
+    },
+    {
       "actionLink": "actions/cache",
       "actionVersion": "c64c572235d810460d0d6876e9c705ad5002b353"
     },
