@@ -1,8 +1,5 @@
-name: Load Actions Test
-on:
-  push:
-    branches:
-      - DEVOPS-79
+name: Scan Actions
+on: push
 jobs:
   action-allowedlist:
     runs-on: ubuntu-latest
