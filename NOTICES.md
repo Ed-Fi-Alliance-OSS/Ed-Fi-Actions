@@ -10,3 +10,5 @@ open source packages that are attributed below in this notice. Where required,
 copies of the license agreement are provided in separate files in the Licenses
 subdirectory. Unless noted below, all open source software is distributed in its
 original form without modification.
+
+Portions of this action use code from [powershell-yaml](https://github.com/cloudbase/powershell-yaml) Copyright 2016 Cloudbase Solutions SRL - [LICENSE](action-allowedlist/dep/powershell-yaml/LICENSE)
