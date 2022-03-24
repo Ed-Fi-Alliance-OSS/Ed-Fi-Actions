@@ -9,12 +9,24 @@ Used in lieu of Github Enterprise [Allow specified actions](https://docs.github.
 Minimal uses expression to use this action:
 
 ``` yaml
-uses: ./actions-allowedlist
-name: Scan used actions
-id: scan-action
+- uses: ./actions-allowedlist
+  name: Scan used actions
+  id: scan-action
 ```
 
-Note: this will check the current repo against the actions contained in `approved.json`
+Note: this will check the current repo against the actions contained in `approved.json`.
+
+Example for calling this action from a different repository:
+
+```yml
+- uses: Ed-Fi-Alliance-OSS/Ed-Fi-Actions/action-allowedlist@latest
+  name: Scan used actions
+  id: scan-action
+```
+
+❗ In this one case, it is appropriate to use a tag ("latest") instead of a commit hash. Otherwise
+we have a chicken-and-egg problem: the approved list of actions would need to know the has for
+the commit that saves the update to the action.
 
 ## Full example
 
