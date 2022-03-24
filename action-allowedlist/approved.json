@@ -54,6 +54,10 @@
     {
       "actionLink": "Ed-Fi-Alliance-OSS/Ed-Fi-Actions/action-allowedlist",
       "actionVersion": "13fadadf474f6bc3bb0be9313266ab5e63ca1ee9"
+    },
+    {
+      "actionLink": "Ed-Fi-Alliance-OSS/Ed-Fi-Actions/action-allowedlist",
+      "actionVersion": "latest"
     }
   ]
   
