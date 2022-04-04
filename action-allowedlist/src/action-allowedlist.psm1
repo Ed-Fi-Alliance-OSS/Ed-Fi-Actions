@@ -49,17 +49,23 @@ function GetAllUsedActions {
     # get all the actions from the repo
     $workflowFiles = Get-ChildItem "$($RepoPath)/.github/workflows" | Where {$_.Name.EndsWith(".yml")}
     if ($workflowFiles.Count -lt 1) {
-        Write-Host "Could not find workflow files in the current directory"
-        return;
+        # Depending on how the workflow is called, /github/workspace may not always be the working directory, when calling from a job chain
+        # (i.e. allowed actions and bidirectional scanner, we provide a different path since multiple repos are checked out. This should
+        # eventually be passed from the calling workflow
+        $workflowFiles = Get-ChildItem "$($RepoPath)/testing-repo/.github/workflows" | Where {$_.Name.EndsWith(".yml")}
     }
-    
+
+    if ($workflowFiles.Count -lt 1) {
+        Write-Host "Could not find workflow files in the current directory"
+    }
+
     # create a hastable to store the list of files in
     $actionsInRepo = @()
 
     Write-Host "Found [$($workflowFiles.Count)] files in the workflows directory"
     foreach ($workflowFile in $workflowFiles) {
         try {
-            if ($workflowFile.FullName.EndsWith(".yml")) { 
+            if ($workflowFile.FullName.EndsWith(".yml")) {
                 $workflow = Get-Content $workflowFile.FullName -Raw
                 $actions = GetActionsFromFile -workflow $workflow -workflowFileName $workflowFile.FullName
 
@@ -117,12 +123,12 @@ function CheckIfActionsApproved {
             Write-Verbose "$($approvedOutputActionVersions.actionVersion)"
         }else{
             Write-Verbose "No Approved versions for $($output.actionLink) were found. "
-            
+
         }
-        
+
 
         $approvedOutput = $approvedOutputActionVersions | where actionVersion -eq $output.actionVersion | Where {$_.actionVersion -eq $output.actionVersion}
-        
+
         if ($approvedOutput) {
             Write-Verbose "Output versions approved: $approvedOutput"
             $approvedOutputs += $approvedOutput

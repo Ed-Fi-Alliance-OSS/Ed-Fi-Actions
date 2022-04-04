@@ -48,6 +48,10 @@
       "actionVersion": "a71d1eb2c86af85faa8c772c03fb365e377e45ea"
     },
     {
+        "actionLink": "haveyoudebuggedit/trojansourcedetector",
+        "actionVersion": "103b76ee743f7a666fd98dfaa15b4b7e314ca140"
+    },
+    {
       "actionLink": "./action-allowedlist",
       "actionVersion": null
     },
@@ -60,4 +64,3 @@
       "actionVersion": "latest"
     }
   ]
-  
