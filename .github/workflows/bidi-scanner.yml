@@ -1,0 +1,14 @@
+name: Run Unicode Control Character Scan
+
+on:
+  workflow_call:
+
+jobs:
+  check-for-bidirectional-characters:
+    runs-on: ubuntu-latest
+    steps:
+        # Check out the repo that is calling this action
+      - name: Checkout Repo to Scan
+        uses: actions/checkout@v2
+      - name: Trojan Source Detector
+        uses: haveyoudebuggedit/trojansourcedetector@103b76ee743f7a666fd98dfaa15b4b7e314ca140 #Hash value for v1.1.0
