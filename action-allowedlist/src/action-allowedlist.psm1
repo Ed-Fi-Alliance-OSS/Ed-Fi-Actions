@@ -17,7 +17,7 @@ function GetActionsFromFile {
 
     # go through the parsed yaml
     foreach ($job in $parsedYaml["jobs"].GetEnumerator()) {
-        Write-Host "  Job found: [$($job.Key)]"
+        Write-Host "  Job found: [$($job.Key)] in $workflowFileName"
         $steps=$job.Value.Item("steps")
         foreach ($step in $steps) {
             $uses=$step.Item("uses")
