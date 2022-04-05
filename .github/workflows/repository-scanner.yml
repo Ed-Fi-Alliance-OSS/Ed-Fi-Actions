@@ -1,4 +1,4 @@
-name: Scan Actions
+name: Repo Security Scan
 on:
   workflow_call:
   push:
@@ -12,21 +12,21 @@ jobs:
         with:
           repository: Ed-Fi-Alliance-OSS/Ed-Fi-Actions
           path: Ed-Fi-Actions
-          
+
       - name: Checkout the repo to Scan
         uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579  # v2.4.0
         with:
           path: testing-repo
-          
+
       - name: Scan used actions
         uses: ./Ed-Fi-Actions/action-allowedlist@latest
         id: scan-action
-        
+
   bidi-scanner:
       runs-on: ubuntu-latest
       steps:
       - name: Checkout the repo to Scan
         uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579  # v2.4.0
-        
+
       - name: Bidirectional Trojan source detector
         uses: haveyoudebuggedit/trojansourcedetector@103b76ee743f7a666fd98dfaa15b4b7e314ca140 #Hash value for v1.1.0
