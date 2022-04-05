@@ -59,9 +59,12 @@ the repo. The json is in the format:
 ]
 ```
 
-Properties: |Name|Description| |----|-----------| |actionLink|The link to the
-action used in the workflow| |actionVersion|The version of the action used in
-the workflow|
+Properties: 
+
+| Name          | Description                                    |
+| ------------- | ---------------------------------------------- |
+| actionLink    | The link to the action used in the workflow    |
+| actionVersion | The version of the action used in the workflow |
 
 
 ## Bidi Scanner Only
