@@ -1,7 +1,13 @@
 name: Repo Security Scan
 on:
   workflow_call:
+  workflow_dispatch:
   push:
+    branches:
+      - main
+  pull:
+    branches:
+      - main
 
 jobs:
   action-allowedlist:
@@ -19,7 +25,7 @@ jobs:
           path: testing-repo
 
       - name: Scan used actions
-        uses: ./Ed-Fi-Actions/action-allowedlist@latest
+        uses: ./Ed-Fi-Actions/action-allowedlist
         id: scan-action
 
   bidi-scanner:
