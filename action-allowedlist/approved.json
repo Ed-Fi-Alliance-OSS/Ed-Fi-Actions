@@ -25,9 +25,9 @@
     },
     {
       "actionLink": "actions/checkout",
-      "actionVersion": ec3a7ce113134d7a93b817d10a8272cb61118579"
+      "actionVersion": "ec3a7ce113134d7a93b817d10a8272cb61118579",
       "tag": "v2.4.0"
-    }
+    },
     {
       "actionLink": "actions/setup-python",
       "actionVersion": "3105fb18c05ddd93efea5f9e0bef7a03a6e9e7df"
@@ -70,6 +70,6 @@
     },
     {
       "actionLink": "./Ed-Fi-Actions/action-allowedlist",
-      "actionVersion": "latest"
+      "actionVersion": null
     }
   ]
