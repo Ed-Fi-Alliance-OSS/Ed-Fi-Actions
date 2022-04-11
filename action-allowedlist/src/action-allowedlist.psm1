@@ -47,8 +47,9 @@ function GetAllUsedActions {
     )
 
     # get all the actions from the repo
-    $workflowFiles = Get-ChildItem "$($RepoPath)/.github/workflows" | Where {$_.Name.EndsWith(".yml")}
-    if ($workflowFiles.Count -lt 1) {
+    if (Test-Path -Path "$($RepoPath)/.github/workflows") {
+        $workflowFiles = Get-ChildItem "$($RepoPath)/.github/workflows" | Where {$_.Name.EndsWith(".yml")}
+    } else {
         # Depending on how the workflow is called, /github/workspace may not always be the working directory, when calling from a job chain
         # (i.e. allowed actions and bidirectional scanner, we provide a different path since multiple repos are checked out. This should
         # eventually be passed from the calling workflow
