@@ -36,12 +36,12 @@
     },
     {
       "actionLink": "actions/setup-python",
-      "actionVersion": "3105fb18c05ddd93efea5f9e0bef7a03a6e9e7df"
+      "actionVersion": "3105fb18c05ddd93efea5f9e0bef7a03a6e9e7df",
       "tag": "v2.2.1"
     },
     {
       "actionLink": "actions/setup-python",
-      "actionVersion": "98f2ad02fd48d057ee3b4d4f66525b231c3e52b6"
+      "actionVersion": "98f2ad02fd48d057ee3b4d4f66525b231c3e52b6",
       "tag": "v3.1.2"
     },
     {
