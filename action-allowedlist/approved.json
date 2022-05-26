@@ -120,7 +120,7 @@
       "tagVersion": "2.9.2"
     },
     {
-      "actionLink": "github/dependency-review-action",
+      "actionLink": "actions/dependency-review-action",
       "actionVersion": "a9c83d3af6b9031e20feba03b904645bb23d1dab",
       "tagVersion": "1.0.2"
     },
