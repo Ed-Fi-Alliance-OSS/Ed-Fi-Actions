@@ -64,6 +64,11 @@
       "tag": "v2.2.2"
     },
     {
+      "actionLink": "actions/upload-artifact",
+      "actionVersion": "3cea5372237819ed00197afe530f5a7ea3e805c8",
+      "tag": "v3.1.0"
+    },
+    {
       "actionLink": "github/super-linter",
       "actionVersion": "431ee7836e8cdce5a460b0db682d9169563d919b",
       "tag": "v4.9.3"
