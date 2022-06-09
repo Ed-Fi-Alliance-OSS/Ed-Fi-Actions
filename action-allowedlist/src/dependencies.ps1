@@ -3,10 +3,18 @@
 # The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 # See the LICENSE and NOTICES files in the project root for more information.
 
-$env:PSModulePath += ":/root/.local/share/powershell/Modules"
+$runningInGitHub = $env:GITHUB_ACTIONS -eq $true
 
 try {
-    Import-Module /src/powershell-yaml/ -Force
+
+    if ($runningInGitHub) {
+        $env:PSModulePath += ":/root/.local/share/powershell/Modules"
+        Import-Module /src/powershell-yaml/ -Force
+    }
+    else {
+        $env:PSModulePath += "$($PSScriptRoot)/../dep/powershell-yaml"
+        Import-Module "$($PSScriptRoot)/../dep/powershell-yaml" -Force
+    }
 }
 catch {
     Write-Warning "Error during importing of the yaml module needed for parsing"

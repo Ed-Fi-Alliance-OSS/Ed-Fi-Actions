@@ -1,0 +1,12 @@
+{
+    "configurations": [
+        {
+          "name": "Run action scan",
+          "type": "PowerShell",
+          "request": "launch",
+          "args": [],
+          "cwd": "${file}",
+          "script": "${file}",
+        }
+    ]
+}
