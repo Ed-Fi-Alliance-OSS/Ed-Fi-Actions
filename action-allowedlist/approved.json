@@ -125,6 +125,11 @@
       "tag": "2.9.2"
     },
     {
+      "actionLink": "github/codeql-action/autobuild",
+      "actionVersion": "1fae5bf71b0ecdc7d0a2ef0d0c28409d99693966",
+      "tag": "2.9.2"
+    },
+    {
       "actionLink": "actions/dependency-review-action",
       "actionVersion": "a9c83d3af6b9031e20feba03b904645bb23d1dab",
       "tag": "1.0.2"
