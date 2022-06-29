@@ -20,6 +20,11 @@
       "tag": "v1.1.4"
     },
     {
+      "actionLink": "actions/upload-release-asset",
+      "actionVersion": "e8f9f06c4b078e705bd2ea027f0926603fc9b4d5",
+      "tag": "v1.0.2"
+    },
+    {
       "actionLink": "actions/setup-dotnet",
       "actionVersion": "499789684c9a0d41c9b3f0d66a785ba17b1d51ab",
       "tag": "v1.9.0"
