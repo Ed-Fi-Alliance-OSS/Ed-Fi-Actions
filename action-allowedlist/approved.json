@@ -143,5 +143,10 @@
       "actionLink": "nuget/setup-nuget",
       "actionVersion": "b2bc17b761a1d88cab755a776c7922eb26eefbfa",
       "tag": "1.0.6"
+    },
+    {
+      "actionLink": "actions/download-artifact",
+      "actionVersion": "fb598a63ae348fa914e94cd0ff38f362e927b741",
+      "tag": "3.0.0"
     }
   ]
