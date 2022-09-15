@@ -8,8 +8,14 @@ name: "Analyze Repository"
 on:
   push:
     branches: [ main ]
+    paths:
+      - '**/*.ps1'
+      - '**/*.psm1'
   pull_request:
     branches: [ main ]
+    paths:
+      - '**/*.ps1'
+      - '**/*.psm1'
   workflow_dispatch:
 
 jobs:
