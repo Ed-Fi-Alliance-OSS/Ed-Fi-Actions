@@ -120,6 +120,18 @@
       "actionVersion": null
     },
     {
+        "actionLink": "./powershell-analyzer",
+        "actionVersion": null
+    },
+    {
+        "actionLink": "Ed-Fi-Alliance-OSS/Ed-Fi-Actions/powershell-analyzer",
+        "actionVersion": "latest"
+      },
+    {
+        "actionLink": "./Ed-Fi-Actions/powershell-analyzer",
+        "actionVersion": null
+    },
+    {
       "actionLink": "github/codeql-action/init",
       "actionVersion": "1fae5bf71b0ecdc7d0a2ef0d0c28409d99693966",
       "tag": "2.9.2"
