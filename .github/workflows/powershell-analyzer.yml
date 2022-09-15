@@ -40,3 +40,10 @@ jobs:
         uses: github/codeql-action/upload-sarif@1fae5bf71b0ecdc7d0a2ef0d0c28409d99693966 #v2.9.2
         with:
           sarif_file: ./results.sarif
+
+      - name: Upload SARIF Result
+        uses: actions/upload-artifact@6673cd052c4cd6fcf4b4e6e60ea986c889389535 # v3.0.0
+        with:
+            name: analysis-result
+            path: ./results.sarif
+            retention-days: 10
