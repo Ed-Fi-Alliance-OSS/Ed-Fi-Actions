@@ -11,11 +11,15 @@ on:
     paths:
       - '**/*.ps1'
       - '**/*.psm1'
+      - '**/analyze-repository.yml'
+      - '**/powershell-analyzer.yml'
   pull_request:
     branches: [ main ]
     paths:
       - '**/*.ps1'
       - '**/*.psm1'
+      - '**/analyze-repository.yml'
+      - '**/powershell-analyzer.yml'
   workflow_dispatch:
 
 jobs:
