@@ -1,6 +1,8 @@
 # powershell-analyzer
 
-Lint PowerShell scripts and modules using [PSScriptAnalyzer](https://docs.microsoft.com/en-us/powershell/module/psscriptanalyzer). This can be run locally or executed in GitHub Actions.
+Lint PowerShell scripts and modules using
+[PSScriptAnalyzer](https://docs.microsoft.com/en-us/powershell/module/psscriptanalyzer).
+This can be run locally or executed in GitHub Actions.
 
 ## Run Locally
 
@@ -44,9 +46,14 @@ Include into your workflow file:
     uses: Ed-Fi-Alliance-OSS/Ed-Fi-Actions/.github/workflows/powershell-analyzer.yml@latest
 ```
 
-This will automatically analyze all the PowerShell scripts and modules in the repo, and will generate a SARIF report that will be included into `https://github.com/{ORGANIZATION}/{REPOSITORY}/security/code-scanning`
+This will automatically analyze all the PowerShell scripts and modules in the
+repo, and will generate a SARIF report that will be included into
+`https://github.com/{ORGANIZATION}/{REPOSITORY}/security/code-scanning`
 
 ## See it in action
 
-[analyze-repository.yml](https://github.com/Ed-Fi-Alliance-OSS/Ed-Fi-Actions/.github/workflows/analyze-repository.yml) runs the analysis on all files on this repo.
-You can manually trigger the workflow or see the results in the [Code Scanning](https://github.com/Ed-Fi-Alliance-OSS/Ed-Fi-Actions/security/code-scanning) section.
+[analyze-repository.yml](https://github.com/Ed-Fi-Alliance-OSS/Ed-Fi-Actions/.github/workflows/analyze-repository.yml)
+runs the analysis on all files on this repo. You can manually trigger the
+workflow or see the results in the [Code
+Scanning](https://github.com/Ed-Fi-Alliance-OSS/Ed-Fi-Actions/security/code-scanning)
+section.

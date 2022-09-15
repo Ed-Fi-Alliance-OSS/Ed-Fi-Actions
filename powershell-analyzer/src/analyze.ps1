@@ -145,7 +145,10 @@ function Invoke-Analyzer {
         $Directory,
 
         [boolean]
-        $SaveToFile
+        $SaveToFile,
+
+        [string[]]
+        $ExcludedRules = ""
     )
 
     if ($null -eq $(Get-Module -ListAvailable -Name PSScriptAnalyzer)) {
@@ -227,7 +230,7 @@ Write-Output "Begin analyzing all PowerShell files in the specified directory tr
 
 $sarif = Get-SarifContainer
 
-Invoke-Analyzer -Sarif $sarif -Directory $Directory -SaveToFile $SaveToFile
+Invoke-Analyzer -Sarif $sarif -Directory $Directory -SaveToFile $SaveToFile -ExcludedRules $ExcludedRules
 
 if($SaveToFile) {
     Invoke-PopulateRulesArray -Sarif $sarif
