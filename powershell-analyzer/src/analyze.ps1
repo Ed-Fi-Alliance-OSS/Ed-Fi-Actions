@@ -229,6 +229,10 @@ function Invoke-PopulateRulesArray {
     }
 }
 
+if (-not (Test-Path $Directory)) {
+    throw "Directory '$Directory' does not exist."
+}
+
 Write-Output "Begin analyzing all PowerShell files in the specified directory tree..."
 
 $sarif = Get-SarifContainer
