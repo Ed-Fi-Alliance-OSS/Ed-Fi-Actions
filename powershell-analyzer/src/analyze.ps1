@@ -12,6 +12,7 @@
     in JSON), or opened in Visual Studio Code with the sarif extension, or it
     can be uploaded into GitHub Code QL results.
 #>
+[Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseDeclaredVarsMoreThanAssignments', 'unused', Justification = 'False positives')]
 param (
     # Directory in which to do a recursive scan of PowerShell files
     [Parameter(Mandatory = $True)]
@@ -75,7 +76,8 @@ function Get-Path {
     if ($runningInGitHub) {
         #Allows CodeQL to show preview of the file
         return $path.replace('/github/workspace/testing-repo/', '')
-    } else {
+    }
+    else {
         return $path
     }
 }
@@ -161,9 +163,10 @@ function Invoke-Analyzer {
     # https://github.com/PowerShell/PSScriptAnalyzer/issues/1472
     $SarifData | Out-Null
 
-    if($SaveToFile) {
+    if ($SaveToFile) {
         $results = Invoke-ScriptAnalyzer -Path $Directory -ExcludeRule $ExcludedRules -Recurse
-    } else {
+    }
+    else {
         Invoke-ScriptAnalyzer -Path $Directory -ExcludeRule $ExcludedRules -Recurse -ReportSummary
         return
     }
@@ -232,10 +235,11 @@ $sarif = Get-SarifContainer
 
 Invoke-Analyzer -Sarif $sarif -Directory $Directory -SaveToFile $SaveToFile -ExcludedRules $ExcludedRules
 
-if($SaveToFile) {
+if ($SaveToFile) {
     Invoke-PopulateRulesArray -Sarif $sarif
     $sarif | ConvertTo-Json -Depth 10 | Out-File -Path $ResultsPath -Force
     Write-Output "Done with analysis, see $ResultsPath for output."
-} else {
+}
+else {
     Write-Output "Done with analysis."
 }
