@@ -3,18 +3,12 @@
 # The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 # See the LICENSE and NOTICES files in the project root for more information.
 
-name: "Analyze Repository"
+name: On Pull Request - PowerShell
 
 on:
-  push:
-    branches: [ main ]
-    paths:
-      - '**/*.ps1'
-      - '**/*.psm1'
-      - '**/analyze-repository.yml'
-      - '**/powershell-analyzer.yml'
   pull_request:
-    branches: [ main ]
+    branches:
+      - main
     paths:
       - '**/*.ps1'
       - '**/*.psm1'
@@ -23,6 +17,29 @@ on:
   workflow_dispatch:
 
 jobs:
-  analyze:
+  run-lint:
     name: Linter
-    uses: Ed-Fi-Alliance-OSS/ed-fi-actions/.github/workflows/powershell-analyzer.yml@latest
+    uses: Ed-Fi-Alliance-OSS/Ed-Fi-Actions/.github/workflows/powershell-analyzer.yml@main
+
+  run-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the Actions repo
+        uses: actions/checkout@a12a3943b4bdde767164f792f33f40b04645d846  # v3.0.0
+
+      - name: Run Unit Tests
+        shell: pwsh
+        working-directory: powershell-analyzer
+        run: |
+          $PesterConfig = New-PesterConfiguration
+          $PesterConfig.TestResult.OutputFormat = "JUnitXml"
+          $PesterConfig.TestResult.OutputPath = "ps-analyzer.xml"
+          $PesterConfig.TestResult.Enabled = $True
+          Invoke-Pester -Configuration $PesterConfig
+
+      - name: Upload Test Results
+        uses: actions/upload-artifact@6673cd052c4cd6fcf4b4e6e60ea986c889389535 # v3.0.0
+        with:
+          name: powershell-analyzer-test-results
+          path: powershell-analyzer/ps-analyzer.xml
+          retention-days: 5
