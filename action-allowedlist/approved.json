@@ -108,12 +108,24 @@
       "actionVersion": null
     },
     {
-      "actionLink": "Ed-Fi-Alliance-OSS/Ed-Fi-Actions/action-allowedlist",
-      "actionVersion": "13fadadf474f6bc3bb0be9313266ab5e63ca1ee9"
+      "actionLink": "Ed-Fi-Alliance-OSS/Ed-Fi-Actions/repository-scanner",
+      "actionVersion": "latest"
+    },
+    {
+      "actionLink": "Ed-Fi-Alliance-OSS/Ed-Fi-Actions/repository-scanner",
+      "actionVersion": "main"
+    },
+    {
+      "actionLink": "./Ed-Fi-Actions/repository-scanner",
+      "actionVersion": null
     },
     {
       "actionLink": "Ed-Fi-Alliance-OSS/Ed-Fi-Actions/action-allowedlist",
       "actionVersion": "latest"
+    },
+    {
+      "actionLink": "Ed-Fi-Alliance-OSS/Ed-Fi-Actions/action-allowedlist",
+      "actionVersion": "main"
     },
     {
       "actionLink": "./Ed-Fi-Actions/action-allowedlist",
@@ -126,7 +138,11 @@
     {
         "actionLink": "Ed-Fi-Alliance-OSS/Ed-Fi-Actions/powershell-analyzer",
         "actionVersion": "latest"
-      },
+    },
+    {
+        "actionLink": "Ed-Fi-Alliance-OSS/Ed-Fi-Actions/powershell-analyzer",
+        "actionVersion": "main"
+    },
     {
         "actionLink": "./Ed-Fi-Actions/powershell-analyzer",
         "actionVersion": null
