@@ -41,8 +41,18 @@
     },
     {
         "actionLink": "actions/setup-dotnet",
+        "actionVersion": "a71d1eb2c86af85faa8c772c03fb365e377e45ea",
+        "tag": "v1.8.0"
+    },
+    {
+        "actionLink": "actions/setup-dotnet",
         "actionVersion": "499789684c9a0d41c9b3f0d66a785ba17b1d51ab",
         "tag": "v1.9.0"
+    },
+    {
+        "actionLink": "actions/setup-dotnet",
+        "actionVersion": "9211491ffb35dd6a6657ca4f45d43dfe6e97c829",
+        "tag": "v2.0.0"
     },
     {
         "actionLink": "actions/setup-dotnet",
@@ -77,11 +87,6 @@
         "actionLink": "github/super-linter",
         "actionVersion": "431ee7836e8cdce5a460b0db682d9169563d919b",
         "tag": "v4.9.3"
-    },
-    {
-        "actionLink": "actions/setup-dotnet",
-        "actionVersion": "a71d1eb2c86af85faa8c772c03fb365e377e45ea",
-        "tag": "v1.8.0"
     },
     {
         "actionLink": "haveyoudebuggedit/trojansourcedetector",
