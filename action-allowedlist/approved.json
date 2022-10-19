@@ -182,8 +182,8 @@
     },
     {
         "actionLink": "dorny/test-reporter",
-        "actionVersion": "0d00bb14cb0cc2c9b8985df6e81dd333188224e1",
-        "tag": "1.5.0"
+        "actionVersion": "c9b3d0e2bd2a4e96aaf424dbaa31c46b42318226",
+        "tag": "1.6.0"
     },
     {
         "actionLink": "nuget/setup-nuget",
