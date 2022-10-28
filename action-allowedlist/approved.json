@@ -203,5 +203,10 @@
     {
         "actionLink": "slsa-framework/slsa-github-generator/.github/actions/secure-download-artifact",
         "actionVersion": "1d646d70aeba1516af69fb0ef48206580122449b"
+    },
+    {
+        "actionLink": "supercharge/mongodb-github-action",
+        "actionVersion": "538a4d2a1041920c47630172445cb688592d6e51",
+        "tag": "1.8.0"
     }
 ]
