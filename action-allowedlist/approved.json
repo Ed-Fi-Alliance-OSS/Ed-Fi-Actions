@@ -181,6 +181,11 @@
         "tag": "1.0.2"
     },
     {
+        "actionLink": "actions/dependency-review-action",
+        "actionVersion": "0efb1d1d84fc9633afcdaad14c485cbbc90ef46c",
+        "tag": "2.5.1"
+    },
+    {
         "actionLink": "dorny/test-reporter",
         "actionVersion": "c9b3d0e2bd2a4e96aaf424dbaa31c46b42318226",
         "tag": "1.6.0"
