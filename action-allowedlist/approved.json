@@ -163,18 +163,34 @@
     {
         "actionLink": "github/codeql-action/init",
         "actionVersion": "1fae5bf71b0ecdc7d0a2ef0d0c28409d99693966",
-        "tag": "2.9.2"
+        "tag": "codeql-bundle-20220512"
     },
     {
         "actionLink": "github/codeql-action/analyze",
         "actionVersion": "1fae5bf71b0ecdc7d0a2ef0d0c28409d99693966",
-        "tag": "2.9.2"
+        "tag": "codeql-bundle-20220512"
     },
     {
         "actionLink": "github/codeql-action/upload-sarif",
         "actionVersion": "1fae5bf71b0ecdc7d0a2ef0d0c28409d99693966",
-        "tag": "2.9.2"
+        "tag": "codeql-bundle-20220512"
     },
+    
+    {
+        "actionLink": "github/codeql-action/init",
+        "actionVersion": "8aff97f12c99086bdb92ff62ae06dbbcdf07941b",
+        "tag": "codeql-bundle-20221105"
+    },
+    {
+        "actionLink": "github/codeql-action/analyze",
+        "actionVersion": "8aff97f12c99086bdb92ff62ae06dbbcdf07941b",
+        "tag": "codeql-bundle-20221105"
+    },
+    {
+        "actionLink": "github/codeql-action/upload-sarif",
+        "actionVersion": "8aff97f12c99086bdb92ff62ae06dbbcdf07941b",
+        "tag": "codeql-bundle-20221105"
+    },    
     {
         "actionLink": "actions/dependency-review-action",
         "actionVersion": "a9c83d3af6b9031e20feba03b904645bb23d1dab",
@@ -184,7 +200,12 @@
         "actionLink": "actions/dependency-review-action",
         "actionVersion": "0efb1d1d84fc9633afcdaad14c485cbbc90ef46c",
         "tag": "2.5.1"
-    },
+    },    
+    {
+        "actionLink": "actions/dependency-review-action",
+        "actionVersion": "11310527b429536e263dc6cc47873e608189ba21",
+        "tag": "3.0.1"
+    },    
     {
         "actionLink": "dorny/test-reporter",
         "actionVersion": "c9b3d0e2bd2a4e96aaf424dbaa31c46b42318226",
