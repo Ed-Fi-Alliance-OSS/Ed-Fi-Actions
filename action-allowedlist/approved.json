@@ -99,11 +99,6 @@
         "tag": "v1.1.0"
     },
     {
-        "actionLink": "dawidd6/action-download-artifact",
-        "actionVersion": "1cf11afe3f1874cee82a8d5a2b45c0fd63f0fa22",
-        "tag": "v2.19.0"
-    },
-    {
         "actionLink": "actions/download-artifact",
         "actionVersion": "fb598a63ae348fa914e94cd0ff38f362e927b741",
         "tag": "v3.0.0"
