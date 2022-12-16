@@ -20,6 +20,11 @@
         "tag": "v3.0.2"
     },
     {
+        "actionLink": "actions/checkout",
+        "actionVersion": "755da8c3cf115ac066823e79a1e1788f8940201b",
+        "tag": "v3.2.0"
+    },
+    {
         "actionLink": "actions/cache",
         "actionVersion": "c64c572235d810460d0d6876e9c705ad5002b353",
         "tag": "v2.1.6"
@@ -28,6 +33,11 @@
         "actionLink": "actions/cache",
         "actionVersion": "48af2dc4a9e8278b89d7fa154b955c30c6aaab09",
         "tag": "v3.0.2"
+    },
+    {
+        "actionLink": "actions/cache",
+        "actionVersion": "9b0c1fce7a93df8e3bb8926b0d6e9d89e92f20a7",
+        "tag": "v3.0.11"
     },
     {
         "actionLink": "actions/create-release",
@@ -114,6 +124,11 @@
         "tag": "v3.2.0"
     },
     {
+        "actionLink": "actions/setup-node",
+        "actionVersion": "8c91899e586c5b171469028077307d293428b516",
+        "tag": "v3.5.1"
+    },
+    {
         "actionLink": "./action-allowedlist",
         "actionVersion": null
     },
@@ -180,7 +195,6 @@
         "actionVersion": "1fae5bf71b0ecdc7d0a2ef0d0c28409d99693966",
         "tag": "codeql-bundle-20220512"
     },
-
     {
         "actionLink": "github/codeql-action/init",
         "actionVersion": "8aff97f12c99086bdb92ff62ae06dbbcdf07941b",
@@ -197,6 +211,21 @@
         "tag": "codeql-bundle-20221105"
     },
     {
+        "actionLink": "github/codeql-action/init",
+        "actionVersion": "896079047b4bb059ba6f150a5d87d47dde99e6e5",
+        "tag": "codeql-bundle-20221211"
+    },
+    {
+        "actionLink": "github/codeql-action/analyze",
+        "actionVersion": "896079047b4bb059ba6f150a5d87d47dde99e6e5",
+        "tag": "codeql-bundle-20221211"
+    },
+    {
+        "actionLink": "github/codeql-action/upload-sarif",
+        "actionVersion": "896079047b4bb059ba6f150a5d87d47dde99e6e5",
+        "tag": "codeql-bundle-20221211"
+    },
+    {
         "actionLink": "actions/dependency-review-action",
         "actionVersion": "a9c83d3af6b9031e20feba03b904645bb23d1dab",
         "tag": "1.0.2"
@@ -210,6 +239,11 @@
         "actionLink": "actions/dependency-review-action",
         "actionVersion": "11310527b429536e263dc6cc47873e608189ba21",
         "tag": "3.0.1"
+    },
+    {
+        "actionLink": "actions/dependency-review-action",
+        "actionVersion": "0ff3da6f81b812d4ec3cf37a04e2308c7a723730",
+        "tag": "3.0.2"
     },
     {
         "actionLink": "dorny/test-reporter",
