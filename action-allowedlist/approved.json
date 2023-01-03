@@ -293,5 +293,10 @@
         "actionLink": "Codex-/return-dispatch",
         "actionVersion": "290d1ad3ca0a323120745aea7a44ce63ed91a982",
         "tag": "1.8.0"
+    },
+    {
+        "actionLink": "ravsamhq/notify-slack-action",
+        "actionVersion": "bca2d7f5660b833a27bda4f6b8bef389ebfefd25",
+        "tag": "2.3.0"
     }
 ]
