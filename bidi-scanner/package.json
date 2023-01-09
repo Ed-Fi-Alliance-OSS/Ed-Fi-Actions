@@ -1,0 +1,31 @@
+{
+  "name": "bidi-scanner",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Scans a repo for hidden unicode bidirectional characters as described in\r CVE-2021-42694 and detailed at <https://trojansource.codes/>",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ed-Fi-Alliance-OSS/Ed-Fi-Actions.git"
+  },
+  "author": "Ed-Fi Alliance, LLC, and contributors",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/Ed-Fi-Alliance-OSS/Ed-Fi-Actions/issues"
+  },
+  "homepage": "https://github.com/Ed-Fi-Alliance-OSS/Ed-Fi-Actions#readme",
+  "dependencies": {
+    "anti-trojan-source": "^1.4.1",
+    "prettier": "^2.8.2",
+    "winston": "^3.8.2",
+    "yargs": "^17.6.2"
+  },
+  "devDependencies": {
+    "eslint": "^8.31.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0"
+  }
+}
