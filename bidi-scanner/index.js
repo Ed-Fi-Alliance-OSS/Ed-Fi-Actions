@@ -7,7 +7,8 @@ import { existsSync } from 'fs';
 
 import getCommandOptions from './cli.js';
 import { initializeLogging, Logger } from './logger.js';
-import scanDirectory from './scanFiles.js';
+import scanDirectory from './scanner.js';
+import readConfig from './config.js';
 
 initializeLogging();
 try {
@@ -19,6 +20,7 @@ try {
     throw Error(`Directory '${directory}' does not exist.`);
   }
 
+  const config = readConfig(configFile);
   const found = scanDirectory(directory, recursive, config);
 
   if (found) {

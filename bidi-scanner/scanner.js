@@ -3,19 +3,25 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import { readdirSync, readFileSync } from 'fs';
-import path from 'path';
+import { lstatSync, readFileSync } from 'fs';
+import { join, resolve } from 'path';
 import { hasTrojanSource } from 'anti-trojan-source'
+import glob from 'glob';
 
 import { Logger } from './logger.js';
 
 const scanDirectory = (directory, recursive, config) => {
   let found = false;
 
-  const files = readdirSync(directory, { withFileTypes: true });
-  files.forEach((fsEntry) => {
-    if (fsEntry.isFile()) {
-      const fullPath = path.join(directory, fsEntry.name)
+  let root = resolve(recursive ? join(directory, '**') : join(directory, '*'));
+  Logger.info(`Scanning from '${root}'`);
+
+  // glob doesn't like backslashes on Windows
+  root = root.replace(/\\/g, '/');
+
+  const files = glob.sync(root, { ignore: config});
+  files.forEach((fullPath) => {
+    if (lstatSync(fullPath).isFile()) {
       Logger.info(`Scanning file ${fullPath}`);
 
       const isDangerous = hasTrojanSource({ sourceText: readFileSync(fullPath) });
@@ -23,10 +29,6 @@ const scanDirectory = (directory, recursive, config) => {
         Logger.error(`File '${fullPath}' contains bidirectional characters / possible Trojan Source attack.`);
         found = true;
       }
-    }
-    else if (fsEntry.isDirectory() && recursive) {
-      const fullPath = path.join(directory, fsEntry.name)
-      found = scanDirectory(fullPath, recursive) || found;
     }
   });
 

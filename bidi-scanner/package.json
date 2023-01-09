@@ -19,6 +19,7 @@
   "homepage": "https://github.com/Ed-Fi-Alliance-OSS/Ed-Fi-Actions#readme",
   "dependencies": {
     "anti-trojan-source": "^1.4.1",
+    "glob": "^8.0.3",
     "prettier": "^2.8.2",
     "winston": "^3.8.2",
     "yargs": "^17.6.2"
