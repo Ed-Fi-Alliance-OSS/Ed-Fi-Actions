@@ -10,7 +10,7 @@ import glob from 'glob';
 
 import { Logger } from './logger.js';
 
-const scanDirectory = (directory, recursive, config) => {
+const scanDirectory = (directory, recursive, ignore) => {
   let found = false;
 
   let root = resolve(recursive ? join(directory, '**') : join(directory, '*'));
@@ -19,7 +19,7 @@ const scanDirectory = (directory, recursive, config) => {
   // glob doesn't like backslashes on Windows
   root = root.replace(/\\/g, '/');
 
-  const files = glob.sync(root, { ignore: config});
+  const files = glob.sync(root, { ignore });
   files.forEach((fullPath) => {
     if (lstatSync(fullPath).isFile()) {
       Logger.info(`Scanning file ${fullPath}`);

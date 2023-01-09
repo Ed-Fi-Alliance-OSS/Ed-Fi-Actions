@@ -20,8 +20,8 @@ try {
     throw Error(`Directory '${directory}' does not exist.`);
   }
 
-  const config = readConfig(configFile);
-  const found = scanDirectory(directory, recursive, config);
+  const ignore = readConfig(configFile);
+  const found = scanDirectory(directory, recursive, ignore);
 
   if (found) {
     process.exit(1);
