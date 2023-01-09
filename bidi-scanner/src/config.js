@@ -12,7 +12,7 @@ import { Logger } from './logger.js';
 const getDefaultConfigPath = () => {
   const __filename = fileURLToPath(import.meta.url);
   const __dirname = dirname(__filename);
-  return join(__dirname, 'config.json');
+  return join(__dirname, '..', 'config.json');
 }
 
 const loadJsonFile = (filePath) => {
