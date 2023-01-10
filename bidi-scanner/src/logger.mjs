@@ -5,9 +5,11 @@
 
 import winston from 'winston';
 
+import GitHubTransport from './githubTransport.mjs';
+
 const timestampFormat = 'YYYY-MM-DD HH:mm:ss.SSS';
 
-const format = winston.format.combine(
+const consoleFormat = winston.format.combine(
   winston.format.timestamp({
     format: timestampFormat,
   }),
@@ -28,6 +30,19 @@ const format = winston.format.combine(
   }),
 );
 
+const gitHubFormat = winston.format.printf(({
+  message, extra, err,
+}) => {
+  const m = message;
+  let e = err ?? extra ?? '';
+
+  if (typeof e === 'object') {
+    e = JSON.stringify(e);
+  }
+
+  return `${m} ${e}`;
+});
+
 // Logger begins life "uninitialized" and in silent mode
 let isInitialized = false;
 
@@ -47,13 +62,18 @@ export const initializeLogging = () => {
 
   const offline = process.env.IS_LOCAL === 'true';
   isInitialized = true;
+
+  let configuredTransport = new winston.transports.Console({
+    format: consoleFormat,
+  });
+
+  if (process.env.GITHUB_ACTION) {
+    configuredTransport = new GitHubTransport({ format: gitHubFormat });
+  }
+
   logger = winston.createLogger({
     level: process.env.LOG_LEVEL?.toLocaleLowerCase() ?? (offline ? 'debug' : 'info'),
-    transports: [
-      new winston.transports.Console({
-        format,
-      }),
-    ],
+    transports: [configuredTransport],
   });
 };
 
