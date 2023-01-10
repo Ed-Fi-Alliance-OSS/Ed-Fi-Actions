@@ -55,7 +55,7 @@ export const initializeLogging = () => {
       }),
     ],
   });
-}
+};
 
 export const Logger = {
   fatal: (message, err) => {

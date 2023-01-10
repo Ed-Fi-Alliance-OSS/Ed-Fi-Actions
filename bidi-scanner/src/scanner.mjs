@@ -5,7 +5,8 @@
 
 import { lstatSync, readFileSync } from 'fs';
 import { join, resolve } from 'path';
-import { hasTrojanSource } from 'anti-trojan-source'
+// eslint-disable-next-line import/no-unresolved
+import { hasTrojanSource } from 'anti-trojan-source';
 import glob from 'glob';
 
 import { Logger } from './logger.mjs';
@@ -25,7 +26,7 @@ const scanDirectory = (directory, recursive, ignore) => {
       Logger.info(`Scanning file ${fullPath}`);
 
       const isDangerous = hasTrojanSource({ sourceText: readFileSync(fullPath) });
-      if (isDangerous){
+      if (isDangerous) {
         Logger.error(`File '${fullPath}' contains bidirectional characters / possible Trojan Source attack.`);
         found = true;
       }

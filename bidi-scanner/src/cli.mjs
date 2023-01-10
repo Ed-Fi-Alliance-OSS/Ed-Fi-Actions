@@ -54,8 +54,7 @@ const processFiles = (args) => {
       return 1;
     }
     return 0;
-  }
-  catch (e) {
+  } catch (e) {
     Logger.error(e);
     return 2;
   }
