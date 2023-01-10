@@ -8,7 +8,7 @@ import { join, resolve } from 'path';
 import { hasTrojanSource } from 'anti-trojan-source'
 import glob from 'glob';
 
-import { Logger } from './logger.js';
+import { Logger } from './logger.mjs';
 
 const scanDirectory = (directory, recursive, ignore) => {
   let found = false;

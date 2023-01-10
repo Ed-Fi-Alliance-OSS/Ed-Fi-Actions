@@ -7,9 +7,9 @@ import { existsSync } from 'fs';
 
 import yargs from 'yargs';
 
-import { Logger } from './logger.js';
-import scanDirectory from './scanner.js';
-import readConfig from './config.js';
+import { Logger } from './logger.mjs';
+import scanDirectory from './scanner.mjs';
+import readConfig from './config.mjs';
 
 const getCommandOptions = (args) => yargs(args)
   .scriptName('$0')

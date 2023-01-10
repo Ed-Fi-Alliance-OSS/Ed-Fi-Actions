@@ -5,8 +5,8 @@
 
 import { hideBin } from 'yargs/helpers';
 
-import processFiles from './cli.js';
-import { initializeLogging } from './logger.js';
+import processFiles from './cli.mjs';
+import { initializeLogging } from './logger.mjs';
 
 initializeLogging();
 

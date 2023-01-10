@@ -1,12 +1,11 @@
 env:
-  browser: true
+  browser: false
   es2021: true
 extends: airbnb-base
-overrides: []
 parserOptions:
   ecmaVersion: latest
   sourceType: module
 rules:
-  "import/extensions":
-    severity: 1
-    js: never
+  # AirBnB complains about imports with extensions, but for ES modules they are
+  # required, see https://nodejs.org/api/esm.html#esm_mandatory_file_extensions
+  import/extensions: off

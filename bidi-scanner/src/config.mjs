@@ -7,7 +7,7 @@ import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 
 import { readFileSync, existsSync } from 'fs';
-import { Logger } from './logger.js';
+import { Logger } from './logger.mjs';
 
 const getDefaultConfigPath = () => {
   const __filename = fileURLToPath(import.meta.url);

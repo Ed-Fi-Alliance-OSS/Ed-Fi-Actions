@@ -3,9 +3,10 @@
   "type": "module",
   "version": "1.0.0",
   "description": "Scans a repo for hidden unicode bidirectional characters as described in\r CVE-2021-42694 and detailed at <https://trojansource.codes/>",
-  "main": "src/index.js",
+  "main": "src/index.mjs",
   "scripts": {
-    "test": "cross-env NODE_OPTIONS=--experimental-vm-modules npx jest"
+    "test": "cross-env NODE_OPTIONS=--experimental-vm-modules npx jest",
+    "test:lint": "npx eslint src/**/*"
   },
   "repository": {
     "type": "git",

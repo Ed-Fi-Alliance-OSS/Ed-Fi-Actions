@@ -29,10 +29,10 @@ const mockLogger = {
  * 2. Import the thing to be mocked so that jest is aware of it
  * 3. Import the thing to be tested _after_ importing the thing to be mocked
  */
-jest.unstable_mockModule(join('..', 'src', 'logger.js'), () => ({ Logger: mockLogger}));
+jest.unstable_mockModule(join('..', 'src', 'logger.mjs'), () => ({ Logger: mockLogger}));
 
-const loggerMock = (await import('../src/logger.js')).Logger;
-const processFiles = (await import('../src/cli.js')).default;
+const loggerMock = (await import('../src/logger.mjs')).Logger;
+const processFiles = (await import('../src/cli.mjs')).default;
 
 describe('when testing for bidirectional (bidi) characters', () => {
   describe('given the input directory does not exist', () => {
