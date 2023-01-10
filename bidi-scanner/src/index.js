@@ -3,32 +3,11 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import { existsSync } from 'fs';
+import { hideBin } from 'yargs/helpers';
 
-import getCommandOptions from './cli.js';
-import { initializeLogging, Logger } from './logger.js';
-import scanDirectory from './scanner.js';
-import readConfig from './config.js';
+import processFiles from './cli.js';
+import { initializeLogging } from './logger.js';
 
 initializeLogging();
-try {
-  const { directory, recursive, configFile } = getCommandOptions();
 
-  Logger.info('Arguments: ', directory, recursive, configFile);
-
-  if (!existsSync(directory)) {
-    throw Error(`Directory '${directory}' does not exist.`);
-  }
-
-  const ignore = readConfig(configFile);
-  const found = scanDirectory(directory, recursive, ignore);
-
-  if (found) {
-    process.exit(1);
-  }
-  process.exit(0);
-}
-catch (e) {
-  Logger.error(e);
-  process.exit(2);
-}
+process.exit(processFiles(hideBin(process.argv)));

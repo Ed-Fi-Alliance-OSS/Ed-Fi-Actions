@@ -3,10 +3,15 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import yargs from 'yargs';
-import { hideBin } from 'yargs/helpers';
+import { existsSync } from 'fs';
 
-const getCommandOptions = () => yargs(hideBin(process.argv))
+import yargs from 'yargs';
+
+import { Logger } from './logger.js';
+import scanDirectory from './scanner.js';
+import readConfig from './config.js';
+
+const getCommandOptions = (args) => yargs(args)
   .scriptName('$0')
   .options({
     d: {
@@ -30,6 +35,30 @@ const getCommandOptions = () => yargs(hideBin(process.argv))
     },
   })
   .epilog('Scans a directory for bidirectional Trojan Source attacks.')
-  .parseSync(process.argv.slice(2));
+  .parseSync();
 
-export default getCommandOptions;
+const processFiles = (args) => {
+  try {
+    const { directory, recursive, configFile } = getCommandOptions(args);
+
+    Logger.info('Arguments: ', directory, recursive, configFile);
+
+    if (!existsSync(directory)) {
+      throw Error(`Directory '${directory}' does not exist.`);
+    }
+
+    const ignore = readConfig(configFile);
+    const found = scanDirectory(directory, recursive, ignore);
+
+    if (found) {
+      return 1;
+    }
+    return 0;
+  }
+  catch (e) {
+    Logger.error(e);
+    return 2;
+  }
+};
+
+export default processFiles;
