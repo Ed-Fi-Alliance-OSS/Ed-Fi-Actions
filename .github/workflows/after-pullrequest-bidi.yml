@@ -1,0 +1,25 @@
+# SPDX-License-Identifier: Apache-2.0
+# Licensed to the Ed-Fi Alliance under one or more agreements.
+# The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
+# See the LICENSE and NOTICES files in the project root for more information.
+
+name: "After Pull Request - Bidi Scanner"
+on:
+  workflow_run:
+    workflows:
+      - "On Pull Request - Bidi Scanner"
+    types:
+      - completed
+
+jobs:
+  report-test-results:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Upload Test Results
+        uses: dorny/test-reporter@c9b3d0e2bd2a4e96aaf424dbaa31c46b42318226 #v1.6.0
+        with:
+          artifact: bidi-test-results
+          name: Bidi Tests Results
+          path: "*.xml"
+          reporter: java-junit
+          fail-on-error: false

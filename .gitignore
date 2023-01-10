@@ -1,5 +1,6 @@
 # Reports
 *.sarif
+junit.xml
 
 ps-analyzer.xml
 

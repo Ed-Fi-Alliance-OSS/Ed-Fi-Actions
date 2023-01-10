@@ -1,5 +1,5 @@
 {
   "testEnvironment": "node",
   "transform": {},
-  "testMatch": ["**/tests/**/*.test.js"]
+  "testMatch": ["**/tests/**/*.test.mjs"]
 }

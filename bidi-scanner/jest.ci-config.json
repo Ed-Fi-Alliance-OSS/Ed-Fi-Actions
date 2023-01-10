@@ -1,0 +1,18 @@
+{
+  "testEnvironment": "node",
+  "transform": {},
+  "testMatch": ["**/tests/**/*.test.mjs"],
+  "reporters": [
+    "default",
+    [
+      "jest-junit",
+      {
+        "ancestorSeparator": " > ",
+        "uniqueOutputName": false,
+        "suiteNameTemplate": "{filepath}",
+        "classNameTemplate": "{classname}",
+        "titleTemplate": "{title}"
+      }
+    ]
+  ]
+}
