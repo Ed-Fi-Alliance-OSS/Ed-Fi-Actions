@@ -5,9 +5,12 @@
 
 import { hideBin } from 'yargs/helpers';
 
-import processFiles from './cli.mjs';
+import { processFiles } from './cli.mjs';
 import { initializeLogging } from './winstonLogger.mjs';
 
-initializeLogging();
+const logger = initializeLogging();
 
-process.exit(processFiles(hideBin(process.argv)));
+const args = hideBin(process.argv);
+const exitCode = processFiles(logger, args);
+
+process.exit(exitCode);

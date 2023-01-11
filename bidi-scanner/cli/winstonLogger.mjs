@@ -5,17 +5,16 @@
 
 import winston from 'winston';
 
-import { setLogger } from './logger.mjs';
-
+let logWrapper;
 const timestampFormat = 'YYYY-MM-DD HH:mm:ss.SSS';
 
 const consoleFormat = winston.format.combine(
   winston.format.timestamp({
     format: timestampFormat,
   }),
-  winston.format.printf(({
-    level, message, timestamp, extra, err,
-  }) => {
+
+  // eslint-disable-next-line object-curly-newline
+  winston.format.printf(({ level, message, timestamp, extra, err }) => {
     const m = message;
     let e = err ?? extra ?? '';
 
@@ -29,7 +28,6 @@ const consoleFormat = winston.format.combine(
     all: true,
   }),
 );
-
 
 // Logger begins life "uninitialized" and in silent mode
 let isInitialized = false;
@@ -45,26 +43,22 @@ let logger = winston.createLogger({
   transports: [transport],
 });
 
-export const initializeLogging = () => {
-  if (isInitialized) return;
+const initializeLogging = () => {
+  if (isInitialized) return logWrapper;
 
   const offline = process.env.IS_LOCAL === 'true';
   isInitialized = true;
 
-  let configuredTransport = new winston.transports.Console({
-    format: consoleFormat,
-  });
-
-  if (process.env.GITHUB_ACTION) {
-    configuredTransport = new GitHubTransport({ format: gitHubFormat });
-  }
-
   logger = winston.createLogger({
     level: process.env.LOG_LEVEL?.toLocaleLowerCase() ?? (offline ? 'debug' : 'info'),
-    transports: [configuredTransport],
+    transports: [
+      new winston.transports.Console({
+        format: consoleFormat,
+      }),
+    ],
   });
 
-  const WinstonLogger = {
+  logWrapper = {
     fatal: (message, err) => {
       logger.error({ message: `💥 ${message}`, err });
     },
@@ -83,8 +77,10 @@ export const initializeLogging = () => {
     trace: (message) => {
       logger.debug({ message: JSON.stringify(message) });
     },
-    child: () => WinstonLogger,
+    child: () => logWrapper,
   };
-  setLogger(WinstonLogger);
+
+  return logWrapper;
 };
 
+export { initializeLogging };

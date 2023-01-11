@@ -7,7 +7,6 @@ import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 
 import { readFileSync, existsSync } from 'fs';
-import { Logger } from './logger.mjs';
 
 const getDefaultConfigPath = () => {
   const filename = fileURLToPath(import.meta.url);
@@ -15,12 +14,12 @@ const getDefaultConfigPath = () => {
   return join(thisDirectory, '..', 'config.json');
 };
 
-const loadJsonFile = (filePath) => {
-  Logger.info(`Reading config file ${filePath}`);
+const loadJsonFile = (filePath, logger) => {
   if (!existsSync(filePath)) {
     throw Error(`Config file ${filePath} does not exist.`);
   }
 
+  logger.info(`Reading config file '${filePath}'`);
   const configContents = readFileSync(filePath, { encoding: 'utf8' });
   const config = JSON.parse(configContents);
 
@@ -31,15 +30,15 @@ const loadJsonFile = (filePath) => {
   return config;
 };
 
-const readConfig = (optionalConfigFile) => {
-  const config = loadJsonFile(getDefaultConfigPath());
+const readConfig = (optionalConfigFile, logger) => {
+  const config = loadJsonFile(getDefaultConfigPath(), logger);
 
   if (optionalConfigFile) {
-    const optionalConfig = loadJsonFile(optionalConfigFile);
+    const optionalConfig = loadJsonFile(optionalConfigFile, logger);
     return [...config.exclude, ...optionalConfig.exclude];
   }
 
   return config.exclude;
 };
 
-export default readConfig;
+export { readConfig };

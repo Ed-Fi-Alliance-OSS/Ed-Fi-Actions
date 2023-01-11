@@ -4,8 +4,8 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import core from '@actions/core';
-import processFiles from './src/cli.mjs';
-import { initializeLogging } from './src/githubLogger.mjs';
+import { readConfig, scanDirectory } from '@edfi/bidi-scanner-lib';
+import { initializeLogging } from './githubLogger.mjs';
 
 try {
   const directory = core.getInput('directory');
@@ -16,13 +16,16 @@ try {
     process.env.GITHUB_ACTION = true;
   }
 
-  initializeLogging();
+  const logger = initializeLogging();
 
-  const args = [
-    '-d', directory, '-r', recursive, '-c', configFile,
-  ];
+  const ignore = readConfig(configFile, logger);
+  const found = scanDirectory(directory, recursive, ignore, logger);
 
-  process.exit(processFiles(args));
+  if (found) {
+    core.ExitCode = 1;
+  }
+
+  core.ExitCode = 0;
 } catch (error) {
   core.setFailed(error.message);
 }

@@ -7,9 +7,7 @@ import { existsSync } from 'fs';
 
 import yargs from 'yargs';
 
-import { Logger } from './logger.mjs';
-import scanDirectory from './scanner.mjs';
-import readConfig from './config.mjs';
+import { scanDirectory, readConfig } from '@edfi/bidi-scanner-lib';
 
 const getCommandOptions = (args) => yargs(args)
   .scriptName('$0')
@@ -37,27 +35,27 @@ const getCommandOptions = (args) => yargs(args)
   .epilog('Scans a directory for bidirectional Trojan Source attacks.')
   .parseSync();
 
-const processFiles = (args) => {
+const processFiles = (logger, args) => {
   try {
     const { directory, recursive, configFile } = getCommandOptions(args);
 
-    Logger.info('Arguments: ', directory, recursive, configFile);
+    logger.info('Arguments: ', directory, recursive, configFile);
 
     if (!existsSync(directory)) {
       throw Error(`Directory '${directory}' does not exist.`);
     }
 
-    const ignore = readConfig(configFile);
-    const found = scanDirectory(directory, recursive, ignore);
+    const ignore = readConfig(configFile, logger);
+    const found = scanDirectory(directory, recursive, ignore, logger);
 
     if (found) {
       return 1;
     }
     return 0;
   } catch (e) {
-    Logger.error(e);
+    logger.error(e);
     return 2;
   }
 };
 
-export default processFiles;
+export { processFiles };

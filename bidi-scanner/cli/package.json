@@ -1,14 +1,18 @@
 {
-  "name": "bidi-scanner",
+  "name": "@edfi/bidi-scanner-cli",
   "type": "module",
+  "engines": {
+    "node": ">=16.0.0"
+  },
   "version": "1.0.0",
   "description": "Scans a repo for hidden unicode bidirectional characters as described in\r CVE-2021-42694 and detailed at <https://trojansource.codes/>",
   "main": "src/index.mjs",
   "scripts": {
     "test": "cross-env NODE_OPTIONS=--experimental-vm-modules npx jest",
+    "test:fail": "cross-env NODE_OPTIONS=--experimental-vm-modules npx jest -f",
     "test:ci": "cross-env NODE_OPTIONS=--experimental-vm-modules npx jest --ci --config ./jest.ci-config.json",
-    "lint": "npx eslint src/**/*",
-    "lint:fix": "npx eslint src/**/* --fix"
+    "lint": "npx eslint **/*.mjs",
+    "lint:fix": "npx eslint **/*.mjs --fix"
   },
   "repository": {
     "type": "git",
@@ -23,6 +27,7 @@
   "dependencies": {
     "@actions/core": "^1.10.0",
     "@actions/github": "^5.1.1",
+    "@edfi/bidi-scanner-lib": "file:../lib",
     "glob": "^8.0.3",
     "triple-beam": "^1.3.0",
     "winston": "^3.8.2",
@@ -30,6 +35,7 @@
   },
   "devDependencies": {
     "@jest/globals": "^29.3.1",
+    "@vercel/ncc": "^0.36.0",
     "cross-env": "^7.0.3",
     "eslint": "^8.31.0",
     "eslint-config-airbnb-base": "^15.0.0",

@@ -1,4 +1,5 @@
-/*
+/* Adapted from:code with original license:
+
 Copyright 2021 Liran Tal <liran.tal@gmail.com>.
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not
@@ -14,18 +15,21 @@ License for the specific language governing permissions and limitations
 under the License.
 */
 
-import { dangerousBidiChars } from './constants.mjs'
+import { dangerousBidiChars } from './constants.mjs';
 
 function hasTrojanSource({ sourceText }) {
-  const sourceTextToSearch = sourceText.toString()
+  const sourceTextToSearch = sourceText.toString();
 
-  for (const bidiChar of dangerousBidiChars) {
+  let found = false;
+  dangerousBidiChars.every((bidiChar) => {
     if (sourceTextToSearch.includes(bidiChar)) {
-      return true
+      found = true;
+      return false;
     }
-  }
+    return true;
+  });
 
-  return false
+  return found;
 }
 
-export { hasTrojanSource }
+export { hasTrojanSource };

@@ -1,0 +1,38 @@
+{
+  "name": "@edfi/bidi-scanner-lib",
+  "type": "module",
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "version": "1.0.0",
+  "description": "Library for bidirectional scanner",
+  "exports": {
+    "import": "./dist/index.mjs"
+  },
+  "scripts": {
+    "lint": "npx eslint *.mjs",
+    "lint:fix": "npx eslint *.mjs --fix",
+    "build": "npx ncc build index.mjs -o dist -m --license LICENSE"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ed-Fi-Alliance-OSS/Ed-Fi-Actions.git"
+  },
+  "author": "Ed-Fi Alliance, LLC and contributors",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/Ed-Fi-Alliance-OSS/Ed-Fi-Actions/issues"
+  },
+  "homepage": "https://github.com/Ed-Fi-Alliance-OSS/Ed-Fi-Actions#readme",
+  "dependencies": {
+    "glob": "^8.0.3"
+  },
+  "devDependencies": {
+    "@vercel/ncc": "^0.36.0",
+    "eslint": "^8.31.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "prettier": "^2.8.2"
+  }
+}

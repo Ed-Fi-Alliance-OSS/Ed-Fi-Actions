@@ -11,7 +11,7 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}\\src\\index.mjs"
+            "program": "${workspaceFolder}\\cli\\index.mjs"
         },
         {
           "type": "node",
@@ -20,11 +20,13 @@
           "env": {
             "NODE_OPTIONS": "--experimental-vm-modules"
           },
-          "program": "${workspaceRoot}/node_modules/jest-cli/bin/jest.js",
+          "program": "${workspaceRoot}/cli/node_modules/jest-cli/bin/jest.js",
           "args": [
             "--runTestsByPath",
             "${relativeFile}",
-            "--runInBand"
+            "--runInBand",
+            "--config",
+            "${workspaceRoot}/cli/jest.config.json"
           ],
           "console": "integratedTerminal",
           "sourceMaps": true

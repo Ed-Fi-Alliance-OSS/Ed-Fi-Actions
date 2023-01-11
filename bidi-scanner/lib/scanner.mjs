@@ -6,15 +6,13 @@
 import { lstatSync, readFileSync } from 'fs';
 import { join, resolve } from 'path';
 import glob from 'glob';
-import { hasTrojanSource } from './anti-trojan-source/index.mjs';
+import { hasTrojanSource } from './detector.mjs';
 
-import { Logger } from './logger.mjs';
-
-const scanDirectory = (directory, recursive, ignore) => {
+const scanDirectory = (directory, recursive, ignore, logger) => {
   let found = false;
 
   let root = resolve(recursive ? join(directory, '**') : join(directory, '*'));
-  Logger.info(`Scanning from '${root}'`);
+  logger.info(`Scanning from '${root}'`);
 
   // glob doesn't like backslashes on Windows
   root = root.replace(/\\/g, '/');
@@ -22,11 +20,11 @@ const scanDirectory = (directory, recursive, ignore) => {
   const files = glob.sync(root, { ignore });
   files.forEach((fullPath) => {
     if (lstatSync(fullPath).isFile()) {
-      Logger.info(`Scanning file ${fullPath}`);
+      logger.info(`Scanning file ${fullPath}`);
 
       const isDangerous = hasTrojanSource({ sourceText: readFileSync(fullPath) });
       if (isDangerous) {
-        Logger.error(`File '${fullPath}' contains bidirectional characters / possible Trojan Source attack.`);
+        logger.error(`File '${fullPath}' contains bidirectional characters / possible Trojan Source attack.`);
         found = true;
       }
     }
@@ -35,4 +33,4 @@ const scanDirectory = (directory, recursive, ignore) => {
   return found;
 };
 
-export default scanDirectory;
+export { scanDirectory };

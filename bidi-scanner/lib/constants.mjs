@@ -14,7 +14,7 @@ License for the specific language governing permissions and limitations
 under the License.
 */
 
-export const dangerousBidiChars = [
+const dangerousBidiChars = [
   '\u061C',
   '\u200E',
   '\u200F',
@@ -26,5 +26,7 @@ export const dangerousBidiChars = [
   '\u2066',
   '\u2067',
   '\u2068',
-  '\u2069'
-]
+  '\u2069',
+];
+
+export { dangerousBidiChars };

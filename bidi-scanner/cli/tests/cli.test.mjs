@@ -3,9 +3,14 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import { resolve, join } from 'path';
+import { resolve, join, dirname } from 'path';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { jest } from '@jest/globals';
+import { fileURLToPath } from 'url';
+import { processFiles } from '../cli.mjs';
+
+const filename = fileURLToPath(import.meta.url);
+const thisDirectory = dirname(filename);
 
 const mockLogger = {
   fatal: jest.fn(),
@@ -25,16 +30,6 @@ const mockLogger = {
   },
 };
 
-/* Correct pattern for mocking an ES6 module:
- * 1. Setup mock using unstable_mockModule
- * 2. Import the thing to be mocked so that jest is aware of it
- * 3. Import the thing to be tested _after_ importing the thing to be mocked
- */
-jest.unstable_mockModule(join('..', 'src', 'logger.mjs'), () => ({ Logger: mockLogger }));
-
-const loggerMock = (await import('../src/logger.mjs')).Logger;
-const processFiles = (await import('../src/cli.mjs')).default;
-
 describe('when testing for bidirectional (bidi) characters', () => {
   describe('given the input directory does not exist', () => {
     let exitCode = 0;
@@ -42,7 +37,7 @@ describe('when testing for bidirectional (bidi) characters', () => {
     beforeAll(async () => {
       mockLogger.mockClear();
 
-      exitCode = processFiles(['-d', 'fake']);
+      exitCode = processFiles(mockLogger, ['-d', 'fake']);
     });
 
     it('exits with code 2', () => {
@@ -50,21 +45,21 @@ describe('when testing for bidirectional (bidi) characters', () => {
     });
 
     it('logs to info', () => {
-      expect(loggerMock.info).toHaveBeenCalled();
+      expect(mockLogger.info).toHaveBeenCalled();
     });
 
     it('logs an error', () => {
-      expect(loggerMock.error).toHaveBeenCalled();
+      expect(mockLogger.error).toHaveBeenCalled();
     });
   });
 
-  describe('given valid arguments, default config, and no bidi chars', () => {
+  describe('given valid arguments, default config, not recursive, and no bidi chars', () => {
     let exitCode = 0;
 
     beforeAll(async () => {
       mockLogger.mockClear();
 
-      exitCode = processFiles(['-d', resolve('src')]);
+      exitCode = processFiles(mockLogger, ['-d', resolve(join(thisDirectory, '..')), '-r', false]);
     });
 
     it('exits with code 0', () => {
@@ -72,11 +67,11 @@ describe('when testing for bidirectional (bidi) characters', () => {
     });
 
     it('logs to info', () => {
-      expect(loggerMock.info).toHaveBeenCalled();
+      expect(mockLogger.info).toHaveBeenCalled();
     });
 
     it('does not log any errors', () => {
-      expect(loggerMock.error).not.toHaveBeenCalled();
+      expect(mockLogger.error).not.toHaveBeenCalled();
     });
   });
 
@@ -86,7 +81,7 @@ describe('when testing for bidirectional (bidi) characters', () => {
     beforeAll(async () => {
       mockLogger.mockClear();
 
-      exitCode = processFiles(['-d', resolve(join('tests', 'true-trojan-js'))]);
+      exitCode = processFiles(mockLogger, ['-d', resolve(join(thisDirectory, 'true-trojan-js'))]);
     });
 
     it('exits with code 1', () => {
@@ -94,7 +89,7 @@ describe('when testing for bidirectional (bidi) characters', () => {
     });
 
     it('logs an error', () => {
-      expect(loggerMock.error).toHaveBeenCalled();
+      expect(mockLogger.error).toHaveBeenCalled();
     });
   });
 
@@ -104,7 +99,7 @@ describe('when testing for bidirectional (bidi) characters', () => {
     beforeAll(async () => {
       mockLogger.mockClear();
 
-      exitCode = processFiles(['-d', resolve(join('tests', 'true-trojan-other'))]);
+      exitCode = processFiles(mockLogger, ['-d', resolve(join(thisDirectory, 'true-trojan-other'))]);
     });
 
     it('exits with code 1', () => {
@@ -112,7 +107,7 @@ describe('when testing for bidirectional (bidi) characters', () => {
     });
 
     it('logs an error', () => {
-      expect(loggerMock.error).toHaveBeenCalled();
+      expect(mockLogger.error).toHaveBeenCalled();
     });
   });
 
@@ -123,7 +118,7 @@ describe('when testing for bidirectional (bidi) characters', () => {
     beforeAll(async () => {
       mockLogger.mockClear();
 
-      exitCode = processFiles(['-d', resolve(join('tests', 'true-trojan-ai'))]);
+      exitCode = processFiles(mockLogger, ['-d', resolve(join(thisDirectory, 'true-trojan-ai'))]);
     });
 
     it('exits with code 0', () => {
@@ -131,7 +126,7 @@ describe('when testing for bidirectional (bidi) characters', () => {
     });
 
     it('does not log an error', () => {
-      expect(loggerMock.error).not.toHaveBeenCalled();
+      expect(mockLogger.error).not.toHaveBeenCalled();
     });
   });
 
@@ -141,11 +136,11 @@ describe('when testing for bidirectional (bidi) characters', () => {
     beforeAll(async () => {
       mockLogger.mockClear();
 
-      exitCode = processFiles([
+      exitCode = processFiles(mockLogger, [
         '-d',
-        resolve(join('tests', 'true-trojan-other')),
+        resolve(join(thisDirectory, 'true-trojan-other')),
         '-c',
-        resolve(join('tests', 'custom-globbed.json')),
+        resolve(join(thisDirectory, 'custom-globbed.json')),
         '-r',
         'true',
       ]);
@@ -156,22 +151,23 @@ describe('when testing for bidirectional (bidi) characters', () => {
     });
 
     it('does not log an error', () => {
-      expect(loggerMock.error).not.toHaveBeenCalled();
+      expect(mockLogger.error).not.toHaveBeenCalled();
     });
   });
 
   describe('given valid arguments, custom globbed config, recursive, and there is a bidi char in a nested other file', () => {
-    // This is really testing the globbing - the "globbed" custom file excludes *.other in _all_ directories
+    // This is really testing the globbing - the "globbed" custom file excludes
+    // *.other in _all_ directories
     let exitCode = 0;
 
     beforeAll(async () => {
       mockLogger.mockClear();
 
-      exitCode = processFiles([
+      exitCode = processFiles(mockLogger, [
         '-d',
-        resolve(join('tests', 'nesting')),
+        resolve(join(thisDirectory, 'nesting')),
         '-c',
-        resolve(join('tests', 'custom-globbed.json')),
+        resolve(join(thisDirectory, 'custom-globbed.json')),
         '-r',
         'true',
       ]);
@@ -182,23 +178,24 @@ describe('when testing for bidirectional (bidi) characters', () => {
     });
 
     it('does not log an error', () => {
-      expect(loggerMock.error).not.toHaveBeenCalled();
+      expect(mockLogger.error).not.toHaveBeenCalled();
     });
   });
 
   describe('given valid arguments, custom flat config, recursive, and there is a bidi char in a nested other file', () => {
-    // This is really testing the globbing - the "flat" custom file excludes *.other only in parent dir,
-    // but the error is nested. Thus the scanner should flag this error.
+    // This is really testing the globbing - the "flat" custom file excludes
+    // *.other only in parent dir, but the error is nested. Thus the scanner
+    // should flag this error.
     let exitCode = 0;
 
     beforeAll(async () => {
       mockLogger.mockClear();
 
-      exitCode = processFiles([
+      exitCode = processFiles(mockLogger, [
         '-d',
-        resolve(join('tests', 'nesting')),
+        resolve(join(thisDirectory, 'nesting')),
         '-c',
-        resolve(join('tests', 'custom-flat.json')),
+        resolve(join(thisDirectory, 'custom-flat.json')),
         '-r',
         'true',
       ]);
@@ -209,7 +206,7 @@ describe('when testing for bidirectional (bidi) characters', () => {
     });
 
     it('logs an error', () => {
-      expect(loggerMock.error).toHaveBeenCalled();
+      expect(mockLogger.error).toHaveBeenCalled();
     });
   });
 
@@ -221,7 +218,7 @@ describe('when testing for bidirectional (bidi) characters', () => {
     beforeAll(async () => {
       mockLogger.mockClear();
 
-      exitCode = processFiles(['-d', resolve(join('tests', 'nesting')), '-r', 'false']);
+      exitCode = processFiles(mockLogger, ['-d', resolve(join(thisDirectory, 'nesting')), '-r', 'false']);
     });
 
     it('exits with code 0', () => {
@@ -229,7 +226,7 @@ describe('when testing for bidirectional (bidi) characters', () => {
     });
 
     it('logs an error', () => {
-      expect(loggerMock.error).not.toHaveBeenCalled();
+      expect(mockLogger.error).not.toHaveBeenCalled();
     });
   });
 });
