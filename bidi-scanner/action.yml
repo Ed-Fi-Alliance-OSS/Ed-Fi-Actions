@@ -1,0 +1,28 @@
+# SPDX-License-Identifier: Apache-2.0
+# Licensed to the Ed-Fi Alliance under one or more agreements.
+# The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
+# See the LICENSE and NOTICES files in the project root for more information.
+
+# action.yml
+name: Bidirectional Character Detector (Trojan Source)
+author: Ed-Fi Alliance
+description: Scan for files that contain bidirectional ("bidi") characters that could be a Trojan Source attack.
+branding:
+  icon: alert-octagon
+  color: blue
+inputs:
+  directory:
+    description: The directory to scan
+    required: true
+  recursive:
+    description: True to scan all directories recursively
+    required: false
+    default: false
+  config-file:
+    description: (Optional) path to additional config file in the destination repository
+    required: false
+    default: ''
+# outputs: Build failure if characters are detected.
+runs:
+  using: node16
+  image: github.mjs
