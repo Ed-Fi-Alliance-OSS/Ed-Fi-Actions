@@ -10,11 +10,38 @@ on:
   workflow_dispatch:
 
 jobs:
-  check-for-bidirectional-characters:
+  bidi-scanner-demo-happy-path:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the repo to Scan
         uses: actions/checkout@755da8c3cf115ac066823e79a1e1788f8940201b # v3.2.0
 
-      - name: Bidirectional Trojan source detector
+      - name: No problems in Allowedlist
         uses: ./bidi-scanner
+        with:
+          directory: action-allowedlist
+          recursive: true
+
+      - name: No problems in 'nesting' when not recursive
+        uses: ./bidi-scanner
+        with:
+          directory: bidi-scanner/tests/nesting
+          recursive: false
+
+      - name: No problems in 'nesting' when recursive and using custom file
+        uses: ./bidi-scanner
+        with:
+          directory: bidi-scanner/tests/nesting
+          recursive: true
+          config-file-path: ./bidi-scanner/tests/custom-globbed.json
+
+  bidi-scanner-demo-sad-path:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repo to Scan
+        uses: actions/checkout@755da8c3cf115ac066823e79a1e1788f8940201b # v3.2.0
+
+      - name: Expect this to fail
+        uses: ./bidi-scanner
+        with:
+          directory: ./bidi-scanner/tests
