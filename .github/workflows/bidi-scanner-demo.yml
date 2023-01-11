@@ -31,7 +31,7 @@ jobs:
       - name: No problems in 'nesting' when recursive and using custom file
         uses: ./bidi-scanner
         with:
-          directory: bidi-scanner/cli/tests/nesting
+          directory: ./bidi-scanner/cli/tests/nesting
           recursive: true
           config-file-path: ./bidi-scanner/cli/tests/custom-globbed.json
 
