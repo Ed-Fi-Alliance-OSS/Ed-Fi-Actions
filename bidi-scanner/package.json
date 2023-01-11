@@ -1,0 +1,14 @@
+{
+  "scripts": {
+    "ci:cli": "pushd cli && npm ci && popd",
+    "ci:lib": "pushd lib && npm ci && popd",
+    "ci:gh": "pushd github && npm ci && popd",
+    "ci": "npm run ci:cli && npm run ci:lib && npm run ci:gh",
+    "test": "pushd cli && npm test && popd",
+    "test:ci": "pushd cli && npm run test:ci && popd",
+    "lint:cli": "pushd cli && npm run lint && popd",
+    "lint:lib": "pushd lib && npm run lint && popd",
+    "lint:gh": "pushd github && npm run lint && popd",
+    "lint": "npm run lint:cli && npm run lint:lib && npm run lint:gh"
+  }
+}
