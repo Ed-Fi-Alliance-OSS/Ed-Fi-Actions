@@ -87,5 +87,8 @@
       "batch"
     ]
   },
-  "cSpell.words": ["pytest"]
+  "cSpell.words": [
+    "edfi",
+    "pytest"
+  ]
 }
