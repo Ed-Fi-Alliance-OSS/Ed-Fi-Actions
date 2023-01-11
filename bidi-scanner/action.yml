@@ -18,7 +18,7 @@ inputs:
     description: True to scan all directories recursively
     required: false
     default: false
-  config-file:
+  config-file-path:
     description: (Optional) path to additional config file in the destination repository
     required: false
     default: ''

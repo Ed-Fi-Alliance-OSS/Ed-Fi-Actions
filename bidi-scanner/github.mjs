@@ -10,7 +10,7 @@ import { initializeLogging } from './src/logger.mjs';
 try {
   const directory = core.getInput('directory');
   const recursive = core.getInput('recursive');
-  const configFile = core.getInput('config-file');
+  const configFile = core.getInput('config-file-path');
 
   if (!(process.env.GITHUB_ACTION)) {
     process.env.GITHUB_ACTION = true;
