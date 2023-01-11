@@ -5,9 +5,8 @@
 
 import { lstatSync, readFileSync } from 'fs';
 import { join, resolve } from 'path';
-// eslint-disable-next-line import/no-unresolved
-import { hasTrojanSource } from 'anti-trojan-source';
 import glob from 'glob';
+import { hasTrojanSource } from './anti-trojan-source/index.mjs';
 
 import { Logger } from './logger.mjs';
 
