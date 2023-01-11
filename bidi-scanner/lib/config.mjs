@@ -3,16 +3,8 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import { fileURLToPath } from 'url';
-import { dirname, join } from 'path';
-
 import { readFileSync, existsSync } from 'fs';
-
-const getDefaultConfigPath = () => {
-  const filename = fileURLToPath(import.meta.url);
-  const thisDirectory = dirname(filename);
-  return join(thisDirectory, '..', 'config.json');
-};
+import { config } from './defaultConfig.mjs';
 
 const loadJsonFile = (filePath, logger) => {
   if (!existsSync(filePath)) {
@@ -21,21 +13,19 @@ const loadJsonFile = (filePath, logger) => {
 
   logger.info(`Reading config file '${filePath}'`);
   const configContents = readFileSync(filePath, { encoding: 'utf8' });
-  const config = JSON.parse(configContents);
+  const optionalFile = JSON.parse(configContents);
 
-  if (!('exclude' in config)) {
+  if (!('exclude' in optionalFile)) {
     throw Error(`Invalid config file ${filePath}.`);
   }
 
-  return config;
+  return optionalFile;
 };
 
 const readConfig = (optionalConfigFile, logger) => {
-  const config = loadJsonFile(getDefaultConfigPath(), logger);
-
   if (optionalConfigFile) {
     const optionalConfig = loadJsonFile(optionalConfigFile, logger);
-    return [...config.exclude, ...optionalConfig.exclude];
+    return [config.exclude, ...optionalConfig.exclude];
   }
 
   return config.exclude;

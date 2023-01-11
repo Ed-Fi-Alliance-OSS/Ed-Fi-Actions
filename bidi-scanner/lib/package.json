@@ -7,7 +7,7 @@
   "version": "1.0.0",
   "description": "Library for bidirectional scanner",
   "exports": {
-    "import": "./dist/index.mjs"
+    "import": "./index.mjs"
   },
   "scripts": {
     "lint": "npx eslint *.mjs",
