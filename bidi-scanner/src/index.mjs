@@ -6,7 +6,7 @@
 import { hideBin } from 'yargs/helpers';
 
 import processFiles from './cli.mjs';
-import { initializeLogging } from './logger.mjs';
+import { initializeLogging } from './winstonLogger.mjs';
 
 initializeLogging();
 

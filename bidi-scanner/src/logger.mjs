@@ -3,98 +3,33 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import winston from 'winston';
-
-import GitHubTransport from './githubTransport.mjs';
-
-const timestampFormat = 'YYYY-MM-DD HH:mm:ss.SSS';
-
-const consoleFormat = winston.format.combine(
-  winston.format.timestamp({
-    format: timestampFormat,
-  }),
-  winston.format.printf(({
-    level, message, timestamp, extra, err,
-  }) => {
-    const m = message;
-    let e = err ?? extra ?? '';
-
-    if (typeof e === 'object') {
-      e = JSON.stringify(e);
-    }
-
-    return `${timestamp} ${level} ${m} ${e}`;
-  }),
-  winston.format.colorize({
-    all: true,
-  }),
-);
-
-const gitHubFormat = winston.format.printf(({
-  message, extra, err,
-}) => {
-  const m = message;
-  let e = err ?? extra ?? '';
-
-  if (typeof e === 'object') {
-    e = JSON.stringify(e);
-  }
-
-  return `${m} ${e}`;
-});
-
-// Logger begins life "uninitialized" and in silent mode
-let isInitialized = false;
-
-// Create and set up a silent default logger transport - in case a library is
-// using the default logger
-const transport = new winston.transports.Console();
-transport.silent = true;
-winston.configure({ transports: [transport] });
-
-// Set initial logger to silent
-let logger = winston.createLogger({
-  transports: [transport],
-});
-
-export const initializeLogging = () => {
-  if (isInitialized) return;
-
-  const offline = process.env.IS_LOCAL === 'true';
-  isInitialized = true;
-
-  let configuredTransport = new winston.transports.Console({
-    format: consoleFormat,
-  });
-
-  if (process.env.GITHUB_ACTION) {
-    configuredTransport = new GitHubTransport({ format: gitHubFormat });
-  }
-
-  logger = winston.createLogger({
-    level: process.env.LOG_LEVEL?.toLocaleLowerCase() ?? (offline ? 'debug' : 'info'),
-    transports: [configuredTransport],
-  });
+const NoOpLogger = {
+  fatal: (_message, _err) => {
+    // do nothing
+  },
+  error: (_message, _err) => {
+    // do nothing
+  },
+  warn: (_message) => {
+    // do nothing
+  },
+  info: (_message, _extra) => {
+    // do nothing
+  },
+  debug: (_message, _extra) => {
+    // do nothing
+  },
+  trace: (_message) => {
+    // do nothing
+  },
+  child: () => NoOpLogger,
 };
 
-export const Logger = {
-  fatal: (message, err) => {
-    logger.error({ message: `💥 ${message}`, err });
-  },
-  error: (message, err) => {
-    logger.error({ message, err });
-  },
-  warn: (message) => {
-    logger.warn({ message });
-  },
-  info: (message, extra) => {
-    logger.info({ message, extra });
-  },
-  debug: (message, extra) => {
-    logger.debug({ message, extra });
-  },
-  trace: (message) => {
-    logger.debug({ message: JSON.stringify(message) });
-  },
-  child: () => Logger,
+let singletonLogger = NoOpLogger;
+
+const setLogger = (logger) => singletonLogger = logger;
+
+export {
+  singletonLogger as Logger,
+  setLogger
 };

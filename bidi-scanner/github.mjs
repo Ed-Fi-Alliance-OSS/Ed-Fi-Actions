@@ -5,7 +5,7 @@
 
 import core from '@actions/core';
 import processFiles from './src/cli.mjs';
-import { initializeLogging } from './src/logger.mjs';
+import { initializeLogging } from './src/githubLogger.mjs';
 
 try {
   const directory = core.getInput('directory');
