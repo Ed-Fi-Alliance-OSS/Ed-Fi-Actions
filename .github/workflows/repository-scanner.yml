@@ -11,14 +11,17 @@ on:
         description: The directory to scan
         required: false
         default: './'
+        type: string
       recursive:
         description: True to scan all directories recursively
         required: false
         default: true
+        type: boolean
       config-file-path:
         description: (Optional) path to additional config file in the destination repository
         required: false
         default: ''
+        type: string
   workflow_dispatch:
   push:
     branches:
