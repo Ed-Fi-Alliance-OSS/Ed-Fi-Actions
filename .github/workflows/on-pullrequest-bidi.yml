@@ -33,7 +33,11 @@ jobs:
           cache-dependency-path: bidi-scanner/cli/package-lock.json
 
       - name: Install dependencies
-        run: npm ci
+        run: |
+          npm ci
+          pushd ../lib
+          npm ci
+          popd
 
       - name: Run linter
         run: npm run lint
