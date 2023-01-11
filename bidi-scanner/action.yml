@@ -13,7 +13,8 @@ branding:
 inputs:
   directory:
     description: The directory to scan
-    required: true
+    required: false
+    default: './'
   recursive:
     description: True to scan all directories recursively
     required: false

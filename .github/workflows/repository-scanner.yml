@@ -6,13 +6,18 @@
 name: Repo Security Scan
 on:
   workflow_call:
-  # The bidi scanner may need an external config for some repos, by default it does not ignore
-  # .vsdx (Visio) files, this input allows for an external config (hosted in the repo calling
-  # the scanner) with any extra file types to ignore. If no file is provided will run with defaults
     inputs:
-      config-file-path:
+      directory:
+        description: The directory to scan
         required: false
-        type: string
+        default: './'
+      recursive:
+        description: True to scan all directories recursively
+        required: false
+        default: true
+      config-file-path:
+        description: (Optional) path to additional config file in the destination repository
+        required: false
         default: ''
   workflow_dispatch:
   push:
@@ -27,13 +32,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the Actions repo
-        uses: actions/checkout@a12a3943b4bdde767164f792f33f40b04645d846  # v3.0.0
+        uses: actions/checkout@755da8c3cf115ac066823e79a1e1788f8940201b # v3.2.0
         with:
           repository: Ed-Fi-Alliance-OSS/Ed-Fi-Actions
           path: Ed-Fi-Actions
 
       - name: Checkout the repo to Scan
-        uses: actions/checkout@a12a3943b4bdde767164f792f33f40b04645d846  # v3.0.0
+        uses: actions/checkout@755da8c3cf115ac066823e79a1e1788f8940201b # v3.2.0
         with:
           path: testing-repo
 
@@ -42,15 +47,15 @@ jobs:
         id: scan-action
 
   bidi-scanner:
-    # Temporarily disable the job while working on a replacement
-    if: 1 == 2
     runs-on: ubuntu-latest
     steps:
 
       - name: Checkout the repo to Scan
-        uses: actions/checkout@a12a3943b4bdde767164f792f33f40b04645d846  # v3.0.0
+        uses: actions/checkout@755da8c3cf115ac066823e79a1e1788f8940201b # v3.2.0
 
       - name: Bidirectional Trojan source detector
         uses: haveyoudebuggedit/trojansourcedetector@103b76ee743f7a666fd98dfaa15b4b7e314ca140 # v1.1.0
         with:
-            config: ${{ inputs.config-file-path }}
+            config-file-path: ${{ inputs.config-file-path }}
+            directory: ${{ inputs.directory }}
+            recursive: ${{ inputs.recursive }}
