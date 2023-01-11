@@ -6,14 +6,15 @@
 name: Scan Actions
 on:
   workflow_call:
-  
+  workflow_dispatch:
+
 jobs:
   action-allowedlist:
     runs-on: ubuntu-latest
-    steps: 
+    steps:
       - name: Checkout
         uses: actions/checkout@a12a3943b4bdde767164f792f33f40b04645d846
-        
+
       - uses: ./action-allowedlist
         name: Scan used actions
-        id: scan-action  
+        id: scan-action
