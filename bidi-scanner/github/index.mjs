@@ -12,7 +12,7 @@ try {
   const recursive = core.getInput('recursive');
   const configFile = core.getInput('config-file-path');
 
-  if (!(process.env.GITHUB_ACTION)) {
+  if (!process.env.GITHUB_ACTION) {
     process.env.GITHUB_ACTION = true;
   }
 
@@ -24,8 +24,6 @@ try {
   if (found) {
     core.ExitCode = 1;
   }
-
-  core.ExitCode = 0;
 } catch (error) {
   core.setFailed(error.message);
 }
