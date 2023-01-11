@@ -25,7 +25,7 @@ const getCommandOptions = (args) => yargs(args)
       demandOption: false,
       alias: 'recursive',
       describe: 'recursive directory search',
-      default: false,
+      default: true,
     },
     c: {
       type: 'string',

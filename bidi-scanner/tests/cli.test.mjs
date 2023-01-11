@@ -4,6 +4,7 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import { resolve, join } from 'path';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { jest } from '@jest/globals';
 
 const mockLogger = {
@@ -21,7 +22,7 @@ const mockLogger = {
     mockLogger.info.mockClear();
     mockLogger.debug.mockClear();
     mockLogger.trace.mockClear();
-  }
+  },
 };
 
 /* Correct pattern for mocking an ES6 module:
@@ -29,7 +30,7 @@ const mockLogger = {
  * 2. Import the thing to be mocked so that jest is aware of it
  * 3. Import the thing to be tested _after_ importing the thing to be mocked
  */
-jest.unstable_mockModule(join('..', 'src', 'logger.mjs'), () => ({ Logger: mockLogger}));
+jest.unstable_mockModule(join('..', 'src', 'logger.mjs'), () => ({ Logger: mockLogger }));
 
 const loggerMock = (await import('../src/logger.mjs')).Logger;
 const processFiles = (await import('../src/cli.mjs')).default;
@@ -41,11 +42,8 @@ describe('when testing for bidirectional (bidi) characters', () => {
     beforeAll(async () => {
       mockLogger.mockClear();
 
-      exitCode = processFiles([
-        '-d',
-        'fake',
-      ]);
-    })
+      exitCode = processFiles(['-d', 'fake']);
+    });
 
     it('exits with code 2', () => {
       expect(exitCode).toBe(2);
@@ -55,7 +53,7 @@ describe('when testing for bidirectional (bidi) characters', () => {
       expect(loggerMock.info).toHaveBeenCalled();
     });
 
-    it('logs an error', ()=> {
+    it('logs an error', () => {
       expect(loggerMock.error).toHaveBeenCalled();
     });
   });
@@ -66,11 +64,8 @@ describe('when testing for bidirectional (bidi) characters', () => {
     beforeAll(async () => {
       mockLogger.mockClear();
 
-      exitCode = processFiles([
-        '-d',
-        (resolve('src')),
-      ]);
-    })
+      exitCode = processFiles(['-d', resolve('src')]);
+    });
 
     it('exits with code 0', () => {
       expect(exitCode).toBe(0);
@@ -80,7 +75,7 @@ describe('when testing for bidirectional (bidi) characters', () => {
       expect(loggerMock.info).toHaveBeenCalled();
     });
 
-    it('does not log any errors', ()=> {
+    it('does not log any errors', () => {
       expect(loggerMock.error).not.toHaveBeenCalled();
     });
   });
@@ -91,17 +86,14 @@ describe('when testing for bidirectional (bidi) characters', () => {
     beforeAll(async () => {
       mockLogger.mockClear();
 
-      exitCode = processFiles([
-        '-d',
-        (resolve(join('tests', 'true-trojan-js'))),
-      ]);
-    })
+      exitCode = processFiles(['-d', resolve(join('tests', 'true-trojan-js'))]);
+    });
 
     it('exits with code 1', () => {
       expect(exitCode).toBe(1);
     });
 
-    it('logs an error', ()=> {
+    it('logs an error', () => {
       expect(loggerMock.error).toHaveBeenCalled();
     });
   });
@@ -112,17 +104,14 @@ describe('when testing for bidirectional (bidi) characters', () => {
     beforeAll(async () => {
       mockLogger.mockClear();
 
-      exitCode = processFiles([
-        '-d',
-        (resolve(join('tests', 'true-trojan-other'))),
-      ]);
-    })
+      exitCode = processFiles(['-d', resolve(join('tests', 'true-trojan-other'))]);
+    });
 
     it('exits with code 1', () => {
       expect(exitCode).toBe(1);
     });
 
-    it('logs an error', ()=> {
+    it('logs an error', () => {
       expect(loggerMock.error).toHaveBeenCalled();
     });
   });
@@ -134,17 +123,14 @@ describe('when testing for bidirectional (bidi) characters', () => {
     beforeAll(async () => {
       mockLogger.mockClear();
 
-      exitCode = processFiles([
-        '-d',
-        (resolve(join('tests', 'true-trojan-ai'))),
-      ]);
-    })
+      exitCode = processFiles(['-d', resolve(join('tests', 'true-trojan-ai'))]);
+    });
 
     it('exits with code 0', () => {
       expect(exitCode).toBe(0);
     });
 
-    it('does not log an error', ()=> {
+    it('does not log an error', () => {
       expect(loggerMock.error).not.toHaveBeenCalled();
     });
   });
@@ -157,19 +143,19 @@ describe('when testing for bidirectional (bidi) characters', () => {
 
       exitCode = processFiles([
         '-d',
-        (resolve(join('tests', 'true-trojan-other'))),
+        resolve(join('tests', 'true-trojan-other')),
         '-c',
-        (resolve(join('tests', 'custom-globbed.json'))),
+        resolve(join('tests', 'custom-globbed.json')),
         '-r',
-        'true'
+        'true',
       ]);
-    })
+    });
 
     it('exits with code 0', () => {
       expect(exitCode).toBe(0);
     });
 
-    it('does not log an error', ()=> {
+    it('does not log an error', () => {
       expect(loggerMock.error).not.toHaveBeenCalled();
     });
   });
@@ -183,19 +169,19 @@ describe('when testing for bidirectional (bidi) characters', () => {
 
       exitCode = processFiles([
         '-d',
-        (resolve(join('tests', 'nesting'))),
+        resolve(join('tests', 'nesting')),
         '-c',
-        (resolve(join('tests', 'custom-globbed.json'))),
+        resolve(join('tests', 'custom-globbed.json')),
         '-r',
-        'true'
+        'true',
       ]);
-    })
+    });
 
     it('exits with code 0', () => {
       expect(exitCode).toBe(0);
     });
 
-    it('does not log an error', ()=> {
+    it('does not log an error', () => {
       expect(loggerMock.error).not.toHaveBeenCalled();
     });
   });
@@ -210,19 +196,19 @@ describe('when testing for bidirectional (bidi) characters', () => {
 
       exitCode = processFiles([
         '-d',
-        (resolve(join('tests', 'nesting'))),
+        resolve(join('tests', 'nesting')),
         '-c',
-        (resolve(join('tests', 'custom-flat.json'))),
+        resolve(join('tests', 'custom-flat.json')),
         '-r',
-        'true'
+        'true',
       ]);
-    })
+    });
 
     it('exits with code 1', () => {
       expect(exitCode).toBe(1);
     });
 
-    it('logs an error', ()=> {
+    it('logs an error', () => {
       expect(loggerMock.error).toHaveBeenCalled();
     });
   });
@@ -235,19 +221,14 @@ describe('when testing for bidirectional (bidi) characters', () => {
     beforeAll(async () => {
       mockLogger.mockClear();
 
-      exitCode = processFiles([
-        '-d',
-        (resolve(join('tests', 'nesting'))),
-        '-r',
-        'false'
-      ]);
-    })
+      exitCode = processFiles(['-d', resolve(join('tests', 'nesting')), '-r', 'false']);
+    });
 
     it('exits with code 0', () => {
       expect(exitCode).toBe(0);
     });
 
-    it('logs an error', ()=> {
+    it('logs an error', () => {
       expect(loggerMock.error).not.toHaveBeenCalled();
     });
   });
