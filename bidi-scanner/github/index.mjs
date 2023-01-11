@@ -23,6 +23,7 @@ try {
 
   if (found) {
     core.ExitCode = 1;
+    core.setFailed('Bidirectional characters were encountered, please review log');
   }
 } catch (error) {
   core.setFailed(error.message);
