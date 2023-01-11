@@ -10,7 +10,7 @@
   "scripts": {
     "lint": "npx eslint *.mjs",
     "lint:fix": "npx eslint *.mjs --fix",
-    "build": "npx ncc build index.mjs -o dist -m --license LICENSE"
+    "build": "npx ncc build index.mjs -o dist -m --license licenses.txt --source-map"
   },
   "repository": {
     "type": "git",
