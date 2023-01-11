@@ -25,7 +25,7 @@ const loadJsonFile = (filePath, logger) => {
 const readConfig = (optionalConfigFile, logger) => {
   if (optionalConfigFile) {
     const optionalConfig = loadJsonFile(optionalConfigFile, logger);
-    return [config.exclude, ...optionalConfig.exclude];
+    return [...config.exclude, ...optionalConfig.exclude];
   }
 
   return config.exclude;
