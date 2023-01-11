@@ -25,4 +25,4 @@ inputs:
 # outputs: Build failure if characters are detected.
 runs:
   using: node16
-  image: github.mjs
+  main: github.mjs
