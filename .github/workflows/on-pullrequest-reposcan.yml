@@ -1,0 +1,19 @@
+# SPDX-License-Identifier: Apache-2.0
+# Licensed to the Ed-Fi Alliance under one or more agreements.
+# The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
+# See the LICENSE and NOTICES files in the project root for more information.
+
+name: On Pull Request - PowerShell
+
+on:
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  repo-security-scan:
+    name: Ed-Fi Repo Security Scan
+    uses: ./github/workflows/repository-scanner.yml
+    with:
+      config-file-path: ./github/workflows/bidi-excludes.json
