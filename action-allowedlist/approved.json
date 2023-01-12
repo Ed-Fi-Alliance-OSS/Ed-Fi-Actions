@@ -314,5 +314,9 @@
     {
       "actionLink": "./bidi-scanner",
       "actionVersion": ""
+    },
+    {
+      "actionLink": "./Ed-Fi-Actions/bidi-scanner",
+      "actionVersion": ""
     }
 ]
