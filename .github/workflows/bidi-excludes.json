@@ -1,5 +1,10 @@
 {
   "exclude": [
-    "**/true-trojan-*/*"
+    "**/true-trojan-*/*",
+    "**/dist/index.mjs"
+  ],
+  "notes": [
+    "The 'true-trojan' exclusion is because of tests.",
+    "The 'dist' exclusion is because that file contain a list of the bad characters, and thus will be flagged."
   ]
 }
