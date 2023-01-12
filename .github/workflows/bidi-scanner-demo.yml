@@ -6,7 +6,6 @@
 name: Run Unicode Control Character Scan
 
 on:
-  workflow_call:
   workflow_dispatch:
 
 jobs:
