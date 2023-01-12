@@ -52,18 +52,20 @@ jobs:
   bidi-scanner:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout the repo to Scan
-        uses: actions/checkout@755da8c3cf115ac066823e79a1e1788f8940201b # v3.2.0
-
       - name: Checkout the Actions repo
         uses: actions/checkout@755da8c3cf115ac066823e79a1e1788f8940201b # v3.2.0
         with:
           repository: stephenfuqua/Ed-Fi-Actions
           path: Ed-Fi-Actions
 
+      - name: Checkout the repo to Scan
+        uses: actions/checkout@755da8c3cf115ac066823e79a1e1788f8940201b # v3.2.0
+        with:
+          path: testing-repo
+
       - name: Bidirectional Trojan source detector
         uses: ./Ed-Fi-Actions/bidi-scanner
         with:
             config-file-path: ${{ inputs.config-file-path }}
-            directory: ${{ inputs.directory }}
+            directory: ./testing-repo/${{ inputs.directory }}
             recursive: ${{ inputs.recursive }}
