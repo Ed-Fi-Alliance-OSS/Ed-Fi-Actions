@@ -22,13 +22,6 @@ on:
         required: false
         default: ''
         type: string
-  workflow_dispatch:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
 
 jobs:
   action-allowedlist:
@@ -62,6 +55,12 @@ jobs:
         uses: actions/checkout@755da8c3cf115ac066823e79a1e1788f8940201b # v3.2.0
         with:
           path: testing-repo
+
+      - name: Echo input
+        run: |
+          echo 'Config file path: ${{ inputs.config-file-path }}'
+          echo 'Directory: ${{ inputs.directory }}'
+          echo 'Recursive: ${{ inputs.recursive }}'
 
       - name: Bidirectional Trojan source detector
         uses: ./Ed-Fi-Actions/bidi-scanner
