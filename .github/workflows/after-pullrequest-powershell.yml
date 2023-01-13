@@ -3,7 +3,7 @@
 # The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 # See the LICENSE and NOTICES files in the project root for more information.
 
-name: "Test Reporter"
+name: "After Pull Request - PowerShell Analyzer"
 on:
   workflow_run:
     workflows:
@@ -20,6 +20,6 @@ jobs:
         with:
           artifact: powershell-analyzer-test-results
           name: Tests Results
-          path: "*.xml"
+          path: "ps-analyzer.xml"
           reporter: java-junit
           fail-on-error: false

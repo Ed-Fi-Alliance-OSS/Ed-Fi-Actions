@@ -20,6 +20,6 @@ jobs:
         with:
           artifact: bidi-test-results
           name: Bidi Tests Results
-          path: "*.xml"
+          path: "junit.xml"
           reporter: java-junit
           fail-on-error: false
