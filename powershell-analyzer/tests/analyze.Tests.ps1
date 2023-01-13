@@ -15,4 +15,10 @@ Describe "when I run the PowerShell analyzer" {
             } | Should -Throw "Directory 'does-not-exist' does not exist."
         }
     }
+
+    Context "given this test directory" {
+        It "does not throw an error" {
+            Invoke-Expression "$PSScriptRoot/../src/analyze.ps1 -Directory $PSScriptRoot"
+        }
+    }
 }
