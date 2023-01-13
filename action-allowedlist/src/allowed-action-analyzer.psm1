@@ -26,6 +26,8 @@ function Invoke-ValidateActions {
     $unapprovedOutputs = @()
     $approvedOutputs = @()
 
+    $found = $false
+
     foreach ($output in $outputs) {
         Write-DebugLog "Processing $($output.actionLink) version $($output.actionVersion)"
 
@@ -64,8 +66,11 @@ function Invoke-ValidateActions {
             $e += "$($_); "
         }
         Write-ErrLog $e
+        $found = $True
     }
     else {
         Write-InfoLog "All $numApproved actions/versions are approved."
     }
+
+    $found
 }

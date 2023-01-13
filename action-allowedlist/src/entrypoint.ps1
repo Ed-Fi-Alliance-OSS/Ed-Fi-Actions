@@ -9,13 +9,13 @@ Import-Module /src/logging.psm1
 
 $actionsFound = Get-AllUsedActions -RepoPath $pwd
 
-Invoke-ValidateActions -ActionsConfiguration $actionsFound -approvedPath "/src/approved.json"
+$found = Invoke-ValidateActions -ActionsConfiguration $actionsFound -approvedPath "/src/approved.json"
 
 Get-Log | ForEach-Object {
     Write-Output $_
 }
 
-if (Get-ErrorOccurred) {
+if ($found) {
     exit 1
 }
 

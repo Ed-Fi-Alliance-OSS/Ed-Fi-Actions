@@ -21,13 +21,13 @@ Import-Module ./logging.psm1 -Force
 
 $actionsFound = Get-AllUsedActions -RepoPath $RepoDirectory
 
-Invoke-ValidateActions -ActionsConfiguration $actionsFound -approvedPath "$($PSScriptRoot)/../approved.json"
+$found = Invoke-ValidateActions -ActionsConfiguration $actionsFound -approvedPath "$($PSScriptRoot)/../approved.json"
 
 Get-Log | ForEach-Object {
     Write-Output $_
 }
 
-if (Get-ErrorOccurred) {
+if ($found) {
     exit 1
 }
 
