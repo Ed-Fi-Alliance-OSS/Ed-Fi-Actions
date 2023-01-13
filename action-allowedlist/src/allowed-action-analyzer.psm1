@@ -5,6 +5,7 @@
 
 function Invoke-ValidateActions {
     [CmdletBinding()]
+    [OutputType([bool])]
     param (
         [Parameter()]
         [string]
