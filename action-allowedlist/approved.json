@@ -107,11 +107,6 @@
         "tag": "v4.9.3"
     },
     {
-        "actionLink": "haveyoudebuggedit/trojansourcedetector",
-        "actionVersion": "103b76ee743f7a666fd98dfaa15b4b7e314ca140",
-        "tag": "v1.1.0"
-    },
-    {
         "actionLink": "dawidd6/action-download-artifact",
         "actionVersion": "1cf11afe3f1874cee82a8d5a2b45c0fd63f0fa22",
         "tag": "v2.19.0"
@@ -313,10 +308,10 @@
     },
     {
       "actionLink": "./bidi-scanner",
-      "actionVersion": ""
+      "actionVersion": null
     },
     {
       "actionLink": "./Ed-Fi-Actions/bidi-scanner",
-      "actionVersion": ""
+      "actionVersion": null
     }
 ]
