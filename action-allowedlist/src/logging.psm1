@@ -7,7 +7,6 @@
 # https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions
 
 $log = [System.Collections.ArrayList]::new()
-$errorOccurred = $false
 
 function Write-DebugLog {
     [CmdletBinding()]
@@ -51,7 +50,6 @@ function Write-ErrLog {
         $Message
     )
 
-    $errorOccurred = $True
     $log.Add("::error::$Message") | Out-Null
 }
 
@@ -59,8 +57,4 @@ function Get-Log {
     $log
 }
 
-function Get-ErrorOccurred {
-    $errorOccurred
-}
-
-Export-ModuleMember -Function Write-DebugLog, Write-InfoLog, Write-WarnLog, Write-ErrLog, Get-Log, Get-ErrorOccurred
+Export-ModuleMember -Function Write-DebugLog, Write-InfoLog, Write-WarnLog, Write-ErrLog, Get-Log
