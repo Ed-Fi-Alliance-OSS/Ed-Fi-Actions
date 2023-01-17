@@ -69,6 +69,7 @@ const config = {
 
     '**/*.pcap',
     '**/*.vsdx',
+    '**/*.pbix',
   ],
 };
 
