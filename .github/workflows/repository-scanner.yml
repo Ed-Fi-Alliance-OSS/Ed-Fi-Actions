@@ -56,12 +56,6 @@ jobs:
         with:
           path: testing-repo
 
-      - name: Echo input
-        run: |
-          echo 'Config file path: ${{ inputs.config-file-path }}'
-          echo 'Directory: ${{ inputs.directory }}'
-          echo 'Recursive: ${{ inputs.recursive }}'
-
       - name: Bidirectional Trojan source detector
         uses: ./Ed-Fi-Actions/bidi-scanner
         with:
