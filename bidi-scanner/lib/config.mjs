@@ -14,7 +14,7 @@ const loadJsonFile = (filePath, logger) => {
   // This can occur when there is no config file, but GitHub Actions sends the
   // repository root directoy as the config file variable.
   if (statSync(filePath).isDirectory()) {
-    return {};
+    return { exclude: [] };
   }
 
   logger.info(`Reading config file '${filePath}'`);
