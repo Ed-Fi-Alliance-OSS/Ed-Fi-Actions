@@ -130,6 +130,25 @@ describe('when testing for bidirectional (bidi) characters', () => {
     });
   });
 
+  describe('given valid arguments, default config, and there is a bidi char in a pbix file', () => {
+    // *.pbix is part of the default configuration and thus should be ignored.
+    let exitCode = 0;
+
+    beforeAll(async () => {
+      mockLogger.mockClear();
+
+      exitCode = processFiles(mockLogger, ['-d', resolve(join(thisDirectory, 'pbix'))]);
+    });
+
+    it('exits with code 0', () => {
+      expect(exitCode).toBe(0);
+    });
+
+    it('does not log an error', () => {
+      expect(mockLogger.error).not.toHaveBeenCalled();
+    });
+  });
+
   describe('given valid arguments, custom globbed config, recursive, and there is a bidi char in an other file', () => {
     let exitCode = 0;
 
