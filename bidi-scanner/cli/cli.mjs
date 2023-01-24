@@ -46,6 +46,9 @@ const processFiles = (logger, args) => {
     }
 
     const ignore = readConfig(configFile, logger);
+
+    logger.info(`Excluding the following file types: ${JSON.stringify(ignore)}`);
+
     const found = scanDirectory(directory, recursive, ignore, logger);
 
     if (found) {

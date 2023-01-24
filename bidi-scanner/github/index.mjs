@@ -16,6 +16,9 @@ try {
   const logger = initializeLogging();
 
   const ignore = readConfig(configFile, logger);
+
+  core.info(`Excluding the following file types: ${JSON.stringify(ignore)}`);
+
   const found = scanDirectory(directory, recursive, ignore, logger);
 
   if (found) {
