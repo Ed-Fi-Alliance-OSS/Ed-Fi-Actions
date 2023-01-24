@@ -3,12 +3,18 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import { readFileSync, existsSync } from 'fs';
+import { readFileSync, existsSync, statSync } from 'fs';
 import { config } from './defaultConfig.mjs';
 
 const loadJsonFile = (filePath, logger) => {
   if (!existsSync(filePath)) {
     throw Error(`Config file ${filePath} does not exist.`);
+  }
+
+  // This can occur when there is no config file, but GitHub Actions sends the
+  // repository root directoy as the config file variable.
+  if (statSync(filePath).isDirectory()) {
+    return {};
   }
 
   logger.info(`Reading config file '${filePath}'`);
