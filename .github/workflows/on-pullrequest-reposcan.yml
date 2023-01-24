@@ -16,4 +16,4 @@ jobs:
     name: Ed-Fi Repo Security Scan
     uses: ./.github/workflows/repository-scanner.yml
     with:
-      config-file-path: ./Ed-Fi-Actions/.github/workflows/bidi-excludes.json
+      config-file-path: ./.github/workflows/bidi-excludes.json
