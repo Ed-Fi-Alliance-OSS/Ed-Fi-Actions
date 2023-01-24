@@ -65,6 +65,6 @@ jobs:
       - name: Bidirectional Trojan source detector
         uses: ./Ed-Fi-Actions/bidi-scanner
         with:
-            config-file-path: ${{ inputs.config-file-path }}
+            config-file-path: ./testing-repo/${{ inputs.config-file-path }}
             directory: ./testing-repo/${{ inputs.directory }}
             recursive: ${{ inputs.recursive }}
