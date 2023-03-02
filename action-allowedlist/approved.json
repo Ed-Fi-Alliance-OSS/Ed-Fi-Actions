@@ -27,6 +27,11 @@
         "tag": "v3.2.0"
     },
     {
+        "actionLink": "actions/checkout",
+        "actionVersion": "ac593985615ec2ede58e132d2e21d2b1cbd6127c",
+        "tag": "v3.3.0"
+    },
+    {
         "actionLink": "actions/cache",
         "actionVersion": "c64c572235d810460d0d6876e9c705ad5002b353",
         "tag": "v2.1.6",
@@ -88,6 +93,11 @@
         "tag": "v2.1.0"
     },
     {
+        "actionLink": "actions/setup-dotnet",
+        "actionVersion": "607fce577a46308457984d59e4954e075820f10a",
+        "tag": "v3.0.3"
+    },
+    {
         "actionLink": "actions/setup-python",
         "actionVersion": "3105fb18c05ddd93efea5f9e0bef7a03a6e9e7df",
         "tag": "v2.2.1"
@@ -117,6 +127,11 @@
         "tag": "v3.1.1"
     },
     {
+        "actionLink": "actions/upload-artifact",
+        "actionVersion": "0b7f8abb1508181956e8e162db84b466c27e18ce",
+        "tag": "v3.1.2"
+    },
+    {
         "actionLink": "github/super-linter",
         "actionVersion": "431ee7836e8cdce5a460b0db682d9169563d919b",
         "tag": "v4.9.3"
@@ -132,6 +147,11 @@
         "tag": "v3.0.0"
     },
     {
+        "actionLink": "actions/download-artifact",
+        "actionVersion": "9bc31d5ccc31df68ecc42ccf4149144866c47d8a",
+        "tag": "v3.0.2"
+    },
+    {
         "actionLink": "actions/setup-node",
         "actionVersion": "17f8bd926464a1afa4c6a11669539e9c1ba77048",
         "tag": "v3.2.0"
@@ -140,6 +160,11 @@
         "actionLink": "actions/setup-node",
         "actionVersion": "8c91899e586c5b171469028077307d293428b516",
         "tag": "v3.5.1"
+    },
+    {
+        "actionLink": "actions/setup-node",
+        "actionVersion": "64ed1c7eab4cce3362f8c340dee64e5eaeef8f7c",
+        "tag": "v3.6.0"
     },
     {
         "actionLink": "./action-allowedlist",
@@ -259,6 +284,11 @@
         "tag": "3.0.2"
     },
     {
+        "actionLink": "actions/dependency-review-action",
+        "actionVersion": "c090f4e553673e6e505ea70d6a95362ee12adb94",
+        "tag": "3.0.3"
+    },
+    {
         "actionLink": "dorny/test-reporter",
         "actionVersion": "0d00bb14cb0cc2c9b8985df6e81dd333188224e1",
         "tag": "1.5.0",
@@ -273,6 +303,11 @@
         "actionLink": "nuget/setup-nuget",
         "actionVersion": "b2bc17b761a1d88cab755a776c7922eb26eefbfa",
         "tag": "1.0.6"
+    },
+    {
+        "actionLink": "nuget/setup-nuget",
+        "actionVersion": "fd9fffd6ca4541cf4152a9565835ca1a88a6eb37",
+        "tag": "v1.1.1"
     },
     {
         "actionLink": "peter-evans/repository-dispatch",
