@@ -142,6 +142,11 @@
         "tag": "v2.19.0"
     },
     {
+        "actionLink": "dawidd6/action-download-artifact",
+        "actionVersion": "246dbf4",
+        "tag": "v2.27.0"
+    },
+    {
         "actionLink": "actions/download-artifact",
         "actionVersion": "fb598a63ae348fa914e94cd0ff38f362e927b741",
         "tag": "v3.0.0"
