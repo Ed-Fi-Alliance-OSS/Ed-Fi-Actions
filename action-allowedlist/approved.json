@@ -397,5 +397,10 @@
       "actionLink": "docker/build-push-action",
       "actionVersion": "3b5e8027fcad23fda98b2e3ac259d8d67585f671",
       "tag": "v4.0.0"
+    },
+    {
+      "actionLink": "ahmadnassri/action-workflow-run-wait",
+      "actionVersion": "2aa3d9e1a12ecaaa9908e368eaf2123bb084323e",
+      "tag": "v1.4.4"
     }
 ]
