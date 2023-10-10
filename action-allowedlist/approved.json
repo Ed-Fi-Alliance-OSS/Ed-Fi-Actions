@@ -14,23 +14,32 @@
     {
         "actionLink": "actions/checkout",
         "actionVersion": "a12a3943b4bdde767164f792f33f40b04645d846",
-        "tag": "v3.0.0"
+        "tag": "v3.0.0",
+        "deprecated": true
     },
     {
         "actionLink": "actions/checkout",
         "actionVersion": "2541b1294d2704b0964813337f33b291d3f8596b",
-        "tag": "v3.0.2"
+        "tag": "v3.0.2",
+        "deprecated": true
     },
     {
         "actionLink": "actions/checkout",
         "actionVersion": "755da8c3cf115ac066823e79a1e1788f8940201b",
-        "tag": "v3.2.0"
+        "tag": "v3.2.0",
+        "deprecated": true
     },
     {
         "actionLink": "actions/checkout",
         "actionVersion": "ac593985615ec2ede58e132d2e21d2b1cbd6127c",
-        "tag": "v3.3.0"
+        "tag": "v3.3.0",
+        "deprecated": true
     },
+    {
+        "actionLink": "actions/checkout",
+        "actionVersion": "8ade135a41bc03ea155e62e844d188df1ea18608",
+        "tag": "v4.1.0"
+    },    
     {
         "actionLink": "actions/cache",
         "actionVersion": "c64c572235d810460d0d6876e9c705ad5002b353",
@@ -326,8 +335,14 @@
     {
         "actionLink": "crazy-max/ghaction-import-gpg",
         "actionVersion": "c8bb57c57e8df1be8c73ff3d59deab1dbc00e0d1",
-        "tag": "5.1.0"
+        "tag": "5.1.0",
+        "deprecated": true
     },
+    {
+        "actionLink": "crazy-max/ghaction-import-gpg",
+        "actionVersion": "82a020f1f7f605c65dd2449b392a52c3fcfef7ef",
+        "tag": "6.0.0"
+    },    
     {
         "actionLink": "slsa-framework/slsa-github-generator/.github/actions/secure-download-artifact",
         "actionVersion": "1d646d70aeba1516af69fb0ef48206580122449b"
