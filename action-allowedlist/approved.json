@@ -39,7 +39,7 @@
         "actionLink": "actions/checkout",
         "actionVersion": "8ade135a41bc03ea155e62e844d188df1ea18608",
         "tag": "v4.1.0"
-    },    
+    },
     {
         "actionLink": "actions/cache",
         "actionVersion": "c64c572235d810460d0d6876e9c705ad5002b353",
@@ -342,7 +342,7 @@
         "actionLink": "crazy-max/ghaction-import-gpg",
         "actionVersion": "82a020f1f7f605c65dd2449b392a52c3fcfef7ef",
         "tag": "6.0.0"
-    },    
+    },
     {
         "actionLink": "slsa-framework/slsa-github-generator/.github/actions/secure-download-artifact",
         "actionVersion": "1d646d70aeba1516af69fb0ef48206580122449b"
@@ -422,5 +422,10 @@
       "actionLink": "ahmadnassri/action-workflow-run-wait",
       "actionVersion": "2aa3d9e1a12ecaaa9908e368eaf2123bb084323e",
       "tag": "v1.4.4"
+    },
+    {
+      "actionLink": "planetscale/ghcommit-action",
+      "actionVersion": "4131649dbf2fdf1eb34421702972a5af7b0a8731",
+      "tag": "v0.1.18"
     }
 ]
