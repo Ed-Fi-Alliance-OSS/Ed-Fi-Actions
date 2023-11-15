@@ -431,7 +431,13 @@
     {
       "actionLink": "docker/login-action",
       "actionVersion": "f4ef78c080cd8ba55a85445d5b36e214a81df20a",
-      "tag": "v2.1.0"
+      "tag": "v2.1.0",
+      "deprecated": true
+    },
+    {
+      "actionLink": "docker/login-action",
+      "actionVersion": "343f7c4344506bcbf9b4de18042ae17996df046d",
+      "tag": "v3.0.0"
     },
     {
       "actionLink": "docker/metadata-action",
