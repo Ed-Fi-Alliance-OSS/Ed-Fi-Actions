@@ -420,7 +420,13 @@
     {
       "actionLink": "docker/setup-buildx-action",
       "actionVersion": "4b4e9c3e2d4531116a6f8ba8e71fc6e2cb6e6c8c",
-      "tag": "v2.5.0"
+      "tag": "v2.5.0",
+      "deprecated": true
+    },
+    {
+      "actionLink": "docker/setup-buildx-action",
+      "actionVersion": "f95db51fddba0c2d1ec667646a06c2ce06100226",
+      "tag": "v3.0.0"
     },
     {
       "actionLink": "docker/login-action",
