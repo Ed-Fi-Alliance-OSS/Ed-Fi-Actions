@@ -41,6 +41,11 @@
         "tag": "v4.1.0"
     },
     {
+      "actionLink": "actions/checkout",
+      "actionVersion": "b4ffde65f46336ab88eb53be808477a3936bae11",
+      "tag": "v4.1.1"
+    },
+    {
         "actionLink": "actions/cache",
         "actionVersion": "c64c572235d810460d0d6876e9c705ad5002b353",
         "tag": "v2.1.6",
