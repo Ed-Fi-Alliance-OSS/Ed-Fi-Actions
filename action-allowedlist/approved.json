@@ -498,6 +498,11 @@
       "tag": "v5.0.0"
     },
     {
+      "actionLink": "docker/scout-action",
+      "actionVersion": "7c61653c2736d21969dd4593fde76c670d4a86cb",
+      "tag": "v1.2.0"
+    },
+    {
       "actionLink": "ahmadnassri/action-workflow-run-wait",
       "actionVersion": "2aa3d9e1a12ecaaa9908e368eaf2123bb084323e",
       "tag": "v1.4.4"
