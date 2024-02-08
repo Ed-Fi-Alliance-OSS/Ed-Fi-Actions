@@ -465,7 +465,8 @@
     {
         "actionLink": "Codex-/return-dispatch",
         "actionVersion": "290d1ad3ca0a323120745aea7a44ce63ed91a982",
-        "tag": "1.8.0"
+        "tag": "1.8.0",
+        "deprecated": true
     },
     {
         "actionLink": "Codex-/return-dispatch",
