@@ -547,5 +547,10 @@
       "actionLink": "planetscale/ghcommit-action",
       "actionVersion": "4131649dbf2fdf1eb34421702972a5af7b0a8731",
       "tag": "v0.1.18"
-    }
+    },
+    {
+        "actionLink": "dependency-check/Dependency-Check_Action",
+        "actionVersion": "75ba02d6183445fe0761d26e836bde58b1560600",
+        "tag": "v1.1.0"
+    }    
 ]
