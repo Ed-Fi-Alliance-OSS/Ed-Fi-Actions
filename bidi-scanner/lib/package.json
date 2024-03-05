@@ -2,7 +2,7 @@
   "name": "@edfi/bidi-scanner-lib",
   "type": "module",
   "engines": {
-    "node": ">=16.0.0"
+    "node": ">=18.0.0"
   },
   "version": "1.0.0",
   "description": "Library for bidirectional scanner",
