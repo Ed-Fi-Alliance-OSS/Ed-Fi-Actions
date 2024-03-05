@@ -172,6 +172,12 @@ function Invoke-Analyzer {
     }
 
     $results | ForEach-Object {
+        # Sometimes now line number or column is provided. Replace null with 0.
+        $line = $_.Line
+        if ($null -eq $line) { $line = 0 }
+        $column = $_.Column
+        if ($null -eq $column) { $column = 0 }
+
         $SarifData.runs[0].results += @{
             ruleId    = $_.RuleName
             level     = Get-Severity $_
@@ -185,8 +191,8 @@ function Invoke-Analyzer {
                             uri = Get-Path $_
                         }
                         region           = @{
-                            startLine   = $_.Line
-                            startColumn = $_.Column
+                            startLine   = $line
+                            startColumn = $column
                         }
                     }
                 }
