@@ -2,9 +2,9 @@
   "name": "@edfi/bidi-scanner-cli",
   "type": "module",
   "engines": {
-    "node": ">=16.0.0"
+    "node": ">=18.0.0"
   },
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Scans a repo for hidden unicode bidirectional characters as described in\r CVE-2021-42694 and detailed at <https://trojansource.codes/>",
   "main": "src/index.mjs",
   "scripts": {
