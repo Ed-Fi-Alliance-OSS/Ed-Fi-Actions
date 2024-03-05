@@ -28,13 +28,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the Actions repo
-        uses: actions/checkout@755da8c3cf115ac066823e79a1e1788f8940201b # v3.2.0
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
         with:
           repository: Ed-Fi-Alliance-OSS/Ed-Fi-Actions
           path: Ed-Fi-Actions
 
       - name: Checkout the repo to Scan
-        uses: actions/checkout@755da8c3cf115ac066823e79a1e1788f8940201b # v3.2.0
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
         with:
           path: testing-repo
 
@@ -46,13 +46,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the Actions repo
-        uses: actions/checkout@755da8c3cf115ac066823e79a1e1788f8940201b # v3.2.0
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
         with:
           repository: Ed-Fi-Alliance-OSS/Ed-Fi-Actions
           path: Ed-Fi-Actions
 
       - name: Checkout the repo to Scan
-        uses: actions/checkout@755da8c3cf115ac066823e79a1e1788f8940201b # v3.2.0
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
         with:
           path: testing-repo
 
