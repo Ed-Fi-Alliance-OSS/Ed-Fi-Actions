@@ -46,12 +46,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+
       - uses: ./action-allowedlist
         name: Scan used actions
         id: scan-action
+
       - name: Upload result file as artifact
-        uses: actions/upload-artifact@e448a9b857ee2131e752b06002bf0e093c65e571
+        uses: actions/26f96dfa697d77e81fd5907df203aa23a56210a8 # v4.3.0
         with:
           name: actions
           path: ./actions.json
