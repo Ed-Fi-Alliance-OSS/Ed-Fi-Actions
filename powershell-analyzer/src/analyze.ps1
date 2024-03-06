@@ -172,11 +172,12 @@ function Invoke-Analyzer {
     }
 
     $results | ForEach-Object {
-        # Sometimes now line number or column is provided. Replace null with 0.
+        # Sometimes no line number or column is provided by the analysis. GitHub
+        # doesn't allow that; it requires an integer >= 1.
         $line = $_.Line
-        if ($null -eq $line) { $line = 0 }
+        if ($null -eq $line) { $line = 1 }
         $column = $_.Column
-        if ($null -eq $column) { $column = 0 }
+        if ($null -eq $column) { $column = 1 }
 
         $SarifData.runs[0].results += @{
             ruleId    = $_.RuleName
