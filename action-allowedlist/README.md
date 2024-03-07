@@ -53,7 +53,7 @@ jobs:
         id: scan-action
 
       - name: Upload result file as artifact
-        uses: actions/26f96dfa697d77e81fd5907df203aa23a56210a8 # v4.3.0
+        uses: actions/upload-artifact@26f96dfa697d77e81fd5907df203aa23a56210a8 # v4.3.0
         with:
           name: actions
           path: ./actions.json
