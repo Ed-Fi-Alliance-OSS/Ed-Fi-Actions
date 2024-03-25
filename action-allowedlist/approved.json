@@ -615,5 +615,10 @@
     "actionLink": "EnricoMi/publish-unit-test-result-action",
     "actionVersion": "f355d34d53ad4e7f506f699478db2dd71da9de5f",
     "tag": "v2.15.1"
+  },
+  {
+    "actionLink": "ossf/scorecard-action",
+    "actionVersion": "e38b1902ae4f44df626f11ba0734b14fb91f8f86K",
+    "tag": "v2.1.2"
   }
 ]
