@@ -141,6 +141,11 @@
     "tag": "v3.1.2"
   },
   {
+    "actionLink": "actions/setup-python",
+    "actionVersion": "82c7e631bb3cdc910f68e0081d67478d79c6982d",
+    "tag": "v5.1.0"
+  },
+  {
     "actionLink": "Gr1N/setup-poetry",
     "actionVersion": "462ac83c852d49e282a1233c4c24c5411696e7c7"
   },
