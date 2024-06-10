@@ -637,5 +637,10 @@
     "actionLink": "microsoft/setup-msbuild",
     "actionVersion": "6fb02220983dee41ce7ae257b6f4d8f9bf5ed4ce",
     "tag": "v2.0.0"
+  },
+  {
+    "actionLink": "slackapi/slack-github-action",
+    "actionVersion": "483f51618ef5cbe37df7178a55e3e10188e2ff04",
+    "tag": "1.26.0"
   }
 ]
