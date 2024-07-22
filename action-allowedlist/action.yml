@@ -4,15 +4,15 @@
 # See the LICENSE and NOTICES files in the project root for more information.
 
 # action.yml
-name: 'Action Whitelist'
-author: 'Ed-Fi Alliance'
-description: 'Scan for action files and only allow actions from approved Authors and commit hash version'
+name: "Action Whitelist"
+author: "Ed-Fi Alliance"
+description: "Scan for action files and only allow actions from approved Authors and commit hash version"
 branding:
-  icon : alert-octagon
+  icon: alert-octagon
   color: blue
 outputs:
   actions:
-    description: 'List of detected unapproved actions used.'
+    description: "List of detected unapproved actions used."
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
+  using: "docker"
+  image: "Dockerfile"
