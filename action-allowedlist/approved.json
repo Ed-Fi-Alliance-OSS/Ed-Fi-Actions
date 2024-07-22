@@ -77,7 +77,7 @@
   {
     "actionLink": "actions/cache",
     "actionVersion": "ab5e6d0c87105b4c9c2047343972218f562e4319",
-    "tag": "v4.0.1",
+    "tag": "v4.0.1"
   },
   {
     "actionLink": "actions/cache/save",
@@ -647,5 +647,10 @@
     "actionLink": "microsoft/setup-msbuild",
     "actionVersion": "6fb02220983dee41ce7ae257b6f4d8f9bf5ed4ce",
     "tag": "v2.0.0"
+  },
+  {
+    "actionLink": "slackapi/slack-github-action",
+    "actionVersion": "70cd7be8e40a46e8b0eced40b0de447bdb42f68e",
+    "tag": "v1.26.0"
   }
 ]
