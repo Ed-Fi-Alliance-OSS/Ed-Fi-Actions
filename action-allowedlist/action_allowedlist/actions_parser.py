@@ -114,7 +114,6 @@ def invoke_validate_actions(approved_path, actions_configuration):
             if approved_output[0].get("deprecated", False):
                 print(f"Using a deprecated version of {action['actionLink']}")
                 num_deprecated += 1
-                found = True
         else:
             print(
                 f"::debug::Output versions not approved: {action['actionLink']} version {action['actionVersion']}"
