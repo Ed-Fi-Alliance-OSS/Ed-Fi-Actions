@@ -128,7 +128,13 @@
   {
     "actionLink": "actions/setup-dotnet",
     "actionVersion": "607fce577a46308457984d59e4954e075820f10a",
-    "tag": "v3.0.3"
+    "tag": "v3.0.3",
+    "deprecated": true
+  },
+  {
+    "actionLink": "actions/setup-dotnet",
+    "actionVersion": "4d6c8fcf3c8f7a60068d26b594648e99df24cee3",
+    "tag": "v4.0.0"
   },
   {
     "actionLink": "actions/setup-python",
