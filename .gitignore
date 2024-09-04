@@ -5,3 +5,5 @@ junit.xml
 ps-analyzer.xml
 
 node_modules/
+
+*.pyc
