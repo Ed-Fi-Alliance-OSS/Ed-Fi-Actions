@@ -672,5 +672,15 @@
     "actionLink": "softprops/action-gh-release",
     "actionVersion": "c062e08bd532815e2082a85e87e3ef29c3e6d191",
     "tag": "v2.0.8"
+  },
+  {
+    "actionLink": "anchore/sbom-action",
+    "actionVersion": "483f51618ef5cbe37df7178a55e3e10188e2ff04",
+    "tag": "0.17.2"
+  },
+  {
+    "actionLink": "actions/attest-sbom",
+    "actionVersion": "5026d3663739160db546203eeaffa6aa1c51a4d6",
+    "tag": "1.4.1"
   }
 ]

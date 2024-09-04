@@ -7,3 +7,6 @@ ps-analyzer.xml
 node_modules/
 
 *.pyc
+
+# Mac OS
+*.DS_Store
