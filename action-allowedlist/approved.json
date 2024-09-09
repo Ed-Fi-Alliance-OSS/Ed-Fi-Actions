@@ -691,5 +691,10 @@
     "actionLink": "actions/attest-sbom",
     "actionVersion": "5026d3663739160db546203eeaffa6aa1c51a4d6",
     "tag": "1.4.1"
+  },
+  {
+    "actionLink": "actions/upload-pages-artifact",
+    "actionVersion": "56afc609e74202658d3ffba0e8f6dda462b719fa",
+    "tag": "3.0.1"
   }
 ]
