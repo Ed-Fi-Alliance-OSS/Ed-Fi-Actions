@@ -507,6 +507,11 @@
     "tag": "main"
   },
   {
+    "actionLink": "Ed-Fi-Alliance-OSS/slsa-github-generator/.github/actions/secure-download-artifact",
+    "actionVersion": "v2.0.0",
+    "tag": "v2.0.0"
+  },
+  {
     "actionLink": "supercharge/mongodb-github-action",
     "actionVersion": "538a4d2a1041920c47630172445cb688592d6e51",
     "tag": "1.8.0"
