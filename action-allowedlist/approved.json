@@ -701,5 +701,10 @@
     "actionLink": "actions/deploy-pages",
     "actionVersion": "d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e",
     "tag": "4.0.5"
+  },
+  {
+    "actionLink": "hashicorp/setup-terraform",
+    "actionVersion": "633666f66e0061ca3b725c73b2ec20cd13a8fdd1",
+    "tag": "2.0.3"
   }
 ]
