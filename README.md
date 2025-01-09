@@ -1,10 +1,13 @@
 # Ed-Fi-Actions
 
+[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/Ed-Fi-Alliance-OSS/Ed-Fi-Actions/badge)](https://securityscorecards.dev/viewer/?uri=github.com/Ed-Fi-Alliance-OSS/Ed-Fi-Actions)
+
+
 Custom actions for use in Ed-Fi software delivery life cycle.
 
 ## Legal Information
 
-Copyright (c) 2022 Ed-Fi Alliance, LLC and contributors.
+Copyright (c) 2024 Ed-Fi Alliance, LLC and contributors.
 
 Licensed under the [Apache License, Version 2.0](LICENSE) (the "License").
 
