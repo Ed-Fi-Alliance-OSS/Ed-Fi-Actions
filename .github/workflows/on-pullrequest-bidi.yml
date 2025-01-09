@@ -15,6 +15,8 @@ on:
       - "bidi-scanner/**/*"
   workflow_dispatch:
 
+permissions: read-all
+
 jobs:
   lint-and-test-cli:
     runs-on: ubuntu-latest

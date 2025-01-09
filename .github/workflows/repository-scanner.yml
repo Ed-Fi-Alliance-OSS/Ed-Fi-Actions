@@ -23,6 +23,8 @@ on:
         default: ''
         type: string
 
+permissions: read-all
+
 jobs:
   action-allowedlist:
     runs-on: ubuntu-latest

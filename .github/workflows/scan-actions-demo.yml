@@ -7,6 +7,8 @@ name: Demo - Scan Allowed Actions
 on:
   workflow_dispatch:
 
+permissions: read-all
+
 jobs:
   action-allowedlist:
     runs-on: ubuntu-latest

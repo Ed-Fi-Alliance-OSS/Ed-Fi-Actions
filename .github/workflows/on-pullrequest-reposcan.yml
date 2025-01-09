@@ -11,6 +11,8 @@ on:
       - main
   workflow_dispatch:
 
+permissions: read-all
+
 jobs:
   repo-security-scan:
     name: Ed-Fi Repo Security Scan

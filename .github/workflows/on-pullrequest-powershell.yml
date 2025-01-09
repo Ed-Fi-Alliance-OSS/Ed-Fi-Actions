@@ -16,6 +16,8 @@ on:
       - "**/powershell-analyzer.yml"
   workflow_dispatch:
 
+permissions: read-all
+
 jobs:
   run-lint:
     name: Linter
