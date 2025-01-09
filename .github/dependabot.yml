@@ -1,0 +1,17 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/bidi-scanner"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "pip"
+    directory: "/action-allowedlist"
+    schedule:
+      interval: "weekly"
+
+  # These updates will not be utilized right away, because they need to go into the approved list. But this
+  # will help us notice when updates are needed, especially for vulnerabilities.
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "monthly"
