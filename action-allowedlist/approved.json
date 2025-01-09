@@ -722,10 +722,10 @@
     "deprecated": true
   },
   {
-  "actionLink": "docker/setup-buildx-action",
-  "actionVersion": "6524bf65af31da8d45b59e8c27de4bd072b392f5",
-  "tag": "v3.8.0"
-},
+    "actionLink": "docker/setup-buildx-action",
+    "actionVersion": "6524bf65af31da8d45b59e8c27de4bd072b392f5",
+    "tag": "v3.8.0"
+  },
   {
     "actionLink": "docker/login-action",
     "actionVersion": "f4ef78c080cd8ba55a85445d5b36e214a81df20a",
@@ -738,10 +738,11 @@
     "tag": "v3.0.0",
     "deprecated": true
   },
-  {    "actionLink": "docker/login-action",
-  "actionVersion": "9780b0c442fbb1117ed29e0efdff1e18412f7567",
-  "tag": "v3.3.0"
-},
+  {
+    "actionLink": "docker/login-action",
+    "actionVersion": "9780b0c442fbb1117ed29e0efdff1e18412f7567",
+    "tag": "v3.3.0"
+  },
   {
     "actionLink": "docker/metadata-action",
     "actionVersion": "507c2f2dc502c992ad446e3d7a5dfbe311567a96",
@@ -753,11 +754,12 @@
     "actionVersion": "96383f45573cb7f253c731d3b3ab81c87ef81934",
     "tag": "v5.0.0",
     "deprecated": true
-  },{
-  "actionLink": "docker/metadata-action",
-  "actionVersion": "369eb591f429131d6889c46b94e711f089e6ca96",
-  "tag": "v5.6.1"
-},
+  },
+  {
+    "actionLink": "docker/metadata-action",
+    "actionVersion": "369eb591f429131d6889c46b94e711f089e6ca96",
+    "tag": "v5.6.1"
+  },
   {
     "actionLink": "docker/build-push-action",
     "actionVersion": "3b5e8027fcad23fda98b2e3ac259d8d67585f671",
