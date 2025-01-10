@@ -233,6 +233,11 @@
     "tag": "v4.5"
   },
   {
+    "actionLink": "actions/upload-artifact",
+    "actionVersion": "65c4c4a1ddee5b72f698fdd19549f0f0fb45cf08",
+    "tag": "v4.6"
+  },
+  {
     "actionLink": "github/super-linter",
     "actionVersion": "431ee7836e8cdce5a460b0db682d9169563d919b",
     "tag": "v4.9.3",
@@ -487,7 +492,7 @@
     "actionLink": "github/codeql-action/upload-sarif",
     "actionVersion": "48ab28a6f5dbc2a99bf1e0131198dd8f1df78169",
     "tag": "v3.28.0"
-  },  
+  },
   {
     "actionLink": "actions/dependency-review-action",
     "actionVersion": "a9c83d3af6b9031e20feba03b904645bb23d1dab",
@@ -815,6 +820,11 @@
     "actionLink": "EnricoMi/publish-unit-test-result-action",
     "actionVersion": "f355d34d53ad4e7f506f699478db2dd71da9de5f",
     "tag": "v2.15.1"
+  },
+  {
+    "actionLink": "EnricoMi/publish-unit-test-result-action",
+    "actionVersion": "170bf24d20d201b842d7a52403b73ed297e6645b",
+    "tag": "v2.18.0"
   },
   {
     "actionLink": "ossf/scorecard-action",
