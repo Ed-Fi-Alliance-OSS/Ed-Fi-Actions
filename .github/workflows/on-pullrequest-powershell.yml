@@ -24,6 +24,8 @@ jobs:
     uses: Ed-Fi-Alliance-OSS/Ed-Fi-Actions/.github/workflows/powershell-analyzer.yml@main
     permissions:
       security-events: write
+      actions: read
+      contents: read
 
   run-tests:
     runs-on: ubuntu-latest
