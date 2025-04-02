@@ -77,6 +77,11 @@
     "tag": "v4.6"
   },
   {
+    "actionLink": "actions/upload-artifact",
+    "actionVersion": "ea165f8d65b6e75b540449e92b4886f43607fa02 ",
+    "tag": "v4.6.2"
+  },
+  {
     "actionLink": "github/super-linter",
     "actionVersion": "431ee7836e8cdce5a460b0db682d9169563d919b",
     "tag": "v4.9.3",
@@ -91,6 +96,11 @@
     "actionLink": "dawidd6/action-download-artifact",
     "actionVersion": "80620a5d27ce0ae443b965134db88467fc607b43",
     "tag": "v7"
+  },
+  {
+    "actionLink": "dawidd6/action-download-artifact",
+    "actionVersion": "07ab29fd4a977ae4d2b275087cf67563dfdf0295",
+    "tag": "v9"
   },
   {
     "actionLink": "actions/download-artifact",
@@ -125,6 +135,11 @@
     "actionLink": "actions/setup-node",
     "actionVersion": "1d0ff469b7ec7b3cb9d8673fde0c81c44821de2a",
     "tag": "v4.2.0"
+  },
+  {
+    "actionLink": "actions/setup-node",
+    "actionVersion": "cdca7365b2dadb8aad0a33bc7601856ffabcc48e ",
+    "tag": "v4.3.0"
   },
   {
     "actionLink": "./action-allowedlist",
@@ -192,6 +207,21 @@
     "actionLink": "github/codeql-action/upload-sarif",
     "actionVersion": "48ab28a6f5dbc2a99bf1e0131198dd8f1df78169",
     "tag": "v3.28.0"
+  },
+  {
+    "actionLink": "github/codeql-action/init",
+    "actionVersion": "1b549b9259bda1cb5ddde3b41741a82a2d15a841",
+    "tag": "v3.28.13"
+  },
+  {
+    "actionLink": "github/codeql-action/analyze",
+    "actionVersion": "1b549b9259bda1cb5ddde3b41741a82a2d15a841",
+    "tag": "v3.28.13"
+  },
+  {
+    "actionLink": "github/codeql-action/upload-sarif",
+    "actionVersion": "1b549b9259bda1cb5ddde3b41741a82a2d15a841",
+    "tag": "v3.28.13"
   },
   {
     "actionLink": "actions/dependency-review-action",
@@ -428,6 +458,11 @@
     "actionLink": "ossf/scorecard-action",
     "actionVersion": "62b2cac7ed8198b15735ed49ab1e5cf35480ba46",
     "tag": "v2.4.0"
+  },
+  {
+    "actionLink": "ossf/scorecard-action",
+    "actionVersion": "f49aabe0b5af0936a0987cfb85d86b75731b0186 ",
+    "tag": "v2.4.1"
   },
   {
     "actionLink": "microsoft/setup-msbuild",
