@@ -563,5 +563,10 @@
     "actionLink": "hashicorp/setup-terraform",
     "actionVersion": "b9cd54a3c349d3f38e8881555d616ced269862dd",
     "tag": "v3.1.2"
+  },
+  {
+    "actionLink": "swaggerexpert/swagger-editor-validate",
+    "actionVersion": "54b85e2f5c1fcdee85308dd57cad8c8ec19d3970",
+    "tag": "v24.9.0"
   }
 ]
