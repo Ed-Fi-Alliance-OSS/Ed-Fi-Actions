@@ -86,6 +86,20 @@ def invoke_validate_actions(approved_path, actions_configuration):
         print(
             f"::debug::Processing {action['actionLink']} version {action['actionVersion']}"
         )
+
+        # Auto-approve any github/* actions
+        if action["actionLink"].startswith("github/"):
+            print(f"::debug::Auto-approving github action: {action['actionLink']}")
+            approved_outputs.append(
+                {
+                    "actionLink": action["actionLink"],
+                    "actionVersion": action["actionVersion"],
+                    "deprecated": False,
+                }
+            )
+            num_approved += 1
+            continue
+
         approved_action_versions = [
             a for a in approved if a["actionLink"] == action["actionLink"]
         ]
@@ -131,6 +145,6 @@ def invoke_validate_actions(approved_path, actions_configuration):
     else:
         print(f"All {num_approved} actions/versions are approved.")
         if num_deprecated > 0:
-            e = (f"Deprecated actions found: {num_deprecated}")
+            e = f"Deprecated actions found: {num_deprecated}"
             print(f"::warning file=actions_parser.py,title=Deprecated Actions::{e}")
         return found
