@@ -3,7 +3,7 @@
 # Apache License, Version 2.0. See the LICENSE and NOTICES files in the project
 # root for more information.
 
-from actions_parser import get_all_used_actions, invoke_validate_actions
+from .actions_parser import get_all_used_actions, invoke_validate_actions
 from pathlib import Path
 import sys
 from os.path import abspath

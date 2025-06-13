@@ -87,9 +87,16 @@ def invoke_validate_actions(approved_path, actions_configuration):
             f"::debug::Processing {action['actionLink']} version {action['actionVersion']}"
         )
 
-        # Auto-approve any github/* actions
-        if action["actionLink"].startswith("github/"):
-            print(f"::debug::Auto-approving github action: {action['actionLink']}")
+        # Auto-approve any github/* or actions/* actions
+        if action["actionLink"].startswith("github/") or action[
+            "actionLink"
+        ].startswith("actions/"):
+            action_type = (
+                "github" if action["actionLink"].startswith("github/") else "actions"
+            )
+            print(
+                f"::debug::Auto-approving {action_type} action: {action['actionLink']}"
+            )
             approved_outputs.append(
                 {
                     "actionLink": action["actionLink"],
