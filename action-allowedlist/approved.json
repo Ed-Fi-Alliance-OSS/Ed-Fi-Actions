@@ -258,12 +258,18 @@
   {
     "actionLink": "EnricoMi/publish-unit-test-result-action",
     "actionVersion": "f355d34d53ad4e7f506f699478db2dd71da9de5f",
-    "tag": "v2.15.1"
+    "tag": "v2.15.1",
+    "deprecated"
   },
   {
     "actionLink": "EnricoMi/publish-unit-test-result-action",
     "actionVersion": "170bf24d20d201b842d7a52403b73ed297e6645b",
     "tag": "v2.18.0"
+  },
+  {
+    "actionLink": "EnricoMi/publish-unit-test-result-action",
+    "actionVersion": "3a74b2957438d0b6e2e61d67b05318aa25c9e6c6",
+    "tag": "v2.20.0"
   },
   {
     "actionLink": "ossf/scorecard-action",
@@ -274,12 +280,19 @@
   {
     "actionLink": "ossf/scorecard-action",
     "actionVersion": "0864cf19026789058feabb7e87baa5f140aac736",
-    "tag": "v2.3.1"
+    "tag": "v2.3.1",
+    "deprecated": true
   },
   {
     "actionLink": "ossf/scorecard-action",
     "actionVersion": "62b2cac7ed8198b15735ed49ab1e5cf35480ba46",
-    "tag": "v2.4.0"
+    "tag": "v2.4.0",
+    "deprecated": true
+  },
+  {
+    "actionLink": "ossf/scorecard-action",
+    "actionVersion": "05b42c624433fc40578a4040d5cf5e36ddca8cde",
+    "tag": "v2.4.2"
   },
   {
     "actionLink": "ossf/scorecard-action",
