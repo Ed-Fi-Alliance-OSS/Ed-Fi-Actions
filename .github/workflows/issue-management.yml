@@ -1,0 +1,72 @@
+# SPDX-License-Identifier: Apache-2.0
+# Licensed to the Ed-Fi Alliance under one or more agreements.
+# The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
+# See the LICENSE and NOTICES files in the project root for more information.
+
+name: "Issue Management"
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  issues: write
+
+jobs:
+  manage-community-issues:
+    runs-on: ubuntu-latest
+    if: github.event.issue.user.type != 'Bot'
+    steps:
+      - name: Check if user is team member
+        id: check-membership
+        uses: actions/github-script@v7
+        with:
+          script: |
+            try {
+              // Check if user is a member of the ed-fi-tech team
+              const { data: membership } = await github.rest.teams.getMembershipForUserInOrg({
+                org: 'Ed-Fi-Alliance-OSS',
+                team_slug: 'ed-fi-tech',
+                username: context.payload.issue.user.login
+              });
+              
+              console.log(`User ${context.payload.issue.user.login} team membership: ${membership.state}`);
+              return membership.state === 'active';
+            } catch (error) {
+              console.log(`User ${context.payload.issue.user.login} is not a team member: ${error.message}`);
+              return false;
+            }
+
+      - name: Close community issue with helpful message
+        if: steps.check-membership.outputs.result == 'false'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const message = `Thank you for your interest in Ed-Fi! 
+
+            This GitHub repository is maintained by the Ed-Fi engineering team for internal issue tracking and development coordination.
+
+            For technical support, questions, and community discussions, please visit the **[Ed-Fi Community Hub](https://community.ed-fi.org)** where our community and support team can better assist you.
+
+            The Ed-Fi Community Hub provides:
+            - Technical support and troubleshooting
+            - Community discussions and best practices
+            - Documentation and resources
+            - Direct access to Ed-Fi experts
+
+            We appreciate your understanding and look forward to helping you on the Community Hub!`;
+
+            await github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: message
+            });
+
+            await github.rest.issues.update({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'closed',
+              state_reason: 'not_planned'
+            });
