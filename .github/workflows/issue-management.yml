@@ -17,28 +17,28 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.issue.user.type != 'Bot'
     steps:
-      - name: Check if user is team member
-        id: check-membership
+      - name: Check if user has repository access
+        id: check-repo-access
         uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7.0.1
         with:
           script: |
             try {
-              // Check if user is a member of the ed-fi-tech team
-              const { data: membership } = await github.rest.teams.getMembershipForUserInOrg({
-                org: 'Ed-Fi-Alliance-OSS',
-                team_slug: 'ed-fi-tech',
+              // Check if user has repository access (collaborator, maintainer, admin, etc.)
+              const { data: permission } = await github.rest.repos.getCollaboratorPermissionLevel({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
                 username: context.payload.issue.user.login
               });
               
-              console.log(`User ${context.payload.issue.user.login} team membership: ${membership.state}`);
-              return membership.state === 'active';
+              console.log(`User ${context.payload.issue.user.login} repository permission: ${permission.permission}`);
+              return ['admin', 'maintain', 'write', 'triage', 'read'].includes(permission.permission);
             } catch (error) {
-              console.log(`User ${context.payload.issue.user.login} is not a team member: ${error.message}`);
+              console.log(`User ${context.payload.issue.user.login} does not have repository access: ${error.message}`);
               return false;
             }
 
       - name: Close community issue with helpful message
-        if: steps.check-membership.outputs.result == 'false'
+        if: steps.check-repo-access.outputs.result == 'false'
         uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7.0.1
         with:
           script: |
