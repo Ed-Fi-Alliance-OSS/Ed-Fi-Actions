@@ -48,4 +48,4 @@ The workflow is configured to check membership in the `ed-fi-tech` team within t
 
 - **Engineering Team**: Use GitHub Issues in this repository
 - **Community Members**: Use the [Ed-Fi Community Hub](https://community.ed-fi.org)
-- **Documentation**: [Ed-Fi Technical Documentation](https://edfi.gitbook.io/ed-fi-tech-docs/)
+- **Documentation**: [Ed-Fi Technical Documentation](https://docs.ed-fi.org/)
