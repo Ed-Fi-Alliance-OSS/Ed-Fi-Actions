@@ -31,7 +31,7 @@ jobs:
               });
               
               console.log(`User ${context.payload.issue.user.login} repository permission: ${permission.permission}`);
-              return ['admin', 'maintain', 'write', 'triage', 'read'].includes(permission.permission);
+              return ['admin', 'maintain', 'write', 'triage'].includes(permission.permission);
             } catch (error) {
               console.log(`User ${context.payload.issue.user.login} does not have repository access: ${error.message}`);
               return false;
