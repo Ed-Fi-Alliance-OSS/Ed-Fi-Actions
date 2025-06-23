@@ -5,6 +5,11 @@
 
 Custom actions for use in Ed-Fi software delivery life cycle.
 
+## Support
+
+- **Engineering Team**: GitHub Issues in this repository are for Ed-Fi engineering team use only
+- **Community Support**: For technical support and questions, please visit the [Ed-Fi Community Hub](https://community.ed-fi.org)
+
 ## Legal Information
 
 Copyright (c) 2025 Ed-Fi Alliance, LLC and contributors.

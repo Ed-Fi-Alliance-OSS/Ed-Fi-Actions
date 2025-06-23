@@ -10,3 +10,6 @@ node_modules/
 
 # Mac OS
 *.DS_Store
+
+# Tools
+actionlint
