@@ -92,3 +92,4 @@ This Code of Conduct is adapted from the [Contributor Covenant, version
 2.1](https://www.contributor-covenant.org/version/2/1/code_of_conduct.html).
 Original version by Coraline Ada Ehmke, licensed under [CC BY 4.0
 Deed](https://creativecommons.org/licenses/by/4.0/deed.en).
+ 
