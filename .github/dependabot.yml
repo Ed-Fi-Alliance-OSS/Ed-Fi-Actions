@@ -4,10 +4,26 @@ updates:
     directory: "/bidi-scanner"
     schedule:
       interval: "weekly"
+    groups:
+      minor-patches:
+        applies-to: version-updates
+        patterns:
+          - "*"
+        update-types:
+          - "minor"
+          - "patch"
   - package-ecosystem: "pip"
     directory: "/action-allowedlist"
     schedule:
       interval: "weekly"
+    groups:
+      minor-patches:
+        applies-to: version-updates
+        patterns:
+          - "*"
+        update-types:
+          - "minor"
+          - "patch"
 
   # These updates will not be utilized right away, because they need to go into the approved list. But this
   # will help us notice when updates are needed, especially for vulnerabilities.
@@ -15,3 +31,11 @@ updates:
     directory: "/"
     schedule:
       interval: "monthly"
+    groups:
+      minor-patches:
+        applies-to: version-updates
+        patterns:
+          - "*"
+        update-types:
+          - "minor"
+          - "patch"
