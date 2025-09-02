@@ -15,6 +15,7 @@
     "actionLink": "dawidd6/action-download-artifact",
     "actionVersion": "ac66b43f0e6a346234dd65d4d0c8fbb31cb316e5",
     "tag": "v11"
+  },
   {
     "actionLink": "./action-allowedlist",
     "actionVersion": null
