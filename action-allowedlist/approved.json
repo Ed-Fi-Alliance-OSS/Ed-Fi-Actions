@@ -2,12 +2,19 @@
   {
     "actionLink": "dawidd6/action-download-artifact",
     "actionVersion": "80620a5d27ce0ae443b965134db88467fc607b43",
-    "tag": "v7"
+    "tag": "v7",
+    "deprecated": true
   },
   {
     "actionLink": "dawidd6/action-download-artifact",
     "actionVersion": "07ab29fd4a977ae4d2b275087cf67563dfdf0295",
-    "tag": "v9"
+    "tag": "v9",
+    "deprecated": true
+  },
+  {
+    "actionLink": "dawidd6/action-download-artifact",
+    "actionVersion": "ac66b43f0e6a346234dd65d4d0c8fbb31cb316e5",
+    "tag": "v11"
   },
   {
     "actionLink": "./action-allowedlist",
