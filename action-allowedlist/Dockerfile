@@ -10,15 +10,18 @@ COPY ./ /app/
 
 # Install Poetry. When building this container inside a network that re-encrypts
 # certificates, the certificate check will fail. Use the ARG below to trigger an
-# override of the certificate. Set TRUST_CERT=1 to enable certificat override.
+# override of the certificate. Set TRUST_CERT=1 to enable certificate override.
 ARG TRUST_CERT=0
-RUN [ $TRUST_CERT -eq 0 ] \
-        && CMD="wget -q -O - https://install.python-poetry.org | python" \
-        || CMD="wget --no-check-certificate -q -O - https://install.python-poetry.org | python"; \
-    eval $CMD \
+RUN if [ $TRUST_CERT -eq 0 ]; then \
+        # Default behavior: trust certificates, install Poetry via pip (compatible with Python 3.9)
+        pip install --no-cache-dir poetry==2.2.1 ; \
+    else \
+        # If certificate issues occur, bypass SSL verification during installation
+        PIP_NO_VERIFY_CERTS=1 pip install --no-cache-dir poetry==2.2.1 ; \
+    fi \
     && export PATH="/root/.local/bin:$PATH" \
     && cd /app \
-    # Setting the cache directory to somethign more universal
+    # Setting the cache directory to something more universal
     && poetry config cache-dir /var/cache/pypoetry \
     && poetry install --only main
 
