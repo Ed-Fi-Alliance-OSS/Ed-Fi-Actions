@@ -79,3 +79,15 @@ Properties:
 | ------------- | ---------------------------------------------- |
 | actionLink    | The link to the action used in the workflow    |
 | actionVersion | The version of the action used in the workflow |
+
+## Developer's Notes
+
+- Use `poetry` for local development.
+- However, there is a `requirements.txt` file so that the Dockerfile does not need to install poetry.
+  - It only includes `pyyaml`
+- If updating `pyyaml` or the Python version, be sure to update both via Poetry and directly update `requirements.txt`.
+
+## Testing
+
+- Use script `local.ps1` to test locally
+- To test in GitHub, merge to `main` in a fork and then run the scan actions demo workflow.

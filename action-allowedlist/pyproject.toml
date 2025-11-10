@@ -1,12 +1,12 @@
 [tool.poetry]
 name = "action-allowedlist"
-version = "0.1.0"
-description = ""
-authors = ["Christian <chrisgo@bu.edu>"]
+version = "1.0.1"
+description = "Script for ensuring that only pre-vetted GitHub Actions are used in workflows."
+authors = ["Ed-Fi Alliance, LLC"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = "^3.11"
 pyyaml = "^6.0.1"
 
 [tool.poetry.group.dev.dependencies]

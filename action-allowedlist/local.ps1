@@ -5,4 +5,4 @@
 
 # Use for building the image locally while on the internal office network
 docker buildx build -t local/action-allowedlist --build-arg="TRUST_CERT=1" .
-docker run local/action-allowedlist
+docker run --workdir /repo -v $PWD/..:/repo local/action-allowedlist

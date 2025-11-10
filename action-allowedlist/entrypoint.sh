@@ -8,10 +8,5 @@
 location=$PWD
 cd /app > /dev/null
 
-# Poetry is installed here
-export PATH="/root/.local/bin:$PATH"
-
-# Change the cache directory to the one used in the Dockerfile build
-poetry config cache-dir /var/cache/pypoetry
-
-poetry run python action_allowedlist $location "/app/approved.json"
+# Run the application using the virtual environment
+/app/.venv/bin/python action_allowedlist $location "/app/approved.json"
