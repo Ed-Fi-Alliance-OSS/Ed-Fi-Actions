@@ -13,3 +13,8 @@ node_modules/
 
 # Tools
 actionlint
+
+# Python virtual environments
+.venv/
+__pycache__/
+*.egg-info/
