@@ -384,5 +384,10 @@
     "actionLink": "swaggerexpert/swagger-editor-validate",
     "actionVersion": "54b85e2f5c1fcdee85308dd57cad8c8ec19d3970",
     "tag": "v24.9.0"
+  },
+  {
+    "actionLink": "bridgecrewio/checkov-action",
+    "actionVersion": "02a4c5d6a02367e5ea493c34c26b094302fd3f61",
+    "tag": "v12.3075.0"
   }
 ]
