@@ -1,393 +1,525 @@
 [
   {
-    "actionLink": "dawidd6/action-download-artifact",
-    "actionVersion": "80620a5d27ce0ae443b965134db88467fc607b43",
-    "tag": "v7",
-    "deprecated": true
-  },
-  {
-    "actionLink": "dawidd6/action-download-artifact",
-    "actionVersion": "07ab29fd4a977ae4d2b275087cf67563dfdf0295",
-    "tag": "v9",
-    "deprecated": true
-  },
-  {
-    "actionLink": "dawidd6/action-download-artifact",
-    "actionVersion": "ac66b43f0e6a346234dd65d4d0c8fbb31cb316e5",
-    "tag": "v11"
-  },
-  {
-    "actionLink": "./action-allowedlist",
-    "actionVersion": null
-  },
-  {
-    "actionLink": "Ed-Fi-Alliance-OSS/slsa-github-generator/.github/workflows/generator_generic_slsa3.yml",
-    "actionVersion": "main"
-  },
-  {
-    "actionLink": "Ed-Fi-Alliance-OSS/slsa-github-generator/.github/workflows/generator_generic_slsa3.yml",
-    "actionVersion": "v1.2.0"
-  },
-  {
-    "actionLink": "Ed-Fi-Alliance-OSS/slsa-github-generator/.github/workflows/generator_generic_slsa3.yml",
-    "actionVersion": "v1.5.0"
-  },
-  {
-    "actionLink": "Ed-Fi-Alliance-OSS/slsa-github-generator/.github/workflows/generator_generic_slsa3.yml",
-    "actionVersion": "v2.0.0"
-  },
-  {
-    "actionLink": "Ed-Fi-Alliance-OSS/Ed-Fi-Actions/repository-scanner",
-    "actionVersion": "main"
-  },
-  {
-    "actionLink": "./Ed-Fi-Actions/repository-scanner",
-    "actionVersion": null
-  },
-  {
-    "actionLink": "Ed-Fi-Alliance-OSS/Ed-Fi-Actions/action-allowedlist",
-    "actionVersion": "main"
-  },
-  {
     "actionLink": "./Ed-Fi-Actions/action-allowedlist",
-    "actionVersion": null
-  },
-  {
-    "actionLink": "./powershell-analyzer",
-    "actionVersion": null
-  },
-  {
-    "actionLink": "Ed-Fi-Alliance-OSS/Ed-Fi-Actions/powershell-analyzer",
-    "actionVersion": "latest"
-  },
-  {
-    "actionLink": "Ed-Fi-Alliance-OSS/Ed-Fi-Actions/powershell-analyzer",
-    "actionVersion": "main"
-  },
-  {
-    "actionLink": "./Ed-Fi-Actions/powershell-analyzer",
-    "actionVersion": null
-  },
-  {
-    "actionLink": "dorny/test-reporter",
-    "actionVersion": "eaa763f6ffc21c7a37837f56cd5f9737f27fc6c8",
-    "tag": "1.8.0"
-  },
-  {
-    "actionLink": "dorny/test-reporter",
-    "actionVersion": "31a54ee7ebcacc03a09ea97a7e5465a47b84aea5",
-    "tag": "1.9.1"
-  },
-  {
-    "actionLink": "nuget/setup-nuget",
-    "actionVersion": "323ab0502cd38fdc493335025a96c8fdb0edc71f",
-    "tag": "v2.0.1"
-  },
-  {
-    "actionLink": "peter-evans/repository-dispatch",
-    "actionVersion": "11ba7d3f32dc7cc919d1c43f1fec1c05260c26b5",
-    "tag": "2.0.0"
-  },
-  {
-    "actionLink": "peter-evans/repository-dispatch",
-    "actionVersion": "ff45666b9427631e3450c54a1bcbee4d9ff4d7c0",
-    "tag": "v3.0.0"
-  },
-  {
-    "actionLink": "crazy-max/ghaction-import-gpg",
-    "actionVersion": "82a020f1f7f605c65dd2449b392a52c3fcfef7ef",
-    "tag": "6.0.0",
-    "deprecated": true
-  },
-  {
-    "actionLink": "crazy-max/ghaction-import-gpg",
-    "actionVersion": "cb9bde2e2525e640591a934b1fd28eef1dcaf5e5",
-    "tag": "6.2.0"
-  },
-  {
-    "actionLink": "Ed-Fi-Alliance-OSS/slsa-github-generator/.github/actions/secure-download-artifact",
-    "actionVersion": "main",
-    "tag": "main"
-  },
-  {
-    "actionLink": "Ed-Fi-Alliance-OSS/slsa-github-generator/.github/actions/secure-download-artifact",
-    "actionVersion": "v2.0.0",
-    "tag": "v2.0.0"
-  },
-  {
-    "actionLink": "supercharge/mongodb-github-action",
-    "actionVersion": "538a4d2a1041920c47630172445cb688592d6e51",
-    "tag": "1.8.0"
-  },
-  {
-    "actionLink": "mxschmitt/action-tmate",
-    "actionVersion": "28f608baaa037465aa887c21a7924e9e6b66a9e0",
-    "tag": "3.13",
-    "deprecated": true
-  },
-  {
-    "actionLink": "mxschmitt/action-tmate",
-    "actionVersion": "a283f9441d2d96eb62436dc46d7014f5d357ac22",
-    "tag": "3.17"
-  },
-  {
-    "actionLink": "mxschmitt/action-tmate",
-    "actionVersion": "e5c7151931ca95bad1c6f4190c730ecf8c7dde48",
-    "tag": "3.19"
-  },
-  {
-    "actionLink": "hadolint/hadolint-action",
-    "actionVersion": "54c9adbab1582c2ef04b2016b760714a4bfde3cf",
-    "tag": "3.1.0"
-  },
-  {
-    "actionLink": "Codex-/await-remote-run",
-    "actionVersion": "d04eeb1e053a19a32037eb0b8ddee6ab4f19790a",
-    "tag": "1.7.0"
-  },
-  {
-    "actionLink": "Codex-/await-remote-run",
-    "actionVersion": "d4a6dbf57245924ff4f23e0db929b8e3ef65486b",
-    "tag": "1.12.2"
-  },
-  {
-    "actionLink": "Codex-/return-dispatch",
-    "actionVersion": "290d1ad3ca0a323120745aea7a44ce63ed91a982",
-    "tag": "1.8.0",
-    "deprecated": true
-  },
-  {
-    "actionLink": "Codex-/return-dispatch",
-    "actionVersion": "03a7fcd260cce601805567f86c892bd06d2719e1",
-    "tag": "1.12.0"
-  },
-  {
-    "actionLink": "Codex-/return-dispatch",
-    "actionVersion": "9a2340d279253061c98206106038aab6ef0be02e",
-    "tag": "1.14.0"
-  },
-  {
-    "actionLink": "Codex-/return-dispatch",
-    "actionVersion": "2410062d00e50fbdc50dd9065a4e5f673e2455d3",
-    "tag": "v2.0.3"
-  },
-  {
-    "actionLink": "Ed-Fi-Actions/bidi-scanner",
-    "actionVersion": "main"
-  },
-  {
-    "actionLink": "./bidi-scanner",
-    "actionVersion": "main"
-  },
-  {
-    "actionLink": "./bidi-scanner",
-    "actionVersion": null
+    "versions": [
+      {
+        "version": null
+      }
+    ]
   },
   {
     "actionLink": "./Ed-Fi-Actions/bidi-scanner",
-    "actionVersion": null
+    "versions": [
+      {
+        "version": null
+      }
+    ]
   },
   {
-    "actionLink": "docker/setup-buildx-action",
-    "actionVersion": "f95db51fddba0c2d1ec667646a06c2ce06100226",
-    "tag": "v3.0.0",
-    "deprecated": true
+    "actionLink": "./Ed-Fi-Actions/powershell-analyzer",
+    "versions": [
+      {
+        "version": null
+      }
+    ]
   },
   {
-    "actionLink": "docker/setup-buildx-action",
-    "actionVersion": "6524bf65af31da8d45b59e8c27de4bd072b392f5",
-    "tag": "v3.8.0"
+    "actionLink": "./Ed-Fi-Actions/repository-scanner",
+    "versions": [
+      {
+        "version": null
+      }
+    ]
   },
   {
-    "actionLink": "docker/login-action",
-    "actionVersion": "343f7c4344506bcbf9b4de18042ae17996df046d",
-    "tag": "v3.0.0",
-    "deprecated": true
+    "actionLink": "./action-allowedlist",
+    "versions": [
+      {
+        "version": null
+      }
+    ]
   },
   {
-    "actionLink": "docker/login-action",
-    "actionVersion": "9780b0c442fbb1117ed29e0efdff1e18412f7567",
-    "tag": "v3.3.0"
+    "actionLink": "./bidi-scanner",
+    "versions": [
+      {
+        "version": "main"
+      },
+      {
+        "version": null
+      }
+    ]
   },
   {
-    "actionLink": "docker/metadata-action",
-    "actionVersion": "96383f45573cb7f253c731d3b3ab81c87ef81934",
-    "tag": "v5.0.0",
-    "deprecated": true
+    "actionLink": "./powershell-analyzer",
+    "versions": [
+      {
+        "version": null
+      }
+    ]
   },
   {
-    "actionLink": "docker/metadata-action",
-    "actionVersion": "369eb591f429131d6889c46b94e711f089e6ca96",
-    "tag": "v5.6.1"
+    "actionLink": "Codex-/await-remote-run",
+    "versions": [
+      {
+        "version": "d04eeb1e053a19a32037eb0b8ddee6ab4f19790a",
+        "tag": "1.7.0"
+      },
+      {
+        "version": "d4a6dbf57245924ff4f23e0db929b8e3ef65486b",
+        "tag": "1.12.2"
+      }
+    ]
   },
   {
-    "actionLink": "docker/build-push-action",
-    "actionVersion": "0565240e2d4ab88bba5387d719585280857ece09",
-    "tag": "v5.0.0",
-    "deprecated": true
+    "actionLink": "Codex-/return-dispatch",
+    "versions": [
+      {
+        "version": "290d1ad3ca0a323120745aea7a44ce63ed91a982",
+        "tag": "1.8.0",
+        "deprecated": true
+      },
+      {
+        "version": "03a7fcd260cce601805567f86c892bd06d2719e1",
+        "tag": "1.12.0"
+      },
+      {
+        "version": "9a2340d279253061c98206106038aab6ef0be02e",
+        "tag": "1.14.0"
+      },
+      {
+        "version": "2410062d00e50fbdc50dd9065a4e5f673e2455d3",
+        "tag": "v2.0.3"
+      }
+    ]
   },
   {
-    "actionLink": "docker/build-push-action",
-    "actionVersion": "b32b51a8eda65d6793cd0494a773d4f6bcef32dc",
-    "tag": "v6.11.0"
+    "actionLink": "Ed-Fi-Actions/bidi-scanner",
+    "versions": [
+      {
+        "version": "main"
+      }
+    ]
   },
   {
-    "actionLink": "docker/setup-qemu-action",
-    "actionVersion": "c7c53464625b32c7a7e944ae62b3e17d2b600130",
-    "tag": "v3.7.0"
+    "actionLink": "Ed-Fi-Alliance-OSS/Ed-Fi-Actions/action-allowedlist",
+    "versions": [
+      {
+        "version": "main"
+      }
+    ]
   },
   {
-    "actionLink": "docker/scout-action",
-    "actionVersion": "7c61653c2736d21969dd4593fde76c670d4a86cb",
-    "tag": "v1.2.0"
+    "actionLink": "Ed-Fi-Alliance-OSS/Ed-Fi-Actions/powershell-analyzer",
+    "versions": [
+      {
+        "version": "latest"
+      },
+      {
+        "version": "main"
+      }
+    ]
   },
   {
-    "actionLink": "docker/scout-action",
-    "actionVersion": "67eb1afe777307506aaecb9acd9a0e0389cb99ae",
-    "tag": "v1.5.0"
+    "actionLink": "Ed-Fi-Alliance-OSS/Ed-Fi-Actions/repository-scanner",
+    "versions": [
+      {
+        "version": "main"
+      }
+    ]
   },
   {
-    "actionLink": "docker/scout-action",
-    "actionVersion": "b23590dc1e4d09febc00cfcbc51e9e8c0f7ee9f3",
-    "tag": "v1.16.1"
+    "actionLink": "Ed-Fi-Alliance-OSS/slsa-github-generator/.github/actions/secure-download-artifact",
+    "versions": [
+      {
+        "version": "main",
+        "tag": "main"
+      },
+      {
+        "version": "v2.0.0",
+        "tag": "v2.0.0"
+      }
+    ]
+  },
+  {
+    "actionLink": "Ed-Fi-Alliance-OSS/slsa-github-generator/.github/workflows/generator_generic_slsa3.yml",
+    "versions": [
+      {
+        "version": "main"
+      },
+      {
+        "version": "v1.2.0"
+      },
+      {
+        "version": "v1.5.0"
+      },
+      {
+        "version": "v2.0.0"
+      }
+    ]
+  },
+  {
+    "actionLink": "EnricoMi/publish-unit-test-result-action",
+    "versions": [
+      {
+        "version": "f355d34d53ad4e7f506f699478db2dd71da9de5f",
+        "tag": "v2.15.1",
+        "deprecated": true
+      },
+      {
+        "version": "170bf24d20d201b842d7a52403b73ed297e6645b",
+        "tag": "v2.18.0"
+      },
+      {
+        "version": "3a74b2957438d0b6e2e61d67b05318aa25c9e6c6",
+        "tag": "v2.20.0"
+      }
+    ]
   },
   {
     "actionLink": "ahmadnassri/action-workflow-run-wait",
-    "actionVersion": "2aa3d9e1a12ecaaa9908e368eaf2123bb084323e",
-    "tag": "v1.4.4"
-  },
-  {
-    "actionLink": "planetscale/ghcommit-action",
-    "actionVersion": "4131649dbf2fdf1eb34421702972a5af7b0a8731",
-    "tag": "v0.1.18",
-    "deprecated": true
-  },
-  {
-    "actionLink": "planetscale/ghcommit-action",
-    "actionVersion": "d4176bfacef926cc2db351eab20398dfc2f593b5",
-    "tag": "v0.2.0"
-  },
-  {
-    "actionLink": "EnricoMi/publish-unit-test-result-action",
-    "actionVersion": "f355d34d53ad4e7f506f699478db2dd71da9de5f",
-    "tag": "v2.15.1",
-    "deprecated": true
-  },
-  {
-    "actionLink": "EnricoMi/publish-unit-test-result-action",
-    "actionVersion": "170bf24d20d201b842d7a52403b73ed297e6645b",
-    "tag": "v2.18.0"
-  },
-  {
-    "actionLink": "EnricoMi/publish-unit-test-result-action",
-    "actionVersion": "3a74b2957438d0b6e2e61d67b05318aa25c9e6c6",
-    "tag": "v2.20.0"
-  },
-  {
-    "actionLink": "ossf/scorecard-action",
-    "actionVersion": "e38b1902ae4f44df626f11ba0734b14fb91f8f86",
-    "tag": "v2.1.2",
-    "deprecated": true
-  },
-  {
-    "actionLink": "ossf/scorecard-action",
-    "actionVersion": "0864cf19026789058feabb7e87baa5f140aac736",
-    "tag": "v2.3.1",
-    "deprecated": true
-  },
-  {
-    "actionLink": "ossf/scorecard-action",
-    "actionVersion": "62b2cac7ed8198b15735ed49ab1e5cf35480ba46",
-    "tag": "v2.4.0",
-    "deprecated": true
-  },
-  {
-    "actionLink": "ossf/scorecard-action",
-    "actionVersion": "05b42c624433fc40578a4040d5cf5e36ddca8cde",
-    "tag": "v2.4.2"
-  },
-  {
-    "actionLink": "ossf/scorecard-action",
-    "actionVersion": "f49aabe0b5af0936a0987cfb85d86b75731b0186",
-    "tag": "v2.4.1"
-  },
-  {
-    "actionLink": "microsoft/setup-msbuild",
-    "actionVersion": "6fb02220983dee41ce7ae257b6f4d8f9bf5ed4ce",
-    "tag": "v2.0.0"
-  },
-  {
-    "actionLink": "slackapi/slack-github-action",
-    "actionVersion": "70cd7be8e40a46e8b0eced40b0de447bdb42f68e",
-    "tag": "v1.26.0",
-    "deprecated": true
-  },
-  {
-    "actionLink": "slackapi/slack-github-action",
-    "actionVersion": "485a9d42d3a73031f12ec201c457e2162c45d02d",
-    "tag": "v2.0.0"
-  },
-  {
-    "actionLink": "gradle/actions/setup-gradle",
-    "actionVersion": "d9c87d481d55275bb5441eef3fe0e46805f9ef70",
-    "tag": "v3.5.0"
-  },
-  {
-    "actionLink": "gradle/actions/setup-gradle",
-    "actionVersion": "0bdd871935719febd78681f197cd39af5b6e16a6",
-    "tag": "v4.2.2"
-  },
-  {
-    "actionLink": "gradle/actions/dependency-submission",
-    "actionVersion": "d9c87d481d55275bb5441eef3fe0e46805f9ef70",
-    "tag": "v3.5.0"
-  },
-  {
-    "actionLink": "gradle/actions/dependency-submission",
-    "actionVersion": "0bdd871935719febd78681f197cd39af5b6e16a6",
-    "tag": "v4.2.2"
-  },
-  {
-    "actionLink": "softprops/action-gh-release",
-    "actionVersion": "c062e08bd532815e2082a85e87e3ef29c3e6d191",
-    "tag": "v2.0.8",
-    "deprecated": true
-  },
-  {
-    "actionLink": "softprops/action-gh-release",
-    "actionVersion": "c95fe1489396fe8a9eb87c0abf8aa5b2ef267fda",
-    "tag": "v2.1.1"
+    "versions": [
+      {
+        "version": "2aa3d9e1a12ecaaa9908e368eaf2123bb084323e",
+        "tag": "v1.4.4"
+      }
+    ]
   },
   {
     "actionLink": "anchore/sbom-action",
-    "actionVersion": "61119d458adab75f756bc0b9e4bde25725f86a7a",
-    "tag": "0.17.2",
-    "deprecated": true
-  },
-  {
-    "actionLink": "anchore/sbom-action",
-    "actionVersion": "df80a981bc6edbc4e220a492d3cbe9f5547a6e75",
-    "tag": "0.17.9"
-  },
-  {
-    "actionLink": "hashicorp/setup-terraform",
-    "actionVersion": "633666f66e0061ca3b725c73b2ec20cd13a8fdd1",
-    "tag": "2.0.3",
-    "deprecated": true
-  },
-  {
-    "actionLink": "hashicorp/setup-terraform",
-    "actionVersion": "b9cd54a3c349d3f38e8881555d616ced269862dd",
-    "tag": "v3.1.2"
-  },
-  {
-    "actionLink": "swaggerexpert/swagger-editor-validate",
-    "actionVersion": "54b85e2f5c1fcdee85308dd57cad8c8ec19d3970",
-    "tag": "v24.9.0"
+    "versions": [
+      {
+        "version": "61119d458adab75f756bc0b9e4bde25725f86a7a",
+        "tag": "0.17.2",
+        "deprecated": true
+      },
+      {
+        "version": "df80a981bc6edbc4e220a492d3cbe9f5547a6e75",
+        "tag": "0.17.9"
+      }
+    ]
   },
   {
     "actionLink": "bridgecrewio/checkov-action",
-    "actionVersion": "02a4c5d6a02367e5ea493c34c26b094302fd3f61",
-    "tag": "v12.3075.0"
+    "versions": [
+      {
+        "version": "02a4c5d6a02367e5ea493c34c26b094302fd3f61",
+        "tag": "v12.3075.0"
+      }
+    ]
+  },
+  {
+    "actionLink": "crazy-max/ghaction-import-gpg",
+    "versions": [
+      {
+        "version": "82a020f1f7f605c65dd2449b392a52c3fcfef7ef",
+        "tag": "6.0.0",
+        "deprecated": true
+      },
+      {
+        "version": "cb9bde2e2525e640591a934b1fd28eef1dcaf5e5",
+        "tag": "6.2.0"
+      }
+    ]
+  },
+  {
+    "actionLink": "dawidd6/action-download-artifact",
+    "versions": [
+      {
+        "version": "80620a5d27ce0ae443b965134db88467fc607b43",
+        "tag": "v7",
+        "deprecated": true
+      },
+      {
+        "version": "07ab29fd4a977ae4d2b275087cf67563dfdf0295",
+        "tag": "v9",
+        "deprecated": true
+      },
+      {
+        "version": "ac66b43f0e6a346234dd65d4d0c8fbb31cb316e5",
+        "tag": "v11"
+      }
+    ]
+  },
+  {
+    "actionLink": "docker/build-push-action",
+    "versions": [
+      {
+        "version": "0565240e2d4ab88bba5387d719585280857ece09",
+        "tag": "v5.0.0",
+        "deprecated": true
+      },
+      {
+        "version": "b32b51a8eda65d6793cd0494a773d4f6bcef32dc",
+        "tag": "v6.11.0"
+      }
+    ]
+  },
+  {
+    "actionLink": "docker/login-action",
+    "versions": [
+      {
+        "version": "343f7c4344506bcbf9b4de18042ae17996df046d",
+        "tag": "v3.0.0",
+        "deprecated": true
+      },
+      {
+        "version": "9780b0c442fbb1117ed29e0efdff1e18412f7567",
+        "tag": "v3.3.0"
+      }
+    ]
+  },
+  {
+    "actionLink": "docker/metadata-action",
+    "versions": [
+      {
+        "version": "96383f45573cb7f253c731d3b3ab81c87ef81934",
+        "tag": "v5.0.0",
+        "deprecated": true
+      },
+      {
+        "version": "369eb591f429131d6889c46b94e711f089e6ca96",
+        "tag": "v5.6.1"
+      }
+    ]
+  },
+  {
+    "actionLink": "docker/scout-action",
+    "versions": [
+      {
+        "version": "7c61653c2736d21969dd4593fde76c670d4a86cb",
+        "tag": "v1.2.0"
+      },
+      {
+        "version": "67eb1afe777307506aaecb9acd9a0e0389cb99ae",
+        "tag": "v1.5.0"
+      },
+      {
+        "version": "b23590dc1e4d09febc00cfcbc51e9e8c0f7ee9f3",
+        "tag": "v1.16.1"
+      }
+    ]
+  },
+  {
+    "actionLink": "docker/setup-buildx-action",
+    "versions": [
+      {
+        "version": "f95db51fddba0c2d1ec667646a06c2ce06100226",
+        "tag": "v3.0.0",
+        "deprecated": true
+      },
+      {
+        "version": "6524bf65af31da8d45b59e8c27de4bd072b392f5",
+        "tag": "v3.8.0"
+      }
+    ]
+  },
+  {
+    "actionLink": "docker/setup-qemu-action",
+    "versions": [
+      {
+        "version": "c7c53464625b32c7a7e944ae62b3e17d2b600130",
+        "tag": "v3.7.0"
+      }
+    ]
+  },
+  {
+    "actionLink": "dorny/test-reporter",
+    "versions": [
+      {
+        "version": "eaa763f6ffc21c7a37837f56cd5f9737f27fc6c8",
+        "tag": "1.8.0"
+      },
+      {
+        "version": "31a54ee7ebcacc03a09ea97a7e5465a47b84aea5",
+        "tag": "1.9.1"
+      }
+    ]
+  },
+  {
+    "actionLink": "gradle/actions/dependency-submission",
+    "versions": [
+      {
+        "version": "d9c87d481d55275bb5441eef3fe0e46805f9ef70",
+        "tag": "v3.5.0"
+      },
+      {
+        "version": "0bdd871935719febd78681f197cd39af5b6e16a6",
+        "tag": "v4.2.2"
+      }
+    ]
+  },
+  {
+    "actionLink": "gradle/actions/setup-gradle",
+    "versions": [
+      {
+        "version": "d9c87d481d55275bb5441eef3fe0e46805f9ef70",
+        "tag": "v3.5.0"
+      },
+      {
+        "version": "0bdd871935719febd78681f197cd39af5b6e16a6",
+        "tag": "v4.2.2"
+      }
+    ]
+  },
+  {
+    "actionLink": "hadolint/hadolint-action",
+    "versions": [
+      {
+        "version": "54c9adbab1582c2ef04b2016b760714a4bfde3cf",
+        "tag": "3.1.0"
+      }
+    ]
+  },
+  {
+    "actionLink": "hashicorp/setup-terraform",
+    "versions": [
+      {
+        "version": "633666f66e0061ca3b725c73b2ec20cd13a8fdd1",
+        "tag": "2.0.3",
+        "deprecated": true
+      },
+      {
+        "version": "b9cd54a3c349d3f38e8881555d616ced269862dd",
+        "tag": "v3.1.2"
+      }
+    ]
+  },
+  {
+    "actionLink": "microsoft/setup-msbuild",
+    "versions": [
+      {
+        "version": "6fb02220983dee41ce7ae257b6f4d8f9bf5ed4ce",
+        "tag": "v2.0.0"
+      }
+    ]
+  },
+  {
+    "actionLink": "mxschmitt/action-tmate",
+    "versions": [
+      {
+        "version": "28f608baaa037465aa887c21a7924e9e6b66a9e0",
+        "tag": "3.13",
+        "deprecated": true
+      },
+      {
+        "version": "a283f9441d2d96eb62436dc46d7014f5d357ac22",
+        "tag": "3.17"
+      },
+      {
+        "version": "e5c7151931ca95bad1c6f4190c730ecf8c7dde48",
+        "tag": "3.19"
+      }
+    ]
+  },
+  {
+    "actionLink": "nuget/setup-nuget",
+    "versions": [
+      {
+        "version": "323ab0502cd38fdc493335025a96c8fdb0edc71f",
+        "tag": "v2.0.1"
+      }
+    ]
+  },
+  {
+    "actionLink": "ossf/scorecard-action",
+    "versions": [
+      {
+        "version": "e38b1902ae4f44df626f11ba0734b14fb91f8f86",
+        "tag": "v2.1.2",
+        "deprecated": true
+      },
+      {
+        "version": "0864cf19026789058feabb7e87baa5f140aac736",
+        "tag": "v2.3.1",
+        "deprecated": true
+      },
+      {
+        "version": "62b2cac7ed8198b15735ed49ab1e5cf35480ba46",
+        "tag": "v2.4.0",
+        "deprecated": true
+      },
+      {
+        "version": "05b42c624433fc40578a4040d5cf5e36ddca8cde",
+        "tag": "v2.4.2"
+      },
+      {
+        "version": "f49aabe0b5af0936a0987cfb85d86b75731b0186",
+        "tag": "v2.4.1"
+      }
+    ]
+  },
+  {
+    "actionLink": "peter-evans/repository-dispatch",
+    "versions": [
+      {
+        "version": "11ba7d3f32dc7cc919d1c43f1fec1c05260c26b5",
+        "tag": "2.0.0"
+      },
+      {
+        "version": "ff45666b9427631e3450c54a1bcbee4d9ff4d7c0",
+        "tag": "v3.0.0"
+      }
+    ]
+  },
+  {
+    "actionLink": "planetscale/ghcommit-action",
+    "versions": [
+      {
+        "version": "4131649dbf2fdf1eb34421702972a5af7b0a8731",
+        "tag": "v0.1.18",
+        "deprecated": true
+      },
+      {
+        "version": "d4176bfacef926cc2db351eab20398dfc2f593b5",
+        "tag": "v0.2.0"
+      }
+    ]
+  },
+  {
+    "actionLink": "slackapi/slack-github-action",
+    "versions": [
+      {
+        "version": "70cd7be8e40a46e8b0eced40b0de447bdb42f68e",
+        "tag": "v1.26.0",
+        "deprecated": true
+      },
+      {
+        "version": "485a9d42d3a73031f12ec201c457e2162c45d02d",
+        "tag": "v2.0.0"
+      }
+    ]
+  },
+  {
+    "actionLink": "softprops/action-gh-release",
+    "versions": [
+      {
+        "version": "c062e08bd532815e2082a85e87e3ef29c3e6d191",
+        "tag": "v2.0.8",
+        "deprecated": true
+      },
+      {
+        "version": "c95fe1489396fe8a9eb87c0abf8aa5b2ef267fda",
+        "tag": "v2.1.1"
+      }
+    ]
+  },
+  {
+    "actionLink": "supercharge/mongodb-github-action",
+    "versions": [
+      {
+        "version": "538a4d2a1041920c47630172445cb688592d6e51",
+        "tag": "1.8.0"
+      }
+    ]
+  },
+  {
+    "actionLink": "swaggerexpert/swagger-editor-validate",
+    "versions": [
+      {
+        "version": "54b85e2f5c1fcdee85308dd57cad8c8ec19d3970",
+        "tag": "v24.9.0"
+      }
+    ]
   }
 ]

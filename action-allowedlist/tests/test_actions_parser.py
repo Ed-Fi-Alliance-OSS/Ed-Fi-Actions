@@ -356,18 +356,30 @@ class TestInvokeValidateActions:
         self.approved_actions = [
             {
                 "actionLink": "actions/checkout",
-                "actionVersion": "v4",
-                "deprecated": False
+                "versions": [
+                    {
+                        "version": "v4",
+                        "deprecated": False
+                    }
+                ]
             },
             {
                 "actionLink": "actions/setup-python",
-                "actionVersion": "v5",
-                "deprecated": True
+                "versions": [
+                    {
+                        "version": "v5",
+                        "deprecated": True
+                    }
+                ]
             },
             {
                 "actionLink": "some/custom-action",
-                "actionVersion": "v1",
-                "deprecated": False
+                "versions": [
+                    {
+                        "version": "v1",
+                        "deprecated": False
+                    }
+                ]
             }
         ]
 
