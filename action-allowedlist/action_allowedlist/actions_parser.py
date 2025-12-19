@@ -107,37 +107,55 @@ def invoke_validate_actions(approved_path, actions_configuration):
             num_approved += 1
             continue
 
-        approved_action_versions = [
-            a for a in approved if a["actionLink"] == action["actionLink"]
-        ]
-        if approved_action_versions:
+        # Find the action entry in approved list (new structure)
+        approved_action_entry = None
+        for approved_entry in approved:
+            if approved_entry["actionLink"] == action["actionLink"]:
+                approved_action_entry = approved_entry
+                break
+
+        if approved_action_entry:
+            # Extract all versions for this action
+            approved_versions = approved_action_entry.get("versions", [])
+            version_list = [v["version"] for v in approved_versions]
             print(
-                f"::debug::Approved Versions for {action['actionLink']}: {[a['actionVersion'] for a in approved_action_versions]}"
+                f"::debug::Approved Versions for {action['actionLink']}: {version_list}"
             )
+
+            # Find matching version
+            approved_version = None
+            for v in approved_versions:
+                if v["version"] == action["actionVersion"]:
+                    approved_version = v
+                    break
+
+            if approved_version:
+                print(f"::debug::Output versions approved: {approved_version}")
+                approved_outputs.append(
+                    {
+                        "actionLink": action["actionLink"],
+                        "actionVersion": action["actionVersion"],
+                        "deprecated": approved_version.get("deprecated", False),
+                    }
+                )
+                num_approved += 1
+
+                # Look for deprecation
+                if approved_version.get("deprecated", False):
+                    print(f"Using a deprecated version of {action['actionLink']}")
+                    num_deprecated += 1
+            else:
+                print(
+                    f"::debug::Output versions not approved: {action['actionLink']} version {action['actionVersion']}"
+                )
+                unapproved_outputs.append(
+                    f"{action['actionLink']} {action['actionVersion']}"
+                )
+                num_denied += 1
+                found = True
         else:
             print(
                 f"::debug::No Approved versions for {action['actionLink']} were found."
-            )
-            pass
-
-        approved_output = [
-            a
-            for a in approved_action_versions
-            if a["actionVersion"] == action["actionVersion"]
-        ]
-
-        if approved_output:
-            print(f"::debug::Output versions approved: {approved_output}")
-            approved_outputs.append(approved_output[0])
-            num_approved += 1
-
-            # Look for deprecation
-            if approved_output[0].get("deprecated", False):
-                print(f"Using a deprecated version of {action['actionLink']}")
-                num_deprecated += 1
-        else:
-            print(
-                f"::debug::Output versions not approved: {action['actionLink']} version {action['actionVersion']}"
             )
             unapproved_outputs.append(
                 f"{action['actionLink']} {action['actionVersion']}"
