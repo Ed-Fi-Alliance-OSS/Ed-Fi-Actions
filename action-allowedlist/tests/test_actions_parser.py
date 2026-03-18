@@ -3,7 +3,7 @@ import pytest
 import tempfile
 import os
 from pathlib import Path
-from unittest.mock import patch, mock_open
+from unittest.mock import patch
 import yaml
 
 from action_allowedlist.actions_parser import (
@@ -21,11 +21,11 @@ class TestLoadJsonFile:
     def test_load_valid_json_file(self):
         """Test loading a valid JSON file."""
         test_data = {"test": "data", "number": 123}
-        
-        with tempfile.NamedTemporaryFile(mode='w', suffix='.json', delete=False) as f:
+
+        with tempfile.NamedTemporaryFile(mode="w", suffix=".json", delete=False) as f:
             json.dump(test_data, f)
             temp_file = f.name
-        
+
         try:
             result = load_json_file(temp_file)
             assert result == test_data
@@ -39,10 +39,10 @@ class TestLoadJsonFile:
 
     def test_load_invalid_json_file(self):
         """Test loading an invalid JSON file."""
-        with tempfile.NamedTemporaryFile(mode='w', suffix='.json', delete=False) as f:
+        with tempfile.NamedTemporaryFile(mode="w", suffix=".json", delete=False) as f:
             f.write("invalid json content {")
             temp_file = f.name
-        
+
         try:
             with pytest.raises(json.JSONDecodeError):
                 load_json_file(temp_file)
@@ -56,11 +56,11 @@ class TestLoadYamlFile:
     def test_load_valid_yaml_file(self):
         """Test loading a valid YAML file."""
         test_data = {"test": "data", "list": [1, 2, 3]}
-        
-        with tempfile.NamedTemporaryFile(mode='w', suffix='.yml', delete=False) as f:
+
+        with tempfile.NamedTemporaryFile(mode="w", suffix=".yml", delete=False) as f:
             yaml.dump(test_data, f)
             temp_file = f.name
-        
+
         try:
             result = load_yaml_file(temp_file)
             assert result == test_data
@@ -74,10 +74,10 @@ class TestLoadYamlFile:
 
     def test_load_invalid_yaml_file(self):
         """Test loading an invalid YAML file."""
-        with tempfile.NamedTemporaryFile(mode='w', suffix='.yml', delete=False) as f:
+        with tempfile.NamedTemporaryFile(mode="w", suffix=".yml", delete=False) as f:
             f.write("invalid: yaml\n\t bad_indentation: and tabs")
             temp_file = f.name
-        
+
         try:
             with pytest.raises(yaml.YAMLError):
                 load_yaml_file(temp_file)
@@ -100,15 +100,23 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
 """
-        
-        with patch('builtins.print'):  # Suppress print output during tests
+
+        with patch("builtins.print"):  # Suppress print output during tests
             actions = get_actions_from_file(workflow_content, "test.yml")
-        
+
         expected = [
-            {"actionLink": "actions/checkout", "actionVersion": "v4", "workflowFileName": "test.yml"},
-            {"actionLink": "actions/setup-python", "actionVersion": "v5", "workflowFileName": "test.yml"}
+            {
+                "actionLink": "actions/checkout",
+                "actionVersion": "v4",
+                "workflowFileName": "test.yml",
+            },
+            {
+                "actionLink": "actions/setup-python",
+                "actionVersion": "v5",
+                "workflowFileName": "test.yml",
+            },
         ]
-        
+
         assert actions == expected
 
     def test_get_actions_from_workflow_with_multiple_jobs(self):
@@ -127,16 +135,28 @@ jobs:
       - uses: actions/setup-node@v4
       - uses: github/super-linter@v7
 """
-        
-        with patch('builtins.print'):
+
+        with patch("builtins.print"):
             actions = get_actions_from_file(workflow_content, "multi.yml")
-        
+
         expected = [
-            {"actionLink": "actions/checkout", "actionVersion": "v4", "workflowFileName": "multi.yml"},
-            {"actionLink": "actions/setup-node", "actionVersion": "v4", "workflowFileName": "multi.yml"},
-            {"actionLink": "github/super-linter", "actionVersion": "v7", "workflowFileName": "multi.yml"}
+            {
+                "actionLink": "actions/checkout",
+                "actionVersion": "v4",
+                "workflowFileName": "multi.yml",
+            },
+            {
+                "actionLink": "actions/setup-node",
+                "actionVersion": "v4",
+                "workflowFileName": "multi.yml",
+            },
+            {
+                "actionLink": "github/super-linter",
+                "actionVersion": "v7",
+                "workflowFileName": "multi.yml",
+            },
         ]
-        
+
         assert actions == expected
 
     def test_get_actions_from_workflow_with_subpaths(self):
@@ -152,16 +172,28 @@ jobs:
       - uses: github/codeql-action/init@v3
       - uses: github/codeql-action/analyze@v3
 """
-        
-        with patch('builtins.print'):
+
+        with patch("builtins.print"):
             actions = get_actions_from_file(workflow_content, "codeql.yml")
-        
+
         expected = [
-            {"actionLink": "actions/checkout", "actionVersion": "v4", "workflowFileName": "codeql.yml"},
-            {"actionLink": "github/codeql-action/init", "actionVersion": "v3", "workflowFileName": "codeql.yml"},
-            {"actionLink": "github/codeql-action/analyze", "actionVersion": "v3", "workflowFileName": "codeql.yml"}
+            {
+                "actionLink": "actions/checkout",
+                "actionVersion": "v4",
+                "workflowFileName": "codeql.yml",
+            },
+            {
+                "actionLink": "github/codeql-action/init",
+                "actionVersion": "v3",
+                "workflowFileName": "codeql.yml",
+            },
+            {
+                "actionLink": "github/codeql-action/analyze",
+                "actionVersion": "v3",
+                "workflowFileName": "codeql.yml",
+            },
         ]
-        
+
         assert actions == expected
 
     def test_get_actions_from_workflow_no_jobs(self):
@@ -170,10 +202,10 @@ jobs:
 name: No Jobs Workflow
 on: [push]
 """
-        
-        with patch('builtins.print'):
+
+        with patch("builtins.print"):
             actions = get_actions_from_file(workflow_content, "empty.yml")
-        
+
         assert actions == []
 
     def test_get_actions_from_workflow_job_no_steps(self):
@@ -185,10 +217,10 @@ jobs:
   test:
     runs-on: ubuntu-latest
 """
-        
-        with patch('builtins.print'):
+
+        with patch("builtins.print"):
             actions = get_actions_from_file(workflow_content, "nosteps.yml")
-        
+
         assert actions == []
 
     def test_get_actions_from_workflow_steps_no_uses(self):
@@ -205,10 +237,10 @@ jobs:
       - name: Another command
         run: ls -la
 """
-        
-        with patch('builtins.print'):
+
+        with patch("builtins.print"):
             actions = get_actions_from_file(workflow_content, "nouses.yml")
-        
+
         assert actions == []
 
     def test_get_actions_invalid_uses_format(self):
@@ -223,15 +255,19 @@ jobs:
       - uses: actions/checkout  # Missing @version
       - uses: actions/setup-python@v5  # Valid format
 """
-        
-        with patch('builtins.print'):
+
+        with patch("builtins.print"):
             actions = get_actions_from_file(workflow_content, "invalid.yml")
-        
+
         # Should only capture the valid one
         expected = [
-            {"actionLink": "actions/setup-python", "actionVersion": "v5", "workflowFileName": "invalid.yml"}
+            {
+                "actionLink": "actions/setup-python",
+                "actionVersion": "v5",
+                "workflowFileName": "invalid.yml",
+            }
         ]
-        
+
         assert actions == expected
 
 
@@ -243,10 +279,11 @@ class TestGetAllUsedActions:
         with tempfile.TemporaryDirectory() as temp_dir:
             workflows_dir = Path(temp_dir) / ".github" / "workflows"
             workflows_dir.mkdir(parents=True)
-            
+
             # Create test workflow files
             workflow1 = workflows_dir / "test1.yml"
-            workflow1.write_text("""
+            workflow1.write_text(
+                """
 name: Test 1
 on: [push]
 jobs:
@@ -254,10 +291,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-""")
-            
+"""
+            )
+
             workflow2 = workflows_dir / "test2.yml"
-            workflow2.write_text("""
+            workflow2.write_text(
+                """
 name: Test 2
 on: [push]
 jobs:
@@ -265,30 +304,42 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: github/super-linter@v7
-""")
-            
-            with patch('builtins.print'):
+"""
+            )
+
+            with patch("builtins.print"):
                 actions = get_all_used_actions(Path(temp_dir))
-            
+
             expected = [
-                {"actionLink": "actions/checkout", "actionVersion": "v4", "workflowFileName": "test1.yml"},
-                {"actionLink": "github/super-linter", "actionVersion": "v7", "workflowFileName": "test2.yml"}
+                {
+                    "actionLink": "actions/checkout",
+                    "actionVersion": "v4",
+                    "workflowFileName": "test1.yml",
+                },
+                {
+                    "actionLink": "github/super-linter",
+                    "actionVersion": "v7",
+                    "workflowFileName": "test2.yml",
+                },
             ]
-            
+
             # Sort both lists to compare regardless of order
-            actions_sorted = sorted(actions, key=lambda x: x['actionLink'])
-            expected_sorted = sorted(expected, key=lambda x: x['actionLink'])
-            
+            actions_sorted = sorted(actions, key=lambda x: x["actionLink"])
+            expected_sorted = sorted(expected, key=lambda x: x["actionLink"])
+
             assert actions_sorted == expected_sorted
 
     def test_get_all_used_actions_testing_repo_fallback(self):
         """Test fallback to testing-repo directory when .github/workflows doesn't exist."""
         with tempfile.TemporaryDirectory() as temp_dir:
-            testing_workflows_dir = Path(temp_dir) / "testing-repo" / ".github" / "workflows"
+            testing_workflows_dir = (
+                Path(temp_dir) / "testing-repo" / ".github" / "workflows"
+            )
             testing_workflows_dir.mkdir(parents=True)
-            
+
             workflow = testing_workflows_dir / "test.yml"
-            workflow.write_text("""
+            workflow.write_text(
+                """
 name: Test
 on: [push]
 jobs:
@@ -296,23 +347,28 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/setup-node@v4
-""")
-            
-            with patch('builtins.print'):
+"""
+            )
+
+            with patch("builtins.print"):
                 actions = get_all_used_actions(Path(temp_dir))
-            
+
             expected = [
-                {"actionLink": "actions/setup-node", "actionVersion": "v4", "workflowFileName": "test.yml"}
+                {
+                    "actionLink": "actions/setup-node",
+                    "actionVersion": "v4",
+                    "workflowFileName": "test.yml",
+                }
             ]
-            
+
             assert actions == expected
 
     def test_get_all_used_actions_no_workflows_found(self):
         """Test when no workflow files are found."""
         with tempfile.TemporaryDirectory() as temp_dir:
-            with patch('builtins.print'):
+            with patch("builtins.print"):
                 actions = get_all_used_actions(Path(temp_dir))
-            
+
             assert actions == []
 
     def test_get_all_used_actions_with_malformed_yaml(self):
@@ -320,10 +376,11 @@ jobs:
         with tempfile.TemporaryDirectory() as temp_dir:
             workflows_dir = Path(temp_dir) / ".github" / "workflows"
             workflows_dir.mkdir(parents=True)
-            
+
             # Create a valid workflow file
             valid_workflow = workflows_dir / "valid.yml"
-            valid_workflow.write_text("""
+            valid_workflow.write_text(
+                """
 name: Valid
 on: [push]
 jobs:
@@ -331,20 +388,27 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-""")
-            
+"""
+            )
+
             # Create a malformed workflow file
             invalid_workflow = workflows_dir / "invalid.yml"
-            invalid_workflow.write_text("invalid:\nyaml:\n  - content\n    bad_indentation")
-            
-            with patch('builtins.print'):
+            invalid_workflow.write_text(
+                "invalid:\nyaml:\n  - content\n    bad_indentation"
+            )
+
+            with patch("builtins.print"):
                 actions = get_all_used_actions(Path(temp_dir))
-            
+
             # Should only return actions from valid file
             expected = [
-                {"actionLink": "actions/checkout", "actionVersion": "v4", "workflowFileName": "valid.yml"}
+                {
+                    "actionLink": "actions/checkout",
+                    "actionVersion": "v4",
+                    "workflowFileName": "valid.yml",
+                }
             ]
-            
+
             assert actions == expected
 
 
@@ -357,181 +421,205 @@ class TestInvokeValidateActions:
             {
                 "actionLink": "actions/checkout",
                 "actionVersion": "v4",
-                "deprecated": False
+                "deprecated": False,
             },
             {
                 "actionLink": "actions/setup-python",
                 "actionVersion": "v5",
-                "deprecated": True
+                "deprecated": True,
             },
             {
                 "actionLink": "some/custom-action",
                 "actionVersion": "v1",
-                "deprecated": False
-            }
+                "deprecated": False,
+            },
         ]
 
     def test_all_actions_approved(self):
         """Test when all actions are explicitly approved."""
-        with tempfile.NamedTemporaryFile(mode='w', suffix='.json', delete=False) as f:
+        with tempfile.NamedTemporaryFile(mode="w", suffix=".json", delete=False) as f:
             json.dump(self.approved_actions, f)
             approved_file = f.name
-        
+
         actions_config = [
             {"actionLink": "actions/checkout", "actionVersion": "v4"},
-            {"actionLink": "some/custom-action", "actionVersion": "v1"}
+            {"actionLink": "some/custom-action", "actionVersion": "v1"},
         ]
-        
+
         try:
-            with patch('builtins.print'):
+            with patch("builtins.print"):
                 result = invoke_validate_actions(approved_file, actions_config)
-            
+
             assert result is False  # No denied actions
         finally:
             os.unlink(approved_file)
 
     def test_some_actions_denied(self):
         """Test when some actions are not approved."""
-        with tempfile.NamedTemporaryFile(mode='w', suffix='.json', delete=False) as f:
+        with tempfile.NamedTemporaryFile(mode="w", suffix=".json", delete=False) as f:
             json.dump(self.approved_actions, f)
             approved_file = f.name
-        
+
         actions_config = [
             {"actionLink": "actions/checkout", "actionVersion": "v4"},  # Approved
-            {"actionLink": "unknown/action", "actionVersion": "v1"},     # Not approved
-            {"actionLink": "another/unknown", "actionVersion": "v2"}     # Not approved
+            {"actionLink": "unknown/action", "actionVersion": "v1"},  # Not approved
+            {"actionLink": "another/unknown", "actionVersion": "v2"},  # Not approved
         ]
-        
+
         try:
-            with patch('builtins.print'):
+            with patch("builtins.print"):
                 result = invoke_validate_actions(approved_file, actions_config)
-            
+
             assert result is True  # Has denied actions
         finally:
             os.unlink(approved_file)
 
     def test_deprecated_actions_warning(self):
         """Test when deprecated actions are used."""
-        with tempfile.NamedTemporaryFile(mode='w', suffix='.json', delete=False) as f:
+        with tempfile.NamedTemporaryFile(mode="w", suffix=".json", delete=False) as f:
             json.dump(self.approved_actions, f)
             approved_file = f.name
-        
+
         actions_config = [
             {"actionLink": "actions/setup-python", "actionVersion": "v5"}  # Deprecated
         ]
-        
+
         try:
-            with patch('builtins.print'):
+            with patch("builtins.print"):
                 result = invoke_validate_actions(approved_file, actions_config)
-            
+
             assert result is False  # Not denied, just deprecated
         finally:
             os.unlink(approved_file)
 
     def test_auto_approve_github_actions(self):
         """Test auto-approval of github/* actions."""
-        with tempfile.NamedTemporaryFile(mode='w', suffix='.json', delete=False) as f:
+        with tempfile.NamedTemporaryFile(mode="w", suffix=".json", delete=False) as f:
             json.dump([], f)  # Empty approved list
             approved_file = f.name
-        
+
         actions_config = [
             {"actionLink": "github/super-linter", "actionVersion": "v7"},
             {"actionLink": "github/codeql-action/init", "actionVersion": "v3"},
-            {"actionLink": "github/some-unknown-action", "actionVersion": "v1"}
+            {"actionLink": "github/some-unknown-action", "actionVersion": "v1"},
         ]
-        
+
         try:
-            with patch('builtins.print'):
+            with patch("builtins.print"):
                 result = invoke_validate_actions(approved_file, actions_config)
-            
+
             assert result is False  # All auto-approved
         finally:
             os.unlink(approved_file)
 
     def test_auto_approve_actions_namespace(self):
         """Test auto-approval of actions/* actions."""
-        with tempfile.NamedTemporaryFile(mode='w', suffix='.json', delete=False) as f:
+        with tempfile.NamedTemporaryFile(mode="w", suffix=".json", delete=False) as f:
             json.dump([], f)  # Empty approved list
             approved_file = f.name
-        
+
         actions_config = [
             {"actionLink": "actions/checkout", "actionVersion": "v4"},
             {"actionLink": "actions/setup-python", "actionVersion": "v5"},
-            {"actionLink": "actions/cache/restore", "actionVersion": "v4"}
+            {"actionLink": "actions/cache/restore", "actionVersion": "v4"},
         ]
-        
+
         try:
-            with patch('builtins.print'):
+            with patch("builtins.print"):
                 result = invoke_validate_actions(approved_file, actions_config)
-            
+
             assert result is False  # All auto-approved
         finally:
             os.unlink(approved_file)
 
     def test_mixed_auto_approved_and_regular_actions(self):
         """Test mix of auto-approved and regular actions."""
-        with tempfile.NamedTemporaryFile(mode='w', suffix='.json', delete=False) as f:
+        with tempfile.NamedTemporaryFile(mode="w", suffix=".json", delete=False) as f:
             json.dump(self.approved_actions, f)
             approved_file = f.name
-        
+
         actions_config = [
-            {"actionLink": "github/super-linter", "actionVersion": "v7"},      # Auto-approved
-            {"actionLink": "actions/checkout", "actionVersion": "v4"},        # Auto-approved
-            {"actionLink": "some/custom-action", "actionVersion": "v1"},      # Explicitly approved
-            {"actionLink": "unknown/action", "actionVersion": "v1"}           # Not approved
+            {
+                "actionLink": "github/super-linter",
+                "actionVersion": "v7",
+            },  # Auto-approved
+            {"actionLink": "actions/checkout", "actionVersion": "v4"},  # Auto-approved
+            {
+                "actionLink": "some/custom-action",
+                "actionVersion": "v1",
+            },  # Explicitly approved
+            {"actionLink": "unknown/action", "actionVersion": "v1"},  # Not approved
         ]
-        
+
         try:
-            with patch('builtins.print'):
+            with patch("builtins.print"):
                 result = invoke_validate_actions(approved_file, actions_config)
-            
+
             assert result is True  # Has one denied action
         finally:
             os.unlink(approved_file)
 
     def test_case_sensitivity_auto_approval(self):
         """Test that auto-approval is case-sensitive."""
-        with tempfile.NamedTemporaryFile(mode='w', suffix='.json', delete=False) as f:
+        with tempfile.NamedTemporaryFile(mode="w", suffix=".json", delete=False) as f:
             json.dump([], f)  # Empty approved list
             approved_file = f.name
-        
+
         actions_config = [
-            {"actionLink": "github/super-linter", "actionVersion": "v7"},     # Should be auto-approved
-            {"actionLink": "GitHub/super-linter", "actionVersion": "v7"},     # Should NOT be auto-approved (capital G)
-            {"actionLink": "actions/checkout", "actionVersion": "v4"},        # Should be auto-approved
-            {"actionLink": "Actions/checkout", "actionVersion": "v4"}         # Should NOT be auto-approved (capital A)
+            {
+                "actionLink": "github/super-linter",
+                "actionVersion": "v7",
+            },  # Should be auto-approved
+            {
+                "actionLink": "GitHub/super-linter",
+                "actionVersion": "v7",
+            },  # Should NOT be auto-approved (capital G)
+            {
+                "actionLink": "actions/checkout",
+                "actionVersion": "v4",
+            },  # Should be auto-approved
+            {
+                "actionLink": "Actions/checkout",
+                "actionVersion": "v4",
+            },  # Should NOT be auto-approved (capital A)
         ]
-        
+
         try:
-            with patch('builtins.print'):
+            with patch("builtins.print"):
                 result = invoke_validate_actions(approved_file, actions_config)
-            
+
             assert result is True  # Has denied actions (the capitalized ones)
         finally:
             os.unlink(approved_file)
 
     def test_auto_approval_debug_messages(self):
         """Test that auto-approval generates correct debug messages."""
-        with tempfile.NamedTemporaryFile(mode='w', suffix='.json', delete=False) as f:
+        with tempfile.NamedTemporaryFile(mode="w", suffix=".json", delete=False) as f:
             json.dump([], f)
             approved_file = f.name
-        
+
         actions_config = [
             {"actionLink": "github/super-linter", "actionVersion": "v7"},
-            {"actionLink": "actions/checkout", "actionVersion": "v4"}
+            {"actionLink": "actions/checkout", "actionVersion": "v4"},
         ]
-        
+
         try:
-            with patch('builtins.print') as mock_print:
+            with patch("builtins.print") as mock_print:
                 invoke_validate_actions(approved_file, actions_config)
-                
+
                 # Check that debug messages were printed
                 print_calls = [call.args[0] for call in mock_print.call_args_list]
-                
+
                 # Check for auto-approval messages
-                github_debug = any("Auto-approving github action: github/super-linter" in call for call in print_calls)
-                actions_debug = any("Auto-approving actions action: actions/checkout" in call for call in print_calls)
-                
+                github_debug = any(
+                    "Auto-approving github action: github/super-linter" in call
+                    for call in print_calls
+                )
+                actions_debug = any(
+                    "Auto-approving actions action: actions/checkout" in call
+                    for call in print_calls
+                )
+
                 assert github_debug, "Should print debug message for github action"
                 assert actions_debug, "Should print debug message for actions action"
         finally:
@@ -539,34 +627,37 @@ class TestInvokeValidateActions:
 
     def test_wrong_version_not_auto_approved(self):
         """Test that wrong version of approved action is still denied."""
-        with tempfile.NamedTemporaryFile(mode='w', suffix='.json', delete=False) as f:
+        with tempfile.NamedTemporaryFile(mode="w", suffix=".json", delete=False) as f:
             json.dump(self.approved_actions, f)
             approved_file = f.name
-        
+
         actions_config = [
-            {"actionLink": "some/custom-action", "actionVersion": "v2"}  # Approved v1, using v2
+            {
+                "actionLink": "some/custom-action",
+                "actionVersion": "v2",
+            }  # Approved v1, using v2
         ]
-        
+
         try:
-            with patch('builtins.print'):
+            with patch("builtins.print"):
                 result = invoke_validate_actions(approved_file, actions_config)
-            
+
             assert result is True  # Denied due to wrong version
         finally:
             os.unlink(approved_file)
 
     def test_empty_actions_config(self):
         """Test with empty actions configuration."""
-        with tempfile.NamedTemporaryFile(mode='w', suffix='.json', delete=False) as f:
+        with tempfile.NamedTemporaryFile(mode="w", suffix=".json", delete=False) as f:
             json.dump(self.approved_actions, f)
             approved_file = f.name
-        
+
         actions_config = []
-        
+
         try:
-            with patch('builtins.print'):
+            with patch("builtins.print"):
                 result = invoke_validate_actions(approved_file, actions_config)
-            
+
             assert result is False  # No actions to deny
         finally:
             os.unlink(approved_file)
