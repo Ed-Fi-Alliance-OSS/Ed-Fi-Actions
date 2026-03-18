@@ -19,10 +19,16 @@ const loadJsonFile = (filePath, logger) => {
 
   logger.info(`Reading config file '${filePath}'`);
   const configContents = readFileSync(filePath, { encoding: 'utf8' });
-  const optionalFile = JSON.parse(configContents);
 
-  if (!('exclude' in optionalFile)) {
-    throw Error(`Invalid config file ${filePath}.`);
+  let optionalFile;
+  try {
+    optionalFile = JSON.parse(configContents);
+  } catch {
+    throw Error(`Config file ${filePath} contains invalid JSON.`);
+  }
+
+  if (!Array.isArray(optionalFile.exclude)) {
+    throw Error(`Invalid config file ${filePath}: 'exclude' must be an array.`);
   }
 
   return optionalFile;
