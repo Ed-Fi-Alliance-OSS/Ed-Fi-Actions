@@ -4,7 +4,6 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import { resolve, join, dirname } from 'path';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { jest } from '@jest/globals';
 import { fileURLToPath } from 'url';
 import { processFiles } from '../cli.mjs';

@@ -13,7 +13,6 @@ const consoleFormat = winston.format.combine(
     format: timestampFormat,
   }),
 
-  // eslint-disable-next-line object-curly-newline
   winston.format.printf(({ level, message, timestamp, extra, err }) => {
     const m = message;
     let e = err ?? extra ?? '';
