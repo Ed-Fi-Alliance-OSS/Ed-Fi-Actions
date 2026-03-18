@@ -3,15 +3,15 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import core from '@actions/core';
+import { getInput, info, setFailed } from '@actions/core';
 import { readConfig, scanDirectory } from '@edfi/bidi-scanner-lib';
 import { initializeLogging } from './githubLogger.mjs';
 
 try {
   // Overloads below are for localhost testing
-  const directory = core.getInput('directory') || process.env.GH_DIRECTORY;
-  const recursiveRaw = core.getInput('recursive') || process.env.GH_RECURSIVE;
-  const configFile = core.getInput('config-file-path') || process.env.GH_CONFIG_FILE_PATH;
+  const directory = getInput('directory') || process.env.GH_DIRECTORY;
+  const recursiveRaw = getInput('recursive') || process.env.GH_RECURSIVE;
+  const configFile = getInput('config-file-path') || process.env.GH_CONFIG_FILE_PATH;
 
   // getInput returns a string; treat any value other than "false" as true (recursive is opt-out)
   const recursive = recursiveRaw !== 'false';
@@ -20,15 +20,15 @@ try {
 
   const ignore = readConfig(configFile, logger);
 
-  core.info(`Excluding the following file types: ${JSON.stringify(ignore)}`);
+  info(`Excluding the following file types: ${JSON.stringify(ignore)}`);
 
   const found = scanDirectory(directory, recursive, ignore, logger);
 
   if (found) {
-    core.setFailed('Bidirectional characters were encountered, please review log');
+    setFailed('Bidirectional characters were encountered, please review log');
     process.exitCode = 1;
   }
 } catch (error) {
-  core.setFailed(error.message);
+  setFailed(error.message);
   process.exitCode = 3;
 }
