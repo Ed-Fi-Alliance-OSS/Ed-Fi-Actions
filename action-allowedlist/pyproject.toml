@@ -6,7 +6,7 @@ authors = ["Ed-Fi Alliance, LLC"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = "^3.12"
 pyyaml = "^6.0.3"
 
 [tool.poetry.group.dev.dependencies]
