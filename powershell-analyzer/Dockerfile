@@ -9,4 +9,4 @@ COPY README.md /
 
 COPY src/*.ps1 /src/
 
-ENTRYPOINT ["pwsh", "/src/entrypoint.ps1"]
+ENTRYPOINT ["pwsh", "-NoLogo", "-NoProfile", "-NonInteractive", "-File", "/src/entrypoint.ps1"]

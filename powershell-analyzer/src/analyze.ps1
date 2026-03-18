@@ -154,7 +154,15 @@ function Invoke-Analyzer {
     )
 
     if ($null -eq $(Get-Module -ListAvailable -Name PSScriptAnalyzer)) {
-        Install-Module -Name PSScriptAnalyzer -Force
+        # Install non-interactively inside containers. Use CurrentUser scope
+        # and suppress confirmations to avoid hanging on prompts.
+        try {
+            Install-Module -Name PSScriptAnalyzer -Force -AllowClobber -Scope CurrentUser -Repository PSGallery -Confirm:$false
+        }
+        catch {
+            Write-Error "Failed to install PSScriptAnalyzer: $_"
+            throw $_
+        }
     }
 
     # There is a bug that causes the PSScriptAnalyzer to fail to notice the use of $SarifData inside
@@ -163,11 +171,21 @@ function Invoke-Analyzer {
     # https://github.com/PowerShell/PSScriptAnalyzer/issues/1472
     $SarifData | Out-Null
 
+    # Enumerate files individually rather than using -Recurse on the directory.
+    # PSScriptAnalyzer can overflow the AST analysis call stack when scanning
+    # complex scripts recursively. Running per-file avoids that.
+    # See: https://github.com/PowerShell/PSScriptAnalyzer/issues/1807
+    $psFiles = Get-ChildItem -Path $Directory -Recurse -Include "*.ps1", "*.psm1" -File
+
     if ($SaveToFile) {
-        $results = Invoke-ScriptAnalyzer -Path $Directory -ExcludeRule $ExcludedRules -Recurse
+        $results = $psFiles | ForEach-Object {
+            Invoke-ScriptAnalyzer -Path $_.FullName -ExcludeRule $ExcludedRules
+        }
     }
     else {
-        Invoke-ScriptAnalyzer -Path $Directory -ExcludeRule $ExcludedRules -Recurse -ReportSummary
+        $psFiles | ForEach-Object {
+            Invoke-ScriptAnalyzer -Path $_.FullName -ExcludeRule $ExcludedRules -ReportSummary
+        }
         return
     }
 
@@ -240,7 +258,7 @@ if (-not (Test-Path $Directory)) {
     throw "Directory '$Directory' does not exist."
 }
 
-Write-Output "Begin analyzing all PowerShell files in the specified directory tree..."
+Write-Output "Begin analyzing all PowerShell files in $Directory..."
 
 $sarif = Get-SarifContainer
 
@@ -250,7 +268,9 @@ if ($SaveToFile) {
     Invoke-PopulateRulesArray -Sarif $sarif
     $sarif | ConvertTo-Json -Depth 10 | Out-File -Path $ResultsPath -Force
     Write-Output "Done with analysis, see $ResultsPath for output."
+    exit(0)
 }
 else {
-    Write-Output "Done with analysis."
+    Write-Output "Done with analysis of PowerShell files in $Directory."
+    exit(0)
 }
