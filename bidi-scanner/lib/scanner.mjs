@@ -3,10 +3,12 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import { lstatSync, readFileSync } from 'fs';
+import { statSync, readFileSync } from 'fs';
 import { join, resolve } from 'path';
-import glob from 'glob';
+import { globSync } from 'glob';
 import { hasTrojanSource } from './detector.mjs';
+
+const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10 MB
 
 const scanDirectory = (directory, recursive, ignore, logger) => {
   let found = false;
@@ -17,16 +19,28 @@ const scanDirectory = (directory, recursive, ignore, logger) => {
   // glob doesn't like backslashes on Windows
   root = root.replace(/\\/g, '/');
 
-  const files = glob.sync(root, { ignore });
+  const files = globSync(root, { ignore });
   files.forEach((fullPath) => {
-    if (lstatSync(fullPath).isFile()) {
-      logger.info(`Scanning file ${fullPath}`);
+    // Use statSync (not lstatSync) so symlinks are followed rather than skipped
+    const stat = statSync(fullPath);
 
-      const isDangerous = hasTrojanSource({ sourceText: readFileSync(fullPath) });
-      if (isDangerous) {
-        logger.error(`File '${fullPath}' contains bidirectional characters / possible Trojan Source attack.`);
-        found = true;
-      }
+    if (!stat.isFile()) return;
+
+    if (stat.size > MAX_FILE_SIZE) {
+      logger.warn(`Skipping '${fullPath}': file size ${stat.size} bytes exceeds ${MAX_FILE_SIZE}-byte limit`);
+      return;
+    }
+
+    logger.info(`Scanning file ${fullPath}`);
+
+    const findings = hasTrojanSource({ sourceText: readFileSync(fullPath) });
+    if (findings.length > 0) {
+      findings.forEach(({ codePoint, line, column }) => {
+        logger.error(
+          `File '${fullPath}' line ${line}, col ${column}: bidirectional character ${codePoint} / possible Trojan Source attack.`,
+        );
+      });
+      found = true;
     }
   });
 
