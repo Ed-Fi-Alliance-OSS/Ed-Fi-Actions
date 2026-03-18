@@ -17,19 +17,28 @@ under the License.
 
 import { dangerousBidiChars } from './constants.mjs';
 
+// Returns an array of { char, codePoint, line, column } for every bidi character
+// found. An empty array means the file is clean.
 function hasTrojanSource({ sourceText }) {
-  const sourceTextToSearch = sourceText.toString();
+  const lines = sourceText.toString().split('\n');
+  const findings = [];
 
-  let found = false;
-  dangerousBidiChars.every((bidiChar) => {
-    if (sourceTextToSearch.includes(bidiChar)) {
-      found = true;
-      return false;
-    }
-    return true;
+  lines.forEach((lineText, lineIndex) => {
+    dangerousBidiChars.forEach((bidiChar) => {
+      let col = lineText.indexOf(bidiChar);
+      while (col !== -1) {
+        findings.push({
+          char: bidiChar,
+          codePoint: `U+${bidiChar.codePointAt(0).toString(16).toUpperCase().padStart(4, '0')}`,
+          line: lineIndex + 1,
+          column: col + 1,
+        });
+        col = lineText.indexOf(bidiChar, col + 1);
+      }
+    });
   });
 
-  return found;
+  return findings;
 }
 
 export { hasTrojanSource };

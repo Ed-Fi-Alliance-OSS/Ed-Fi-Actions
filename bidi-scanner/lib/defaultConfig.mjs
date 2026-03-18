@@ -4,6 +4,7 @@ const config = {
     '.hg/**',
     '.github/scripts/*.sh',
     'dist/**',
+    'node_modules/**',
     '**/*.ai',
     '**/*.bmp',
     '**/*.gif',
@@ -65,7 +66,6 @@ const config = {
 
     '**/*.ppt',
     '**/*.pptx',
-    '**/*.ods',
 
     '**/*.pcap',
     '**/*.vsdx',
