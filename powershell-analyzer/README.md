@@ -40,6 +40,29 @@ Result:
 | ----------------------- | -------- | ----------- | ---- | ------- |
 | PSReviewUnusedParameter | Warning  | analyze.ps1 | 15   | Output  |
 
+## Run with Docker
+
+Build the image and run the container to scan a directory (the container's entrypoint runs the bundled `analyze.ps1`).
+
+PowerShell (Windows):
+
+```powershell
+docker build -t powershell-analyzer:local .
+docker run --rm -v ${PWD}:/workspace powershell-analyzer:local /workspace/src
+```
+
+Bash / macOS / Linux:
+
+```bash
+docker build -t powershell-analyzer:local .
+docker run --rm -v "$(pwd)":/workspace powershell-analyzer:local /workspace/src
+```
+
+Notes:
+
+- Do not mount over the container's `/src` directory (it contains the analyzer script). Mount your repository (or target folder) to another path like `/workspace` and pass `/<path>/src` as the argument so the built-in entrypoint can run `/src/analyze.ps1` with the correct target directory.
+- The example scans the `src` directory in your repository; adjust the mounted path and argument to scan a different folder.
+
 ## Run in GitHub Actions
 
 Include into your workflow file:
