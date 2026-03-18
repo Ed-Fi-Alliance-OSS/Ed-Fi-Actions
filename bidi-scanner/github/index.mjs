@@ -10,8 +10,11 @@ import { initializeLogging } from './githubLogger.mjs';
 try {
   // Overloads below are for localhost testing
   const directory = core.getInput('directory') || process.env.GH_DIRECTORY;
-  const recursive = core.getInput('recursive') || process.env.GH_RECURSIVE;
+  const recursiveRaw = core.getInput('recursive') || process.env.GH_RECURSIVE;
   const configFile = core.getInput('config-file-path') || process.env.GH_CONFIG_FILE_PATH;
+
+  // getInput returns a string; treat any value other than "false" as true (recursive is opt-out)
+  const recursive = recursiveRaw !== 'false';
 
   const logger = initializeLogging();
 
@@ -22,13 +25,10 @@ try {
   const found = scanDirectory(directory, recursive, ignore, logger);
 
   if (found) {
-    core.ExitCode = found;
     core.setFailed('Bidirectional characters were encountered, please review log');
-
-    // The above should be failing the GitHub job, but its not working out.
-    process.ExitCode = found;
+    process.exitCode = 1;
   }
 } catch (error) {
   core.setFailed(error.message);
-  process.ExitCode = 3;
+  process.exitCode = 3;
 }
