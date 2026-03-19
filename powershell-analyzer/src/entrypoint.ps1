@@ -3,4 +3,12 @@
 # The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 # See the LICENSE and NOTICES files in the project root for more information.
 
-/src/analyze.ps1 -Directory "$args"
+param(
+	[Parameter(Mandatory = $true, Position = 0)]
+	[string]
+	$Directory
+)
+
+# Call the analyzer script with the provided directory. Use the call operator
+# to ensure the script is executed rather than treated as a string.
+& /src/analyze.ps1 -Directory $Directory
