@@ -289,6 +289,11 @@
     "tag": "v2.20.0"
   },
   {
+    "actionLink": "EnricoMi/publish-unit-test-result-action",
+    "actionVersion": "c950f6fb443cb5af20a377fd0dfaa78838901040",
+    "tag": "v2.23.0"
+  },
+  {
     "actionLink": "ossf/scorecard-action",
     "actionVersion": "e38b1902ae4f44df626f11ba0734b14fb91f8f86",
     "tag": "v2.1.2",
@@ -308,13 +313,18 @@
   },
   {
     "actionLink": "ossf/scorecard-action",
+    "actionVersion": "f49aabe0b5af0936a0987cfb85d86b75731b0186",
+    "tag": "v2.4.1"
+  },
+  {
+    "actionLink": "ossf/scorecard-action",
     "actionVersion": "05b42c624433fc40578a4040d5cf5e36ddca8cde",
     "tag": "v2.4.2"
   },
   {
     "actionLink": "ossf/scorecard-action",
-    "actionVersion": "f49aabe0b5af0936a0987cfb85d86b75731b0186",
-    "tag": "v2.4.1"
+    "actionVersion": "4eaacf0543bb3f2c246792bd56e8cdeffafb205a ",
+    "tag": "v2.4.3"
   },
   {
     "actionLink": "microsoft/setup-msbuild",
@@ -394,5 +404,16 @@
     "actionLink": "bridgecrewio/checkov-action",
     "actionVersion": "02a4c5d6a02367e5ea493c34c26b094302fd3f61",
     "tag": "v12.3075.0"
+  },
+  {
+    "actionLink": "azure/login",
+    "actionVersion": "532459ea530d8321f2fb9bb10d1e0bcf23869a43",
+    "tag": "v3.0.0"
+  },
+  {
+    "actionLink": "azure/container-apps-deploy-action",
+    "actionVersion": "8dff69dac3367c32ceb2690d8f13adbeab462703",
+    "tag": "v2.0.0"
   }
 ]
+
