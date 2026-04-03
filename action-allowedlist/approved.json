@@ -79,6 +79,11 @@
     "tag": "1.9.1"
   },
   {
+    "actionLink": "dorny/test-reporter",
+    "actionVersion": "a43b3a5f7366b97d083190328d2c652e1a8b6aa2",
+    "tag": "v3.0.0"
+  },
+  {
     "actionLink": "nuget/setup-nuget",
     "actionVersion": "323ab0502cd38fdc493335025a96c8fdb0edc71f",
     "tag": "v2.0.1"
