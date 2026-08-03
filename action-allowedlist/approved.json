@@ -424,6 +424,11 @@
     "actionLink": "azure/container-apps-deploy-action",
     "actionVersion": "8dff69dac3367c32ceb2690d8f13adbeab462703",
     "tag": "v2.0.0"
+  },
+  {
+    "actionLink": "astral-sh/setup-uv",
+    "actionVersion": "85856786d1ce8acfbcc2f13a5f3fbd6b938f9f41",
+    "tag": "v7.1.2"
   }
 ]
 
