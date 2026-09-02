@@ -1,24 +1,6 @@
 [
   {
     "actionLink": "dawidd6/action-download-artifact",
-    "actionVersion": "80620a5d27ce0ae443b965134db88467fc607b43",
-    "tag": "v7",
-    "deprecated": true
-  },
-  {
-    "actionLink": "dawidd6/action-download-artifact",
-    "actionVersion": "07ab29fd4a977ae4d2b275087cf67563dfdf0295",
-    "tag": "v9",
-    "deprecated": true
-  },
-  {
-    "actionLink": "dawidd6/action-download-artifact",
-    "actionVersion": "ac66b43f0e6a346234dd65d4d0c8fbb31cb316e5",
-    "tag": "v11",
-    "deprecated": true
-  },
-  {
-    "actionLink": "dawidd6/action-download-artifact",
     "actionVersion": "8a338493df3d275e4a7a63bcff3b8fe97e51a927",
     "tag": "v19",
     "deprecated": true
@@ -35,14 +17,6 @@
   {
     "actionLink": "Ed-Fi-Alliance-OSS/slsa-github-generator/.github/workflows/generator_generic_slsa3.yml",
     "actionVersion": "main"
-  },
-  {
-    "actionLink": "Ed-Fi-Alliance-OSS/slsa-github-generator/.github/workflows/generator_generic_slsa3.yml",
-    "actionVersion": "v1.2.0"
-  },
-  {
-    "actionLink": "Ed-Fi-Alliance-OSS/slsa-github-generator/.github/workflows/generator_generic_slsa3.yml",
-    "actionVersion": "v1.5.0"
   },
   {
     "actionLink": "Ed-Fi-Alliance-OSS/slsa-github-generator/.github/workflows/generator_generic_slsa3.yml",
@@ -82,16 +56,6 @@
   },
   {
     "actionLink": "dorny/test-reporter",
-    "actionVersion": "eaa763f6ffc21c7a37837f56cd5f9737f27fc6c8",
-    "tag": "1.8.0"
-  },
-  {
-    "actionLink": "dorny/test-reporter",
-    "actionVersion": "31a54ee7ebcacc03a09ea97a7e5465a47b84aea5",
-    "tag": "1.9.1"
-  },
-  {
-    "actionLink": "dorny/test-reporter",
     "actionVersion": "a43b3a5f7366b97d083190328d2c652e1a8b6aa2",
     "tag": "v3.0.0"
   },
@@ -102,24 +66,19 @@
   },
   {
     "actionLink": "peter-evans/repository-dispatch",
-    "actionVersion": "11ba7d3f32dc7cc919d1c43f1fec1c05260c26b5",
-    "tag": "2.0.0"
-  },
-  {
-    "actionLink": "peter-evans/repository-dispatch",
     "actionVersion": "ff45666b9427631e3450c54a1bcbee4d9ff4d7c0",
     "tag": "v3.0.0"
   },
   {
     "actionLink": "crazy-max/ghaction-import-gpg",
-    "actionVersion": "82a020f1f7f605c65dd2449b392a52c3fcfef7ef",
-    "tag": "6.0.0",
+    "actionVersion": "cb9bde2e2525e640591a934b1fd28eef1dcaf5e5",
+    "tag": "6.2.0",
     "deprecated": true
   },
   {
     "actionLink": "crazy-max/ghaction-import-gpg",
-    "actionVersion": "cb9bde2e2525e640591a934b1fd28eef1dcaf5e5",
-    "tag": "6.2.0"
+    "actionVersion": "2dc316deee8e90f13e1a351ab510b4d5bc0c82cd",
+    "tag": "7.0.0"
   },
   {
     "actionLink": "Ed-Fi-Alliance-OSS/slsa-github-generator/.github/actions/secure-download-artifact",
@@ -138,12 +97,6 @@
   },
   {
     "actionLink": "mxschmitt/action-tmate",
-    "actionVersion": "28f608baaa037465aa887c21a7924e9e6b66a9e0",
-    "tag": "3.13",
-    "deprecated": true
-  },
-  {
-    "actionLink": "mxschmitt/action-tmate",
     "actionVersion": "a283f9441d2d96eb62436dc46d7014f5d357ac22",
     "tag": "3.17"
   },
@@ -155,7 +108,13 @@
   {
     "actionLink": "hadolint/hadolint-action",
     "actionVersion": "54c9adbab1582c2ef04b2016b760714a4bfde3cf",
-    "tag": "3.1.0"
+    "tag": "3.1.0",
+    "deprecated": true
+  },
+  {
+    "actionLink": "hadolint/hadolint-action",
+    "actionVersion": "06be81baf89a55ffd0e24b8f04a4185738dd3387",
+    "tag": "3.5.0"
   },
   {
     "actionLink": "Codex-/await-remote-run",
@@ -296,6 +255,11 @@
     "deprecated": true
   },
   {
+    "actionLink": "docker/scout-action",
+    "actionVersion": "7c6b6c3f7844478ace1ffd4e7aef649053d1f87d",
+    "tag": "v1.24.0"
+  }
+  {
     "actionLink": "ahmadnassri/action-workflow-run-wait",
     "actionVersion": "2aa3d9e1a12ecaaa9908e368eaf2123bb084323e",
     "tag": "v1.4.4"
@@ -318,55 +282,26 @@
   },
   {
     "actionLink": "EnricoMi/publish-unit-test-result-action",
-    "actionVersion": "f355d34d53ad4e7f506f699478db2dd71da9de5f",
-    "tag": "v2.15.1",
-    "deprecated": true
-  },
-  {
-    "actionLink": "EnricoMi/publish-unit-test-result-action",
-    "actionVersion": "170bf24d20d201b842d7a52403b73ed297e6645b",
-    "tag": "v2.18.0",
-    "deprecated": true
-  },
-  {
-    "actionLink": "EnricoMi/publish-unit-test-result-action",
-    "actionVersion": "3a74b2957438d0b6e2e61d67b05318aa25c9e6c6",
-    "tag": "v2.20.0",
-    "deprecated": true
-  },
-  {
-    "actionLink": "EnricoMi/publish-unit-test-result-action",
     "actionVersion": "c950f6fb443cb5af20a377fd0dfaa78838901040",
     "tag": "v2.23.0",
     "deprecated": true
   },
   {
-    "actionLink": "ossf/scorecard-action",
-    "actionVersion": "e38b1902ae4f44df626f11ba0734b14fb91f8f86",
-    "tag": "v2.1.2",
-    "deprecated": true
-  },
-  {
-    "actionLink": "ossf/scorecard-action",
-    "actionVersion": "0864cf19026789058feabb7e87baa5f140aac736",
-    "tag": "v2.3.1",
-    "deprecated": true
-  },
-  {
-    "actionLink": "ossf/scorecard-action",
-    "actionVersion": "62b2cac7ed8198b15735ed49ab1e5cf35480ba46",
-    "tag": "v2.4.0",
-    "deprecated": true
+    "actionLink": "EnricoMi/publish-unit-test-result-action",
+    "actionVersion": "c950f6fb443cb5af20a377fd0dfaa78838901040",
+    "tag": "v2.24.0"
   },
   {
     "actionLink": "ossf/scorecard-action",
     "actionVersion": "f49aabe0b5af0936a0987cfb85d86b75731b0186",
-    "tag": "v2.4.1"
+    "tag": "v2.4.1",
+    "deprecated": true
   },
   {
     "actionLink": "ossf/scorecard-action",
     "actionVersion": "05b42c624433fc40578a4040d5cf5e36ddca8cde",
-    "tag": "v2.4.2"
+    "tag": "v2.4.2",
+    "deprecated": true
   },
   {
     "actionLink": "ossf/scorecard-action",
@@ -374,15 +309,14 @@
     "tag": "v2.4.3"
   },
   {
+    "actionLink": "ossf/scorecard-action",
+    "actionVersion": "2d1146689b8cda280b9bc96326124645441f03bc",
+    "tag": "v2.4.4"
+  },
+  {
     "actionLink": "microsoft/setup-msbuild",
     "actionVersion": "6fb02220983dee41ce7ae257b6f4d8f9bf5ed4ce",
     "tag": "v2.0.0"
-  },
-  {
-    "actionLink": "slackapi/slack-github-action",
-    "actionVersion": "70cd7be8e40a46e8b0eced40b0de447bdb42f68e",
-    "tag": "v1.26.0",
-    "deprecated": true
   },
   {
     "actionLink": "slackapi/slack-github-action",
@@ -392,29 +326,13 @@
   },
   {
     "actionLink": "gradle/actions/setup-gradle",
-    "actionVersion": "d9c87d481d55275bb5441eef3fe0e46805f9ef70",
-    "tag": "v3.5.0"
-  },
-  {
-    "actionLink": "gradle/actions/setup-gradle",
     "actionVersion": "0bdd871935719febd78681f197cd39af5b6e16a6",
     "tag": "v4.2.2"
   },
   {
     "actionLink": "gradle/actions/dependency-submission",
-    "actionVersion": "d9c87d481d55275bb5441eef3fe0e46805f9ef70",
-    "tag": "v3.5.0"
-  },
-  {
-    "actionLink": "gradle/actions/dependency-submission",
     "actionVersion": "0bdd871935719febd78681f197cd39af5b6e16a6",
     "tag": "v4.2.2"
-  },
-  {
-    "actionLink": "softprops/action-gh-release",
-    "actionVersion": "c062e08bd532815e2082a85e87e3ef29c3e6d191",
-    "tag": "v2.0.8",
-    "deprecated": true
   },
   {
     "actionLink": "softprops/action-gh-release",
@@ -431,12 +349,6 @@
     "actionLink": "anchore/sbom-action",
     "actionVersion": "df80a981bc6edbc4e220a492d3cbe9f5547a6e75",
     "tag": "0.17.9"
-  },
-  {
-    "actionLink": "hashicorp/setup-terraform",
-    "actionVersion": "633666f66e0061ca3b725c73b2ec20cd13a8fdd1",
-    "tag": "2.0.3",
-    "deprecated": true
   },
   {
     "actionLink": "hashicorp/setup-terraform",
