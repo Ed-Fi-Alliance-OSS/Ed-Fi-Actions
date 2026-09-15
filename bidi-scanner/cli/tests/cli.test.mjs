@@ -263,7 +263,7 @@ describe('when testing for bidirectional (bidi) characters', () => {
       mockLogger.mockClear();
 
       tempDir = mkdtempSync(join(tmpdir(), 'bidi-scanner-test-'));
-      writeFileSync(join(tempDir, 'excluded.other'), 'before ‮ after');
+      writeFileSync(join(tempDir, 'excluded.other'), `before ${String.fromCodePoint(0x202e)} after`);
 
       const configFile = join(tempDir, 'config.json');
       writeFileSync(configFile, JSON.stringify({ exclude: ['**/*.other'] }));
