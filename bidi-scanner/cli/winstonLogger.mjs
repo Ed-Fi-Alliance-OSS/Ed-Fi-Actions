@@ -76,6 +76,9 @@ const initializeLogging = () => {
     trace: (message) => {
       logger.debug({ message: JSON.stringify(message) });
     },
+    setLevel: (level) => {
+      logger.level = level;
+    },
     child: () => logWrapper,
   };
 
