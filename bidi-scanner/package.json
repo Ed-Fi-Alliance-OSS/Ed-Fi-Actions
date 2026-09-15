@@ -6,6 +6,7 @@
     "github"
   ],
   "scripts": {
+    "ci": "npm ci",
     "test": "npm test -w cli",
     "test:ci": "npm run test:ci -w cli",
     "lint": "npm run lint --workspaces --if-present",

@@ -37,7 +37,7 @@ jobs:
       - name: Install dependencies
         run: |
           pushd ..
-          npm ci
+          npm run ci
           popd
 
       - name: Run linter
@@ -72,7 +72,7 @@ jobs:
       - name: Install dependencies
         run: |
           pushd ..
-          npm ci
+          npm run ci
           popd
 
       - name: Run linter
@@ -97,7 +97,7 @@ jobs:
       - name: Install dependencies
         run: |
           pushd ..
-          npm ci
+          npm run ci
           popd
 
       - name: Run linter
