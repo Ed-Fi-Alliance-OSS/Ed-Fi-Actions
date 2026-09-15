@@ -38,7 +38,7 @@ describe('when testing for bidirectional (bidi) characters', () => {
     beforeAll(async () => {
       mockLogger.mockClear();
 
-      exitCode = processFiles(mockLogger, ['-d', resolve(join(thisDirectory, '..')), '-r', false, '-l', 'debug']);
+      exitCode = processFiles(mockLogger, ['-d', resolve(join(thisDirectory, '..')), '--recursive=false', '-l', 'debug']);
     });
 
     it('exits with code 0', () => {
