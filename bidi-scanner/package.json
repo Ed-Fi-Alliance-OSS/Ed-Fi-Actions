@@ -10,8 +10,5 @@
     "test:ci": "npm run test:ci -w cli",
     "lint": "npm run lint --workspaces --if-present",
     "build": "npm run build -w github"
-  },
-  "allowScripts": {
-    "unrs-resolver": true
   }
 }
