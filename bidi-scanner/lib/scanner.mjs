@@ -31,7 +31,7 @@ const scanDirectory = (directory, recursive, ignore, logger) => {
       return;
     }
 
-    logger.info(`Scanning file ${fullPath}`);
+    logger.debug(`Scanning file ${fullPath}`);
 
     const findings = hasTrojanSource({ sourceText: readFileSync(fullPath) });
     if (findings.length > 0) {
