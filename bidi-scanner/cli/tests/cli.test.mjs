@@ -32,6 +32,24 @@ const mockLogger = {
 };
 
 describe('when testing for bidirectional (bidi) characters', () => {
+  describe('given a log level and a logger without setLevel', () => {
+    let exitCode = 0;
+
+    beforeAll(async () => {
+      mockLogger.mockClear();
+
+      exitCode = processFiles(mockLogger, ['-d', resolve(join(thisDirectory, '..')), '--recursive=false', '-l', 'debug']);
+    });
+
+    it('exits with code 0', () => {
+      expect(exitCode).toBe(0);
+    });
+
+    it('does not log any errors', () => {
+      expect(mockLogger.error).not.toHaveBeenCalled();
+    });
+  });
+
   describe('given the input directory does not exist', () => {
     let exitCode = 0;
 
