@@ -30,15 +30,14 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
-          node-version: 20
+          node-version: 22
           cache: 'npm'
-          cache-dependency-path: bidi-scanner/cli/package-lock.json
+          cache-dependency-path: bidi-scanner/package-lock.json
 
       - name: Install dependencies
         run: |
-          npm ci
-          pushd ../lib
-          npm ci
+          pushd ..
+          npm run ci
           popd
 
       - name: Run linter
@@ -66,12 +65,15 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
-          node-version: 18
+          node-version: 22
           cache: 'npm'
-          cache-dependency-path: bidi-scanner/cli/package-lock.json
+          cache-dependency-path: bidi-scanner/package-lock.json
 
       - name: Install dependencies
-        run: npm ci
+        run: |
+          pushd ..
+          npm run ci
+          popd
 
       - name: Run linter
         run: npm run lint
@@ -88,12 +90,15 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
-          node-version: 18
+          node-version: 22
           cache: 'npm'
-          cache-dependency-path: bidi-scanner/cli/package-lock.json
+          cache-dependency-path: bidi-scanner/package-lock.json
 
       - name: Install dependencies
-        run: npm ci
+        run: |
+          pushd ..
+          npm run ci
+          popd
 
       - name: Run linter
         run: npm run lint

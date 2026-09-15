@@ -31,13 +31,24 @@ const getCommandOptions = (args) => yargs(args)
       alias: 'config-file',
       describe: 'config file path',
     },
+    l: {
+      type: 'string',
+      demandOption: false,
+      alias: 'log-level',
+      choices: ['error', 'warn', 'info', 'debug'],
+      describe: 'Winston logging level',
+    },
   })
   .epilog('Scans a directory for bidirectional Trojan Source attacks.')
   .parseSync();
 
 const processFiles = (logger, args) => {
   try {
-    const { directory, recursive, configFile } = getCommandOptions(args);
+    const { directory, recursive, configFile, logLevel } = getCommandOptions(args);
+
+    if (logLevel && typeof logger.setLevel === 'function') {
+      logger.setLevel(logLevel);
+    }
 
     logger.info('Arguments: ', directory, recursive, configFile);
 
