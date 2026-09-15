@@ -1,7 +1,8 @@
 {
   "exclude": [
     "**/true-trojan-*/*",
-    "**/dist/index.mjs"
+    "**/dist/index.mjs",
+    "**/cli/tests/cli.test.mjs"
   ],
   "notes": [
     "The 'true-trojan' exclusion is because of tests.",
