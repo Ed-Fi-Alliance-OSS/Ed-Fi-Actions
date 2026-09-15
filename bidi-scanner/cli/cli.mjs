@@ -46,7 +46,7 @@ const processFiles = (logger, args) => {
   try {
     const { directory, recursive, configFile, logLevel } = getCommandOptions(args);
 
-    if (logLevel) {
+    if (logLevel && typeof logger.setLevel === 'function') {
       logger.setLevel(logLevel);
     }
 
