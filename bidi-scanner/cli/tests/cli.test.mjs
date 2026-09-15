@@ -4,6 +4,8 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import { resolve, join, dirname } from 'path';
+import { mkdtempSync, writeFileSync, rmSync } from 'fs';
+import { tmpdir } from 'os';
 import { jest } from '@jest/globals';
 import { fileURLToPath } from 'url';
 import { processFiles } from '../cli.mjs';
@@ -244,6 +246,40 @@ describe('when testing for bidirectional (bidi) characters', () => {
     });
 
     it('logs an error', () => {
+      expect(mockLogger.error).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('given a custom config excluding a file, and the scanned directory is outside of the current working directory tree', () => {
+    // Regression test: glob's `ignore` option matches relative patterns
+    // against the path relative to process.cwd(), not the scanned directory.
+    // A directory scanned from outside the cwd tree (e.g. under the OS temp
+    // dir) previously produced a relative path like `../foo/bar.cs`, which a
+    // `**/...` ignore pattern can never match.
+    let exitCode = 0;
+    let tempDir;
+
+    beforeAll(async () => {
+      mockLogger.mockClear();
+
+      tempDir = mkdtempSync(join(tmpdir(), 'bidi-scanner-test-'));
+      writeFileSync(join(tempDir, 'excluded.other'), 'before ‮ after');
+
+      const configFile = join(tempDir, 'config.json');
+      writeFileSync(configFile, JSON.stringify({ exclude: ['**/*.other'] }));
+
+      exitCode = processFiles(mockLogger, ['-d', tempDir, '-c', configFile]);
+    });
+
+    afterAll(() => {
+      rmSync(tempDir, { recursive: true, force: true });
+    });
+
+    it('exits with code 0', () => {
+      expect(exitCode).toBe(0);
+    });
+
+    it('does not log an error', () => {
       expect(mockLogger.error).not.toHaveBeenCalled();
     });
   });
