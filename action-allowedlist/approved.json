@@ -380,5 +380,10 @@
     "actionLink": "astral-sh/setup-uv",
     "actionVersion": "85856786d1ce8acfbcc2f13a5f3fbd6b938f9f41",
     "tag": "v7.1.2"
+  },
+  {
+    "actionLink": "advanced-security/component-detection-dependency-submission-action",
+    "actionVersion": "b282c67b1008fde9b60da4bdfcd8849613e293b2",
+    "tag": "v0.1.6"
   }
 ]
