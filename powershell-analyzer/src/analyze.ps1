@@ -274,14 +274,18 @@ function Invoke-Analyzer {
     # See: https://github.com/PowerShell/PSScriptAnalyzer/issues/1807
     $psFiles = Get-ChildItem -Path $Directory -Recurse -Include "*.ps1", "*.psm1" -File
 
+    $settings = @{
+        ExcludeRules=@('PSUseSingularNouns', 'PSAvoidUsingWriteHost')
+    }
+
     if ($SaveToFile) {
         $results = @($psFiles | ForEach-Object {
-            Invoke-ScriptAnalyzer -Path $_.FullName -ExcludeRule $ExcludedRules
+            Invoke-ScriptAnalyzer -Path $_.FullName -Settings $settings -ExcludeRule $ExcludedRules
         })
     }
     else {
         $psFiles | ForEach-Object {
-            Invoke-ScriptAnalyzer -Path $_.FullName -ExcludeRule $ExcludedRules -ReportSummary
+            Invoke-ScriptAnalyzer -Path $_.FullName -Settings $settings -ExcludeRule $ExcludedRules -ReportSummary
         }
         return
     }
