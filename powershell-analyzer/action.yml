@@ -14,9 +14,6 @@ inputs:
     description: 'Path to analyze'
     required: true
     default: '.'
-outputs:
-  results:
-    description: 'SARIF Report with the results'
 runs:
   using: 'docker'
   image: 'Dockerfile'

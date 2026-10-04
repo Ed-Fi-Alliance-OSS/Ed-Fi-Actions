@@ -7,7 +7,7 @@ This can be run locally or executed in GitHub Actions.
 ## Run Locally
 
 ``` pwsh
-.\analyze.ps1 -Directory /folder-or-file
+.\src\analyze.ps1 -Directory /folder-or-file
 ```
 
 Options:
@@ -15,8 +15,7 @@ Options:
 | Parameter     | Description                                                                                                                                                       |
 | ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Directory     | Folder or Path to run analysis against. Required.                                                                                                                 |
-| SaveToFile    | Save to file, or print to console. Default: Save to file                                                                                                          |
-| ResultsPath   | Path to save the results. Default "./results.sarif"                                                                                                               |
+| SaveToFile    | Collect and report results as a table/annotations, or stream results to the console as each file is analyzed. Default: $true                                     |
 | IncludedRules | List of rules that should be included to analysis.       |
 | ExcludedRules | List of rules that should be excluded from analysis.     |
 
@@ -25,10 +24,11 @@ rules](https://docs.microsoft.com/en-us/powershell/utility-modules/psscriptanaly
 
 ### Result Formats
 
-- [SARIF](https://sarifweb.azurewebsites.net/) reports
-- Print to console
+- When running in GitHub Actions: inline workflow annotations and a job step
+  summary table (see [Run in GitHub Actions](#run-in-github-actions) below).
+- Otherwise: a table printed to the console.
 
-Example running locally printing to console:
+Example running locally, streaming results to the console as each file is analyzed:
 
 ``` pwsh
 .\analyze.ps1 -Directory /folder -SaveToFile $False
@@ -82,10 +82,6 @@ without using Code Scanning / CodeQL:
   checked-out repo).
 - **Job summary**: a Markdown table of all findings (severity, rule, file,
   line, message) is written to the workflow run's summary page.
-- **SARIF artifact**: the full SARIF report is still generated and uploaded
-  as a build artifact (`analysis-result`) for deeper inspection or import
-  into other tools (e.g. the SARIF VS Code extension), but it is no longer
-  uploaded to Code Scanning.
 
 ## See it in action
 

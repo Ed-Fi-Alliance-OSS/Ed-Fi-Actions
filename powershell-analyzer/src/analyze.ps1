@@ -7,10 +7,11 @@
 
 <#
 .DESCRIPTION
-    This script runs PSScriptAnalyzer on an entire directory structure, and
-    outputs the results as a Sarif file. This file can be read directly (it is
-    in JSON), or opened in Visual Studio Code with the sarif extension, or it
-    can be uploaded into GitHub Code QL results.
+    This script runs PSScriptAnalyzer on an entire directory structure. When
+    running inside GitHub Actions, findings are reported as inline workflow
+    annotations and a job step summary. When run locally, findings are
+    collected and printed as a table to the console (or, with
+    -SaveToFile $false, streamed to the console as each file is analyzed).
 #>
 [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseDeclaredVarsMoreThanAssignments', 'unused', Justification = 'False positives')]
 param (
@@ -19,40 +20,17 @@ param (
     [string]
     $Directory,
 
-    # If set to $false, it will only print the results.
+    # If set to $false, results stream directly to the console as each file
+    # is analyzed instead of being collected and reported as a table /
+    # GitHub Actions annotations.
     [boolean]
     $SaveToFile = $true,
-
-    # Location of the results file
-    [string]
-    $ResultsPath = "results.sarif",
 
     # List of excluded rules
     [string[]]
     $ExcludedRules = ""
 )
 
-
-<#
-.DESCRIPTION
-    Translate the severity reported by PSScriptAnalyzer into one of the four
-    levels acceptable in a Sarif file.
-#>
-function Get-Severity {
-    param (
-        # An individual test result from running Invoke-ScriptAnalyzer
-        [Parameter(Mandatory = $True)]
-        [PSCustomObject]
-        $analyzerResult
-    )
-
-    switch ($analyzerResult.Severity) {
-        "Error" { return "error" }
-        "Warning" { return "warning" }
-        "Information" { return "note" }
-        Default { return "none" }
-    }
-}
 
 <#
 .DESCRIPTION
@@ -74,34 +52,13 @@ function Get-Path {
     $runningInGitHub = $env:GITHUB_ACTIONS -eq $true
 
     if ($runningInGitHub) {
-        #Allows CodeQL to show preview of the file
+        # Report the path relative to the checked-out repo so GitHub can
+        # resolve it against the workflow run's annotations.
         return $path.replace('/github/workspace/testing-repo/', '')
     }
     else {
         return $path
     }
-}
-
-<#
-.DESCRIPTION
-    A Sarif file needs to have a locale in order for GitHub CodeQL to accept it.
-    How we determine the locale depends on our operating system. In some cases,
-    it won't even be set at the operating system level. If not set, just default
-    to "en-US".
-#>
-function Get-Locale {
-    if ($IsWindows) {
-        return (Get-WinSystemLocale).Name
-    }
-
-    $lang = (locale) -split "\n" | Where-Object { $_.startsWith("LANG=") }
-    # example: LANG=en_US.UTF-8
-
-    if ($lang.Length -eq 0) {
-        return "en-US"
-    }
-
-    return $lang.Substring(5, 5).replace('_', '-')
 }
 
 <#
@@ -203,41 +160,12 @@ function Write-GitHubStepSummary {
 
 <#
 .DESCRIPTION
-    Creates the outer "envelope" for Sarif test results.
-#>
-function Get-SarifContainer {
-    return @{
-        '$schema' = "http://json.schemastore.org/sarif-2.1.0"
-        version   = "2.1.0"
-        runs      = @(
-            @{
-                tool    = @{
-                    driver = @{
-                        name           = "PSScriptAnalyzer"
-                        version        = (Find-Module PSScriptAnalyzer).Version
-                        language       = Get-Locale
-                        informationUri = "https://docs.microsoft.com/en-us/powershell/module/psscriptanalyzer"
-                        rules          = @()
-                    }
-                }
-                results = @()
-            }
-        )
-    }
-}
-
-<#
-.DESCRIPTION
-    Run the PSScriptAnalyzer on a directory, adding the results into the given
-    $Sarif object.
+    Run the PSScriptAnalyzer on a directory, reporting any findings either as
+    GitHub Actions annotations/summary (when running in a workflow) or as a
+    console table (when run locally).
 #>
 function Invoke-Analyzer {
     param (
-        # Pre-created Sarif results object
-        [Parameter(Mandatory = $True)]
-        [PSCustomObject]
-        $SarifData,
-
         # Directory to scan
         [Parameter(Mandatory = $True)]
         [string]
@@ -261,12 +189,6 @@ function Invoke-Analyzer {
             throw $_
         }
     }
-
-    # There is a bug that causes the PSScriptAnalyzer to fail to notice the use of $SarifData inside
-    # of the ForEach-Object. And the recommended approach for suppressing messages is failing too.
-    # Therefore, this has a dummy usage of the parameter just to satisfy the analyzer
-    # https://github.com/PowerShell/PSScriptAnalyzer/issues/1472
-    $SarifData | Out-Null
 
     # Enumerate files individually rather than using -Recurse on the directory.
     # PSScriptAnalyzer can overflow the AST analysis call stack when scanning
@@ -294,69 +216,8 @@ function Invoke-Analyzer {
         Write-GitHubAnnotations -AnalyzerResults $results
         Write-GitHubStepSummary -AnalyzerResults $results
     }
-
-    $results | ForEach-Object {
-        # Sometimes no line number or column is provided by the analysis. GitHub
-        # doesn't allow that; it requires an integer >= 1.
-        $line = $_.Line
-        if ($null -eq $line) { $line = 1 }
-        $column = $_.Column
-        if ($null -eq $column) { $column = 1 }
-
-        $SarifData.runs[0].results += @{
-            ruleId    = $_.RuleName
-            level     = Get-Severity $_
-            message   = @{
-                text = $_.Message
-            }
-            locations = @(
-                @{
-                    physicalLocation = @{
-                        artifactLocation = @{
-                            uri = Get-Path $_
-                        }
-                        region           = @{
-                            startLine   = $line
-                            startColumn = $column
-                        }
-                    }
-                }
-            )
-        }
-    }
-}
-
-<#
-.DESCRIPTION
-    Reads all the rules actually reported on by the scans, and load the unique
-    rules into the tool.driver.rules array.
-#>
-function Invoke-PopulateRulesArray {
-    param (
-        # Pre-created Sarif results object
-        [Parameter(Mandatory = $True)]
-        [PSCustomObject]
-        $SarifData
-    )
-
-    $SarifData.runs[0].results | Select-Object -ExpandProperty ruleId | Sort-Object | Get-Unique | ForEach-Object {
-        $rule = Get-ScriptAnalyzerRule $_
-
-        $SarifData.runs[0].tool.driver.rules += @{
-            id               = $_
-            shortDescription = @{
-                text = $rule.CommonName
-            }
-            fullDescription  = @{
-                text = $rule.Description
-            }
-            helpUri          = "https://docs.microsoft.com/en-us/powershell/utility-modules/psscriptanalyzer/rules/$($_.ToString().Substring(2))"
-            properties       = @{
-                tags = @(
-                    "PowerShell"
-                )
-            }
-        }
+    else {
+        $results | Format-Table -Property RuleName, Severity, ScriptName, Line, Message -AutoSize
     }
 }
 
@@ -366,17 +227,7 @@ if (-not (Test-Path $Directory)) {
 
 Write-Output "Begin analyzing all PowerShell files in $Directory..."
 
-$sarif = Get-SarifContainer
+Invoke-Analyzer -Directory $Directory -SaveToFile $SaveToFile -ExcludedRules $ExcludedRules
 
-Invoke-Analyzer -Sarif $sarif -Directory $Directory -SaveToFile $SaveToFile -ExcludedRules $ExcludedRules
-
-if ($SaveToFile) {
-    Invoke-PopulateRulesArray -Sarif $sarif
-    $sarif | ConvertTo-Json -Depth 10 | Out-File -Path $ResultsPath -Force
-    Write-Output "Done with analysis, see $ResultsPath for output."
-    exit(0)
-}
-else {
-    Write-Output "Done with analysis of PowerShell files in $Directory."
-    exit(0)
-}
+Write-Output "Done with analysis of PowerShell files in $Directory."
+exit(0)
