@@ -106,6 +106,103 @@ function Get-Locale {
 
 <#
 .DESCRIPTION
+    Maps PSScriptAnalyzer severity to the matching GitHub Actions workflow
+    command (used for inline log annotations).
+#>
+function Get-AnnotationCommand {
+    param (
+        # An individual test result from running Invoke-ScriptAnalyzer
+        [Parameter(Mandatory = $True)]
+        [PSCustomObject]
+        $analyzerResult
+    )
+
+    switch ($analyzerResult.Severity) {
+        "Error" { return "error" }
+        "Warning" { return "warning" }
+        Default { return "notice" }
+    }
+}
+
+<#
+.DESCRIPTION
+    Emits one GitHub Actions workflow command per finding so that each issue
+    shows up as an inline annotation on the files changed / checks view,
+    without touching Code Scanning / CodeQL.
+    https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#setting-a-warning-message
+#>
+function Write-GitHubAnnotations {
+    param (
+        # Results returned by Invoke-ScriptAnalyzer
+        [Parameter(Mandatory = $True)]
+        [AllowEmptyCollection()]
+        [array]
+        $AnalyzerResults
+    )
+
+    foreach ($analyzerResult in $AnalyzerResults) {
+        $line = $analyzerResult.Line
+        if ($null -eq $line) { $line = 1 }
+        $column = $analyzerResult.Column
+        if ($null -eq $column) { $column = 1 }
+
+        $command = Get-AnnotationCommand $analyzerResult
+        $path = Get-Path $analyzerResult
+        $message = $analyzerResult.Message -replace "`r`n|`n", " " -replace "%", "%25" -replace "`r", "%0D" -replace "`n", "%0A"
+
+        Write-Output "::$command file=$path,line=$line,col=$column,title=$($analyzerResult.RuleName)::$message"
+    }
+}
+
+<#
+.DESCRIPTION
+    Writes a Markdown summary of the findings to the GitHub Actions job
+    summary ($GITHUB_STEP_SUMMARY), so that results are visible directly on
+    the workflow run without opening an artifact or Code Scanning.
+#>
+function Write-GitHubStepSummary {
+    param (
+        # Results returned by Invoke-ScriptAnalyzer
+        [Parameter(Mandatory = $True)]
+        [AllowEmptyCollection()]
+        [array]
+        $AnalyzerResults
+    )
+
+    if ([string]::IsNullOrEmpty($env:GITHUB_STEP_SUMMARY)) {
+        return
+    }
+
+    $lines = @("## PowerShell Analyzer Results", "")
+
+    if ($AnalyzerResults.Count -eq 0) {
+        $lines += "No issues found. :white_check_mark:"
+    }
+    else {
+        $errorCount = ($AnalyzerResults | Where-Object { $_.Severity -eq "Error" }).Count
+        $warningCount = ($AnalyzerResults | Where-Object { $_.Severity -eq "Warning" }).Count
+        $infoCount = ($AnalyzerResults | Where-Object { $_.Severity -eq "Information" }).Count
+
+        $lines += "Found $($AnalyzerResults.Count) issue(s): $errorCount error(s), $warningCount warning(s), $infoCount informational."
+        $lines += ""
+        $lines += "| Severity | Rule | File | Line | Message |"
+        $lines += "| -------- | ---- | ---- | ---- | ------- |"
+
+        foreach ($analyzerResult in $AnalyzerResults) {
+            $line = $analyzerResult.Line
+            if ($null -eq $line) { $line = 1 }
+            $path = Get-Path $analyzerResult
+            $message = $analyzerResult.Message -replace "\|", "\|" -replace "`r`n|`n|`r", " "
+
+            $lines += "| $($analyzerResult.Severity) | $($analyzerResult.RuleName) | $path | $line | $message |"
+        }
+    }
+
+    $lines | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append -Encoding utf8
+}
+
+<#
+.DESCRIPTION
     Creates the outer "envelope" for Sarif test results.
 #>
 function Get-SarifContainer {
@@ -178,15 +275,20 @@ function Invoke-Analyzer {
     $psFiles = Get-ChildItem -Path $Directory -Recurse -Include "*.ps1", "*.psm1" -File
 
     if ($SaveToFile) {
-        $results = $psFiles | ForEach-Object {
+        $results = @($psFiles | ForEach-Object {
             Invoke-ScriptAnalyzer -Path $_.FullName -ExcludeRule $ExcludedRules
-        }
+        })
     }
     else {
         $psFiles | ForEach-Object {
             Invoke-ScriptAnalyzer -Path $_.FullName -ExcludeRule $ExcludedRules -ReportSummary
         }
         return
+    }
+
+    if ($env:GITHUB_ACTIONS -eq $true) {
+        Write-GitHubAnnotations -AnalyzerResults $results
+        Write-GitHubStepSummary -AnalyzerResults $results
     }
 
     $results | ForEach-Object {

@@ -73,13 +73,25 @@ Include into your workflow file:
 ```
 
 This will automatically analyze all the PowerShell scripts and modules in the
-repo, and will generate a SARIF report that will be included into
-`https://github.com/{ORGANIZATION}/{REPOSITORY}/security/code-scanning`
+repo. Since this is a linter, not a security scanner, results are surfaced
+without using Code Scanning / CodeQL:
+
+- **Inline log annotations**: each finding is emitted as a `::warning`,
+  `::error`, or `::notice` workflow command, so it shows up annotated on the
+  workflow run (and on the affected lines, when the file is part of the
+  checked-out repo).
+- **Job summary**: a Markdown table of all findings (severity, rule, file,
+  line, message) is written to the workflow run's summary page.
+- **SARIF artifact**: the full SARIF report is still generated and uploaded
+  as a build artifact (`analysis-result`) for deeper inspection or import
+  into other tools (e.g. the SARIF VS Code extension), but it is no longer
+  uploaded to Code Scanning.
 
 ## See it in action
 
-[analyze-repository.yml](https://github.com/Ed-Fi-Alliance-OSS/Ed-Fi-Actions/.github/workflows/analyze-repository.yml)
-runs the analysis on all files on this repo. You can manually trigger the
-workflow or see the results in the [Code
-Scanning](https://github.com/Ed-Fi-Alliance-OSS/Ed-Fi-Actions/security/code-scanning)
-section.
+[powershell-analyzer.yml](https://github.com/Ed-Fi-Alliance-OSS/Ed-Fi-Actions/blob/main/.github/workflows/powershell-analyzer.yml)
+is invoked by
+[on-pullrequest-powershell.yml](https://github.com/Ed-Fi-Alliance-OSS/Ed-Fi-Actions/blob/main/.github/workflows/on-pullrequest-powershell.yml)
+on every pull request touching PowerShell files. You can manually trigger the
+workflow or review the annotations and job summary on the corresponding
+workflow run.
