@@ -83,12 +83,26 @@ function Get-AnnotationCommand {
 
 <#
 .DESCRIPTION
+    Escapes a value used in a GitHub Actions workflow-command property.
+#>
+function ConvertTo-GitHubWorkflowProperty {
+    param (
+        [Parameter(Mandatory = $True)]
+        [string]
+        $Value
+    )
+
+    return $Value -replace "%", "%25" -replace "`r", "%0D" -replace "`n", "%0A" -replace ":", "%3A" -replace ",", "%2C"
+}
+
+<#
+.DESCRIPTION
     Emits one GitHub Actions workflow command per finding so that each issue
     shows up as an inline annotation on the files changed / checks view,
     without touching Code Scanning / CodeQL.
     https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#setting-a-warning-message
 #>
-function Write-GitHubAnnotations {
+function Write-GitHubAnnotation {
     param (
         # Results returned by Invoke-ScriptAnalyzer
         [Parameter(Mandatory = $True)]
@@ -104,10 +118,11 @@ function Write-GitHubAnnotations {
         if ($null -eq $column) { $column = 1 }
 
         $command = Get-AnnotationCommand $analyzerResult
-        $path = Get-Path $analyzerResult
+        $path = ConvertTo-GitHubWorkflowProperty (Get-Path $analyzerResult)
+        $ruleName = ConvertTo-GitHubWorkflowProperty $analyzerResult.RuleName
         $message = $analyzerResult.Message -replace "`r`n|`n", " " -replace "%", "%25" -replace "`r", "%0D" -replace "`n", "%0A"
 
-        Write-Output "::$command file=$path,line=$line,col=$column,title=$($analyzerResult.RuleName)::$message"
+        Write-Output "::$command file=$path,line=$line,col=$column,title=$ruleName::$message"
     }
 }
 
@@ -148,7 +163,7 @@ function Write-GitHubStepSummary {
         foreach ($analyzerResult in $AnalyzerResults) {
             $line = $analyzerResult.Line
             if ($null -eq $line) { $line = 1 }
-            $path = Get-Path $analyzerResult
+            $path = (Get-Path $analyzerResult) -replace "\|", "\|" -replace "`r`n|`n|`r", " "
             $message = $analyzerResult.Message -replace "\|", "\|" -replace "`r`n|`n|`r", " "
 
             $lines += "| $($analyzerResult.Severity) | $($analyzerResult.RuleName) | $path | $line | $message |"
@@ -196,24 +211,20 @@ function Invoke-Analyzer {
     # See: https://github.com/PowerShell/PSScriptAnalyzer/issues/1807
     $psFiles = Get-ChildItem -Path $Directory -Recurse -Include "*.ps1", "*.psm1" -File
 
-    $settings = @{
-        ExcludeRules=@('PSUseSingularNouns', 'PSAvoidUsingWriteHost')
-    }
-
     if ($SaveToFile) {
         $results = @($psFiles | ForEach-Object {
-            Invoke-ScriptAnalyzer -Path $_.FullName -Settings $settings -ExcludeRule $ExcludedRules
+            Invoke-ScriptAnalyzer -Path $_.FullName -ExcludeRule $ExcludedRules
         })
     }
     else {
         $psFiles | ForEach-Object {
-            Invoke-ScriptAnalyzer -Path $_.FullName -Settings $settings -ExcludeRule $ExcludedRules -ReportSummary
+            Invoke-ScriptAnalyzer -Path $_.FullName -ExcludeRule $ExcludedRules -ReportSummary
         }
         return
     }
 
     if ($env:GITHUB_ACTIONS -eq $true) {
-        Write-GitHubAnnotations -AnalyzerResults $results
+        Write-GitHubAnnotation -AnalyzerResults $results
         Write-GitHubStepSummary -AnalyzerResults $results
     }
     else {

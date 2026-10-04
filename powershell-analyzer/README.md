@@ -31,7 +31,7 @@ rules](https://docs.microsoft.com/en-us/powershell/utility-modules/psscriptanaly
 Example running locally, streaming results to the console as each file is analyzed:
 
 ``` pwsh
-.\analyze.ps1 -Directory /folder -SaveToFile $False
+.\src\analyze.ps1 -Directory /folder -SaveToFile $False
 ```
 
 Result:
