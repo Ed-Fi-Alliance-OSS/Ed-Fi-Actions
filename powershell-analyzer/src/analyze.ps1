@@ -75,10 +75,11 @@ function Get-AnnotationCommand {
     )
 
     switch ($analyzerResult.Severity) {
+        "ParseError" { return "error" }
         "Error" { return "error" }
         "Warning" { return "warning" }
         Default { return "notice" }
-    }
+}
 }
 
 <#
