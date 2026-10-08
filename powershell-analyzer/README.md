@@ -7,7 +7,7 @@ This can be run locally or executed in GitHub Actions.
 ## Run Locally
 
 ``` pwsh
-.\analyze.ps1 -Directory /folder-or-file
+.\src\analyze.ps1 -Directory /folder-or-file
 ```
 
 Options:
@@ -15,8 +15,7 @@ Options:
 | Parameter     | Description                                                                                                                                                       |
 | ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Directory     | Folder or Path to run analysis against. Required.                                                                                                                 |
-| SaveToFile    | Save to file, or print to console. Default: Save to file                                                                                                          |
-| ResultsPath   | Path to save the results. Default "./results.sarif"                                                                                                               |
+| SaveToFile    | Collect and report results as a table/annotations, or stream results to the console as each file is analyzed. Default: $true                                     |
 | IncludedRules | List of rules that should be included to analysis.       |
 | ExcludedRules | List of rules that should be excluded from analysis.     |
 
@@ -25,13 +24,14 @@ rules](https://docs.microsoft.com/en-us/powershell/utility-modules/psscriptanaly
 
 ### Result Formats
 
-- [SARIF](https://sarifweb.azurewebsites.net/) reports
-- Print to console
+- When running in GitHub Actions: inline workflow annotations and a job step
+  summary table (see [Run in GitHub Actions](#run-in-github-actions) below).
+- Otherwise: a table printed to the console.
 
-Example running locally printing to console:
+Example running locally, streaming results to the console as each file is analyzed:
 
 ``` pwsh
-.\analyze.ps1 -Directory /folder -SaveToFile $False
+.\src\analyze.ps1 -Directory /folder -SaveToFile $False
 ```
 
 Result:
@@ -73,13 +73,21 @@ Include into your workflow file:
 ```
 
 This will automatically analyze all the PowerShell scripts and modules in the
-repo, and will generate a SARIF report that will be included into
-`https://github.com/{ORGANIZATION}/{REPOSITORY}/security/code-scanning`
+repo. Since this is a linter, not a security scanner, results are surfaced
+without using Code Scanning / CodeQL:
+
+- **Inline log annotations**: each finding is emitted as a `::warning`,
+  `::error`, or `::notice` workflow command, so it shows up annotated on the
+  workflow run (and on the affected lines, when the file is part of the
+  checked-out repo).
+- **Job summary**: a Markdown table of all findings (severity, rule, file,
+  line, message) is written to the workflow run's summary page.
 
 ## See it in action
 
-[analyze-repository.yml](https://github.com/Ed-Fi-Alliance-OSS/Ed-Fi-Actions/.github/workflows/analyze-repository.yml)
-runs the analysis on all files on this repo. You can manually trigger the
-workflow or see the results in the [Code
-Scanning](https://github.com/Ed-Fi-Alliance-OSS/Ed-Fi-Actions/security/code-scanning)
-section.
+[powershell-analyzer.yml](https://github.com/Ed-Fi-Alliance-OSS/Ed-Fi-Actions/blob/main/.github/workflows/powershell-analyzer.yml)
+is invoked by
+[on-pullrequest-powershell.yml](https://github.com/Ed-Fi-Alliance-OSS/Ed-Fi-Actions/blob/main/.github/workflows/on-pullrequest-powershell.yml)
+on every pull request touching PowerShell files. You can manually trigger the
+workflow or review the annotations and job summary on the corresponding
+workflow run.
