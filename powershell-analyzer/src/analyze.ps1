@@ -79,7 +79,7 @@ function Get-AnnotationCommand {
         "Error" { return "error" }
         "Warning" { return "warning" }
         Default { return "notice" }
-}
+    }
 }
 
 <#
@@ -152,7 +152,7 @@ function Write-GitHubStepSummary {
         $lines += "No issues found. :white_check_mark:"
     }
     else {
-        $errorCount = ($AnalyzerResults | Where-Object { $_.Severity -eq "Error" }).Count
+        $errorCount = ($AnalyzerResults | Where-Object { $_.Severity -in "Error", "ParseError" }).Count
         $warningCount = ($AnalyzerResults | Where-Object { $_.Severity -eq "Warning" }).Count
         $infoCount = ($AnalyzerResults | Where-Object { $_.Severity -eq "Information" }).Count
 
