@@ -319,7 +319,7 @@
     "actionLink": "ossf/scorecard-action",
     "actionVersion": "fa7117db83c52d787ae5a89f350999701505d78e",
     "tag": "v2.5.0"
-  },,
+  },
   {
     "actionLink": "microsoft/setup-msbuild",
     "actionVersion": "6fb02220983dee41ce7ae257b6f4d8f9bf5ed4ce",
