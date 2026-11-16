@@ -1,0 +1,70 @@
+name: "✅ Approve Third-Party GitHub Action"
+description: "Request security review and approval of a third-party GitHub Action for use in Ed-Fi repositories"
+title: "Approve GitHub Action: [owner/action-name@vX.Y.Z]"
+labels: ["action-approval"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Third-Party GitHub Action Approval Request
+
+        Use this template to request a security review of a third-party GitHub Action.
+
+        Actions from `github/*` and `actions/*` do not require review. All other third-party actions must pass a security review before they can be used in Ed-Fi repositories.
+
+        > **💡 Tip:** After submitting this issue, assign it to **GitHub Copilot** to trigger an automated security review. The agent will post its findings here and create a pull request to update the allowlist if the action is approved.
+
+  - type: input
+    id: action-identifier
+    attributes:
+      label: "GitHub Action"
+      description: "The full action identifier in the format `owner/action-name`"
+      placeholder: "e.g., dorny/test-reporter"
+    validations:
+      required: true
+
+  - type: input
+    id: action-version
+    attributes:
+      label: "Version / Tag"
+      description: "The specific version tag to review"
+      placeholder: "e.g., v1.2.3"
+    validations:
+      required: true
+
+  - type: input
+    id: action-commit
+    attributes:
+      label: "Commit Hash (optional)"
+      description: "The exact commit hash for the tag, if known. If not provided, the agent will resolve it."
+      placeholder: "e.g., abc1234def5678..."
+    validations:
+      required: false
+
+  - type: input
+    id: marketplace-url
+    attributes:
+      label: "GitHub Marketplace / Repository URL"
+      description: "Link to the action's repository or marketplace listing"
+      placeholder: "e.g., https://github.com/dorny/test-reporter"
+    validations:
+      required: false
+
+  - type: textarea
+    id: use-case
+    attributes:
+      label: "Use Case"
+      description: "Why is this action needed? Which Ed-Fi repositories or workflows will use it?"
+      placeholder: "This action is needed to publish test results in the XYZ repository's CI pipeline..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: "Additional Context"
+      description: "Any additional information that may be helpful for the security review"
+      placeholder: "Previous versions have been approved, this is an upgrade from v1.0.0..."
+    validations:
+      required: false
