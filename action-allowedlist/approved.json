@@ -292,6 +292,11 @@
     "tag": "v2.24.0"
   },
   {
+    "actionLink": "EnricoMi/publish-unit-test-result-action",
+    "actionVersion": "7622c5bf3d112a72ab4fa3951c2aa5723d8ab92d",
+    "tag": "v2.25.0"
+  },
+  {
     "actionLink": "ossf/scorecard-action",
     "actionVersion": "f49aabe0b5af0936a0987cfb85d86b75731b0186",
     "tag": "v2.4.1",
